@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
 
 permissions:
@@ -37,3 +37,11 @@ jobs:
           # The build only needs these to exist; nothing is sent from CI.
           RESEND_API_KEY: ci-placeholder
           CONTACT_TO_EMAIL: ci@example.com
+
+      # axe-core over every page in both themes plus three Lighthouse runs, on the build that
+      # verify just made (about a minute on the runner's preinstalled Chrome). It runs where a
+      # regression can still be stopped: pull requests and main. Pushes to develop get only the
+      # fast checks above.
+      - name: Accessibility and performance audit
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+        run: pnpm audit:web

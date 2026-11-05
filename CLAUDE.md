@@ -103,7 +103,7 @@ Applied pragmatically; this is a small site, so favor the simplest thing that wo
 
 ## Workflow
 
-- Commands: `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm test`, `pnpm check` (`astro sync` + `tsc --noEmit`; `astro check` does not support TypeScript 7, so `.astro` files are not type-checked), `pnpm verify` (check + test + build).
+- Commands: `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm test`, `pnpm check` (`astro sync` + `tsc --noEmit`; `astro check` does not support TypeScript 7, so `.astro` files are not type-checked), `pnpm verify` (check + test + build), `pnpm audit:web` (axe-core + Lighthouse against the last build; CI runs it on pull requests and on `main`, so run `pnpm build` first and keep it green).
 - `pnpm og` regenerates `public/og.png` from `scripts/og.svg`. `sharp` only loads under Node inside `nix develop`, not under bun or outside the shell.
 - Before calling a task done: tests pass, `astro check` is clean, and UI changes were looked at in a browser in both themes and both locales.
 - Skills live in `.claude/skills/` (lock file: `skills-lock.json`). Add with `pnpm dlx skills add <owner/repo> -s <skill> -a claude-code -y`.
