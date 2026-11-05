@@ -6,6 +6,8 @@ export const profileSchema = z.object({
   role: z.string(),
   headline: z.string(),
   tagline: z.string(),
+  /** Meta description for search results; Google truncates past ~160 characters. */
+  description: z.string().max(160),
   aboutTitle: z.string(),
   about: z.array(z.string()).min(1),
   location: z.string(),
