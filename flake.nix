@@ -19,6 +19,9 @@
 
           # El Chrome descargado por agent-browser no corre en NixOS: usar el de nixpkgs.
           AGENT_BROWSER_EXECUTABLE_PATH = "${pkgs.chromium}/bin/chromium";
+
+          # chrome-launcher (the CI audit) reads this to find a browser.
+          CHROME_PATH = "${pkgs.chromium}/bin/chromium";
         };
       });
     };

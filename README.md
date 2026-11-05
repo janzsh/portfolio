@@ -49,7 +49,7 @@ The `Under the hood` section is a small VS Code-style workspace generated from t
 
 ## Measured quality
 
-Measured on a local static production build served with gzip, home page with the IDE section included.
+Measured on a local static production build served with gzip, home page with the IDE section included. The key thresholds are enforced in CI on every pull request.
 
 | Check | Result |
 | --- | --- |
@@ -169,6 +169,7 @@ pnpm dev
 | `pnpm test:watch` | Tests in watch mode |
 | `pnpm check` | `astro sync` + strict `tsc --noEmit` |
 | `pnpm verify` | Types, tests and build in one go |
+| `pnpm audit:web` | axe-core + Lighthouse against the last build (run `pnpm build` first) |
 | `pnpm og` | Regenerate `public/og.png` (run it inside `nix develop`) |
 
 ## Testing
@@ -193,7 +194,16 @@ This project was built with [Claude Code](https://claude.com/claude-code). The c
 
 ## Continuous integration
 
-Every push to `main` and every pull request runs [`pnpm verify`](.github/workflows/ci.yml) on GitHub Actions: strict type-check, the Vitest suite and the production build, with a frozen lockfile.
+GitHub Actions runs [one workflow](.github/workflows/ci.yml) with two tiers of checks:
+
+| When | What runs |
+| --- | --- |
+| Push to `develop` | Strict type-check, the Vitest suite and the production build (`pnpm verify`) |
+| Pull request, or push to `main` | All of the above, plus an accessibility and performance audit of the build (`pnpm audit:web`) |
+
+The audit reuses the build that `verify` just made and takes about a minute: axe-core runs over every page in both themes (desktop, a sample on mobile, and the IDE after opening a file), then Lighthouse runs three times. It fails on any axe violation, on a Lighthouse accessibility or SEO score below 100, on performance or best practices below 90, or on layout shift above 0.1. A table with the scores lands in the run summary.
+
+You can run the same audit locally after a build: `pnpm build && pnpm audit:web`.
 
 ## Credits
 

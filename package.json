@@ -16,7 +16,8 @@
     "test:watch": "vitest",
     "check": "astro sync && tsc --noEmit",
     "og": "node scripts/build-og.mjs",
-    "verify": "pnpm run check && pnpm run test && astro build"
+    "verify": "pnpm run check && pnpm run test && astro build",
+    "audit:web": "node scripts/audit-web.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.1",
@@ -31,6 +32,10 @@
     "resend": "^6.37.0"
   },
   "devDependencies": {
+    "axe-core": "^4.14.0",
+    "chrome-launcher": "^1.2.2",
+    "lighthouse": "^13.6.0",
+    "puppeteer-core": "^25.16.0",
     "sass": "^1.107.1",
     "sharp": "^0.35.5",
     "typescript": "^7.0.2",
