@@ -9,7 +9,11 @@ interface Input {
 
 const personId = `${SITE.url}/#person`;
 
-/** One graph per page: the person this portfolio is about and the website that presents them. */
+/**
+ * One graph per page: the person this portfolio is about and the website that presents them.
+ * Email and phone are deliberately left out: structured data is machine-readable, so it would
+ * hand them straight to scrapers and spam bots.
+ */
 export const siteJsonLd = ({ jobTitle, description, locale }: Input) => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -20,8 +24,6 @@ export const siteJsonLd = ({ jobTitle, description, locale }: Input) => ({
       jobTitle,
       description,
       url: SITE.url,
-      email: SITE.email,
-      telephone: SITE.phone.display,
       sameAs: [SITE.social.github, SITE.social.linkedin],
     },
     {

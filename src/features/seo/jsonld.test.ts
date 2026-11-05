@@ -15,6 +15,12 @@ describe('siteJsonLd', () => {
     expect(person?.sameAs).toContain('https://github.com/cd-janz');
   });
 
+  it('does not publish contact details that spam bots could harvest', () => {
+    const person = graph().find((node) => node['@type'] === 'Person');
+    expect(person).not.toHaveProperty('email');
+    expect(person).not.toHaveProperty('telephone');
+  });
+
   it('declares the website in the page locale and points its publisher at the person', () => {
     const nodes = graph('es');
     const person = nodes.find((node) => node['@type'] === 'Person');
