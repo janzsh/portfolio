@@ -1,0 +1,45 @@
+// Reusable patterns. Anything used twice lives here instead of being copied.
+$breakpoints: (
+  'sm': 480px,
+  'md': 760px,
+  'lg': 1024px,
+  'xl': 1280px,
+);
+
+@use 'sass:map';
+
+@mixin up($name) {
+  @media (min-width: map.get($breakpoints, $name)) {
+    @content;
+  }
+}
+
+@mixin down($name) {
+  @media (max-width: map.get($breakpoints, $name) - 0.02px) {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  outline: 2px solid rgb(var(--color-accent-text));
+  outline-offset: 3px;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Motion that respects the user's preference: the transition is dropped, not shortened.
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}

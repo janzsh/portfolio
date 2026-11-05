@@ -1,0 +1,74 @@
+// Theme palettes: the only place with raw color values.
+//
+// Values are bare RGB channel triplets ("255, 255, 255") so a token works with both
+//   rgb(var(--color-bg))            and            rgba(var(--color-bg), 0.5)
+//
+// Pastel in light, neon in dark. Accent *fills* (decoration, buttons) and accent *text*
+// are separate tokens: the pastel fills are too pale to read as text on a light page, so
+// text and focus rings use the deeper `-text` tone. In dark the two are the same color.
+// Contrast was verified against WCAG 2.2 AA (4.5:1 text, 3:1 non-text).
+
+$light: (
+  'bg': '247, 246, 252',
+  'surface': '255, 255, 255',
+  'surface-2': '238, 236, 248',
+  'border': '218, 214, 236',
+  'border-strong': '128, 134, 164',
+  'fg': '22, 24, 40',
+  'fg-muted': '84, 90, 115',
+  'fg-faint': '94, 100, 126',
+  'accent': '126, 214, 245',
+  'accent-text': '5, 100, 148',
+  'accent-2': '190, 176, 255',
+  'accent-2-text': '88, 64, 196',
+  'accent-3': '150, 235, 214',
+  'accent-3-text': '8, 104, 84',
+  'on-accent': '22, 24, 40',
+  'danger': '190, 40, 60',
+  'shadow': '40, 36, 90',
+);
+
+$dark: (
+  'bg': '10, 12, 20',
+  'surface': '17, 20, 32',
+  'surface-2': '24, 28, 44',
+  'border': '38, 44, 64',
+  'border-strong': '88, 98, 128',
+  'fg': '233, 238, 248',
+  'fg-muted': '150, 160, 182',
+  'fg-faint': '134, 144, 168',
+  'accent': '69, 192, 240',
+  'accent-text': '69, 192, 240',
+  'accent-2': '168, 148, 255',
+  'accent-2-text': '168, 148, 255',
+  'accent-3': '80, 235, 200',
+  'accent-3-text': '80, 235, 200',
+  'on-accent': '8, 12, 20',
+  'danger': '255, 107, 122',
+  'shadow': '0, 0, 0',
+);
+
+@mixin emit($palette) {
+  @each $name, $triplet in $palette {
+    --color-#{$name}: #{$triplet};
+  }
+}
+
+// Light is the base. Dark follows the OS unless the user picked light explicitly;
+// `data-theme="dark"` forces it. The dark palette is declared once and emitted for both.
+:root {
+  @include emit($light);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include emit($dark);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include emit($dark);
+  color-scheme: dark;
+}
