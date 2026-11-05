@@ -1,29 +1,24 @@
 ---
+import About from '../features/about/About.astro';
 import Background from '../features/background/Background.astro';
+import Experience from '../features/experience/Experience.astro';
 import Footer from '../features/footer/Footer.astro';
 import Header from '../features/header/Header.astro';
+import Hero from '../features/hero/Hero.astro';
 import { SITE } from '../config/site';
-import { getProfile } from '../data/queries';
+import { getExperience, getProfile } from '../data/queries';
 import type { Locale } from '../i18n/locales';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../ui/Button.astro';
-import Section from '../ui/Section.astro';
-import Tag from '../ui/Tag.astro';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
-const profile = await getProfile(locale);
+const [profile, experience] = await Promise.all([getProfile(locale), getExperience(locale)]);
 ---
 <BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
   <Background slot="header" />
   <Header slot="header" {locale} />
-  <Section id="home" eyebrow={profile.role} title={profile.headline}>
-    <p>{profile.tagline}</p>
-    <p>
-      <Button href="#contact">Primary</Button>
-      <Button href="#contact" variant="ghost">Ghost</Button>
-      <Tag>neutral</Tag> <Tag tone="accent">accent</Tag>
-    </p>
-  </Section>
+  <Hero {locale} {profile} />
+  <About {locale} {profile} />
+  <Experience {locale} items={experience} />
   <Footer slot="footer" {locale} />
 </BaseLayout>
