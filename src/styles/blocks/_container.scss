@@ -2,3 +2,8 @@
   width: 100%;
   padding-inline: var(--page-pad);
 }
+
+// Body of a detail page, under its PageHeader.
+.container--page {
+  padding-bottom: var(--space-24);
+}

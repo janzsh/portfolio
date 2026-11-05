@@ -1,5 +1,6 @@
 ---
 import Section from '../../ui/Section.astro';
+import { localePath } from '../../i18n/paths';
 import { ui } from '../../i18n/ui';
 import type { Locale } from '../../i18n/locales';
 import ExperienceTimeline from './ExperienceTimeline.astro';
@@ -9,6 +10,6 @@ interface Props { locale: Locale; items: ExperienceEntry[]; }
 const { locale, items } = Astro.props;
 const t = ui(locale);
 ---
-<Section id="experience" eyebrow={t.sections.experience} title={t.titles.experience}>
+<Section id="experience" eyebrow={t.sections.experience} title={t.titles.experience} more={{ href: localePath(locale, 'experience'), label: t.more.experience }}>
   <ExperienceTimeline {locale} {items} />
 </Section>
