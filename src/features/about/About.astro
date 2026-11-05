@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets';
+import Section from '../../ui/Section.astro';
+import portrait from '../../assets/profile.jpg';
+import type { Profile } from '../../schemas/profile';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; profile: Profile; }
+const { locale, profile } = Astro.props;
+const t = ui(locale);
+---
+<Section id="about" eyebrow={t.sections.about} title={profile.aboutTitle}>
+  <div class="about">
+    <aside class="card about__profile">
+      <Image src={portrait} alt={`${profile.firstName} ${profile.lastName}`} width={360} height={360} class="about__photo" />
+      <h3 class="about__name">{profile.firstName} {profile.lastName}</h3>
+      <p class="about__role">{profile.role}</p>
+    </aside>
+
+    <div class="about__body">
+      <div class="about__prose">
+        {profile.about.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <ul class="about__facts">
+        {profile.languages.map((language) => (
+          <li class="about__fact"><span>{language.name}</span><b>{language.level}</b></li>
+        ))}
+        <li class="about__fact">{profile.workMode}</li>
+      </ul>
+    </div>
+  </div>
+</Section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .about {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 70ch);
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--space-8);
+
+    @include down('lg') {
+      grid-template-columns: 1fr;
+    }
+
+    &__profile {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-6);
+
+      @include down('lg') {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        align-items: center;
+      }
+    }
+
+    &__photo {
+      flex: 1;
+      width: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius);
+
+      @include down('lg') {
+        grid-row: span 2;
+        flex: none;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1;
+      }
+    }
+
+    &__role {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    &__prose {
+      display: grid;
+      gap: var(--space-4);
+      font-size: 1.08rem;
+      color: rgb(var(--color-fg-muted));
+
+      p:first-child {
+        font-size: 1.2rem;
+        color: rgb(var(--color-fg));
+      }
+    }
+
+    &__facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    &__fact {
+      display: inline-flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.9rem;
+      color: rgb(var(--color-fg-muted));
+      border: 1.5px solid rgb(var(--color-border-strong));
+      border-radius: var(--radius-pill);
+
+      b {
+        font-weight: 500;
+        color: rgb(var(--color-fg));
+      }
+    }
+  }
+</style>
