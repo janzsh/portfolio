@@ -10,7 +10,7 @@
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "astro check",
+    "check": "astro sync && tsc --noEmit",
     "verify": "bun run check && bun run test && astro build"
   },
   "dependencies": {
@@ -26,7 +26,6 @@
     "resend": "^6.37.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.12",
     "sass": "^1.107.1",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
