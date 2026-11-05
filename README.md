@@ -30,6 +30,7 @@
 - **Content as data.** Every section is Markdown or JSON in Astro content collections, validated by Zod at build time. A typo in a date fails the build instead of the page.
 - **Accessibility is measured, not claimed.** WCAG 2.2 AA checked with axe-core across every page, theme and viewport, plus keyboard, focus and reduced-motion handling.
 - **A contact form that does not leak.** Hexagonal server code (ports and adapters), honeypot, rate limiting and escaped emails. No email address or phone number is published anywhere in the HTML.
+- **The career as a codebase.** An interactive, VS Code-style explorer built from the same content: open `experience/*.json`, `projects/*.md` or the README in tabs, with syntax highlighting that works in both themes. It is a lazy Preact island of ~4.5 KB gzip that never loads on small screens.
 - **Printable résumé.** `/resume` is a paper-style page that always uses the light palette and prints to a clean two-page PDF.
 
 <div align="center">
@@ -37,19 +38,28 @@
 <img src="docs/screenshots/projects-light.webp" alt="Featured projects in the light theme" width="49%" />
 </div>
 
+### The career as a codebase
+
+The `Under the hood` section is a small VS Code-style workspace generated from the same content files. Folders and tabs behave like the real thing, and the syntax colors are part of the theme palette, so they stay legible in both modes.
+
+<div align="center">
+<img src="docs/screenshots/ide-dark.webp" alt="Interactive IDE section in the dark theme: an explorer with experience and project files, and an experience JSON file highlighted in the editor" width="49%" />
+<img src="docs/screenshots/ide-light.webp" alt="The same IDE section in the light theme, showing a project Markdown file" width="49%" />
+</div>
+
 ## Measured quality
 
-Measured on a local static production build served with gzip.
+Measured on a local static production build served with gzip, home page with the IDE section included.
 
 | Check | Result |
 | --- | --- |
 | Lighthouse (mobile and desktop) | **100** performance · **100** accessibility · **100** best practices · **100** SEO |
 | Core Web Vitals (lab) | LCP **0.8 s** mobile · CLS **0** · TBT **0 ms** |
-| axe-core, WCAG 2.0/2.1/2.2 A + AA + best practices | **0 violations** in 36 runs (9 pages × light/dark × desktop/mobile) |
-| Weight of the home page | ~136 KiB over 8 requests, including three fonts |
-| Unit tests | 60+ passing |
+| axe-core, WCAG 2.0/2.1/2.2 A + AA + best practices | **0 violations** in 36 runs (9 pages × light/dark × desktop/mobile), plus 8 more on the home page with the IDE hydrated and in use |
+| Weight of the home page | ~140 KiB over 8 requests, including three fonts |
+| Unit tests | 80+ passing |
 
-The audit found and fixed real issues along the way: a 0.12 layout shift caused by web fonts swapping under the headline (fixed with a latin-only subset and preload), duplicate meta descriptions, and a missing focus move on form errors.
+The audit found and fixed real issues along the way: a 0.12 layout shift caused by web fonts swapping under the headline (fixed with a latin-only subset and preload), duplicate meta descriptions, and a missing focus move on form errors, and an ARIA `tablist` in the IDE that illegally contained close buttons (replaced by a plain list of open files).
 
 ## Tech stack
 
@@ -110,7 +120,7 @@ src/
   data/         read-only queries over the collections
   domain/       pure TypeScript: dates, timeline sorting, skill grouping
   features/     one folder per section: hero, about, skills, experience,
-                education, projects, contact, resume, header, footer, seo
+                education, projects, ide, contact, resume, header, footer, seo
   i18n/         locales, path helpers and typed UI dictionaries
   layouts/      Head, Fonts, BaseLayout (site chrome) and DocumentLayout
   pages/        thin routes: <View locale="..." />
@@ -163,7 +173,7 @@ pnpm dev
 
 ## Testing
 
-The project is developed test-first for its logic: pure modules (dates, skill grouping, headline splitting, theme resolution, JSON-LD, contact use case, rate limiter, email template) have unit tests, and the contact form's action client is the only thing mocked, because it is a network boundary. Visual and interactive behavior is checked in a real browser.
+The project is developed test-first for its logic: pure modules (dates, skill grouping, headline splitting, theme resolution, JSON-LD, contact use case, rate limiter, email template, the IDE's virtual repository, syntax highlighter and state) have unit tests, and the contact form's action client is the only thing mocked, because it is a network boundary. Visual and interactive behavior is checked in a real browser.
 
 ## Deployment
 
@@ -191,7 +201,6 @@ Visual design by **RZOR**. Built by [Juan Camilo Zúñiga](https://github.com/cd
 
 ## Roadmap
 
-- [ ] Interactive "IDE" section that presents the career as a browsable codebase (ported from the previous version, rebuilt on Preact)
 - [ ] Follow the manual theme in `theme-color`
 
 ## License
