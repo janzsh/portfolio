@@ -67,7 +67,7 @@ const en: UiStrings = {
   skills: {
     since: 'Since', usedIn: 'Used in', status: 'Status', tech: 'Technology', alsoLabel: 'Also worked with',
     production: 'In production', handsOn: 'Hands-on', learning: 'Learning',
-    tiers: { primary: 'Primary', secondary: 'Secondary', tertiary: 'Around the stack', growing: 'Growing focus', also: 'Also' },
+    tiers: { primary: 'Core', secondary: 'Secondary', tertiary: 'Around the stack', growing: 'Growing focus', also: 'Also' },
   },
   pages: {
     back: 'Back to home',
@@ -132,7 +132,7 @@ const es: UiStrings = {
   skills: {
     since: 'Desde', usedIn: 'Usada en', status: 'Estado', tech: 'Tecnología', alsoLabel: 'También he trabajado con',
     production: 'En producción', handsOn: 'Práctica', learning: 'Aprendiendo',
-    tiers: { primary: 'Principal', secondary: 'Secundario', tertiary: 'Alrededor del stack', growing: 'Foco en crecimiento', also: 'Además' },
+    tiers: { primary: 'Núcleo', secondary: 'Secundario', tertiary: 'Alrededor del stack', growing: 'Foco en crecimiento', also: 'Además' },
   },
   pages: {
     back: 'Volver al inicio',

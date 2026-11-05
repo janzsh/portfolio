@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SkillsCopy } from '../schemas/skills-copy';
 import type { Stack } from '../schemas/stack';
-import { buildSkillGroups } from './skills';
+import { buildSkillGroups, splitSkillGroups, type SkillGroup } from './skills';
 
 const stack: Stack = {
   groups: [{ id: 'go', tier: 'primary' }, { id: 'cloud', tier: 'growing' }],
@@ -31,5 +31,19 @@ describe('buildSkillGroups', () => {
   });
   it('fails loudly when a group has no copy for the locale', () => {
     expect(() => buildSkillGroups(stack, { ...copy, groups: {} }, resolve, 'en')).toThrow(/Missing skills copy/);
+  });
+});
+
+describe('splitSkillGroups', () => {
+  const group = (id: string, tier: SkillGroup['tier']): SkillGroup => ({ id, tier, title: id, description: '', items: [] });
+
+  it('separates the focus groups from the "also worked with" one, keeping order', () => {
+    const { focus, also } = splitSkillGroups([group('backend', 'primary'), group('cloud', 'growing'), group('misc', 'also')]);
+    expect(focus.map((g) => g.id)).toEqual(['backend', 'cloud']);
+    expect(also?.id).toBe('misc');
+  });
+
+  it('has no "also" group when the stack does not define one', () => {
+    expect(splitSkillGroups([group('backend', 'primary')]).also).toBeUndefined();
   });
 });

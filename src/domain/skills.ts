@@ -48,4 +48,7 @@ export function buildSkillGroups(
   });
 }
 
-export const PRIMARY_TIERS: readonly Tier[] = ['primary'];
+/** The focus groups (shown as cards) and the one "also worked with" group (shown as a line). */
+export function splitSkillGroups(groups: SkillGroup[]): { focus: SkillGroup[]; also: SkillGroup | undefined } {
+  return { focus: groups.filter((group) => group.tier !== 'also'), also: groups.find((group) => group.tier === 'also') };
+}
