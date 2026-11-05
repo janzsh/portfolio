@@ -1,0 +1,16 @@
+---
+import { SITE } from '../config/site';
+import { getProfile } from '../data/queries';
+import type { Locale } from '../i18n/locales';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThemeToggle from '../ui/ThemeToggle.astro';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const profile = await getProfile(locale);
+---
+<BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
+  <ThemeToggle {locale} />
+  <h1>{profile.headline}</h1>
+  <p>{profile.tagline}</p>
+</BaseLayout>
