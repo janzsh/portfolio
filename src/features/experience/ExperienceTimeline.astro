@@ -1,0 +1,37 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { ui } from '../../i18n/ui';
+import ExperienceCard from './ExperienceCard.astro';
+import { toExperienceView, type ExperienceEntry } from './to-view';
+
+interface Props { locale: Locale; items: ExperienceEntry[]; detailed?: boolean; level?: 'h2' | 'h3'; }
+const { locale, items, detailed, level } = Astro.props;
+const t = ui(locale);
+const views = items.map((item) => toExperienceView(item, locale, t.experience.present));
+---
+<ol class="timeline">
+  {views.map((entry) => <ExperienceCard {locale} {entry} {detailed} {level} />)}
+</ol>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: var(--space-8);
+    padding-left: var(--space-8);
+
+    @include down('md') {
+      padding-left: var(--space-6);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 8px auto 8px 7px;
+      width: 2px;
+      background: linear-gradient(rgb(var(--color-accent-text)), rgb(var(--color-border)) 70%, transparent);
+    }
+  }
+</style>

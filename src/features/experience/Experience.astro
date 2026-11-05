@@ -1,0 +1,14 @@
+---
+import Section from '../../ui/Section.astro';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+import ExperienceTimeline from './ExperienceTimeline.astro';
+import type { ExperienceEntry } from './to-view';
+
+interface Props { locale: Locale; items: ExperienceEntry[]; }
+const { locale, items } = Astro.props;
+const t = ui(locale);
+---
+<Section id="experience" eyebrow={t.sections.experience} title={t.titles.experience}>
+  <ExperienceTimeline {locale} {items} />
+</Section>

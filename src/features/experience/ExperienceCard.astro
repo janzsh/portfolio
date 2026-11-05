@@ -1,0 +1,195 @@
+---
+import Icon from '../../ui/Icon.astro';
+import Tag from '../../ui/Tag.astro';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+import type { ExperienceView } from './to-view';
+
+interface Props {
+  locale: Locale;
+  entry: ExperienceView;
+  /** Home shows a summary; the detail page shows everything. */
+  detailed?: boolean;
+  level?: 'h2' | 'h3';
+}
+const { locale, entry: e, detailed = false, level: Heading = 'h3' } = Astro.props;
+const t = ui(locale);
+
+const SUMMARY_IMPACT = 3;
+const SUMMARY_STACK = 6;
+const impact = detailed ? e.achievements : e.achievements.slice(0, SUMMARY_IMPACT);
+const stack = detailed ? e.stack : e.stack.slice(0, SUMMARY_STACK);
+const hiddenStack = e.stack.length - stack.length;
+---
+<li class="experience">
+  <span class:list={['experience__node', { 'experience__node--live': e.current }]} aria-hidden="true"></span>
+  <article class="card experience__card">
+    <header class="experience__head">
+      <div>
+        <Heading class="experience__role">{e.role}</Heading>
+        <p class="experience__company">
+          {e.url
+            ? <a class="experience__link" href={e.url} target="_blank" rel="noopener noreferrer">{e.company}<Icon name="link" size="0.9em" /></a>
+            : e.company}
+          <span class="experience__where"> · {e.location} · {e.mode}</span>
+        </p>
+      </div>
+      <p class="experience__when"><Icon name="calendar" size="1em" />{e.period}<b>{e.duration}</b></p>
+    </header>
+    <p class="experience__summary">{e.summary}</p>
+    {detailed && e.responsibilities.length > 0 && (
+      <div class="experience__block">
+        <p class="experience__label">{t.experience.responsibilities}</p>
+        <div class="experience__tags">{e.responsibilities.map((item) => <Tag tone="accent">{item}</Tag>)}</div>
+      </div>
+    )}
+    <ul class="experience__impact">{impact.map((achievement) => <li>{achievement}</li>)}</ul>
+    <div class="experience__tags">
+      {stack.map((item) => <Tag>{item}</Tag>)}
+      {hiddenStack > 0 && <Tag>{`+${hiddenStack} ${t.experience.moreStack}`}</Tag>}
+    </div>
+  </article>
+</li>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .experience {
+    position: relative;
+
+    &__node {
+      position: absolute;
+      top: 28px;
+      left: calc(var(--space-8) * -1);
+      width: 16px;
+      height: 16px;
+      background: rgb(var(--color-bg));
+      border: 2px solid rgb(var(--color-accent-text));
+      border-radius: 50%;
+
+      @include down('md') {
+        left: calc(var(--space-6) * -1);
+      }
+
+      &--live {
+        background: rgb(var(--color-accent));
+        box-shadow: 0 0 0 6px rgba(var(--color-accent), 0.3);
+      }
+    }
+
+    &__card {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-8);
+
+      @include down('md') {
+        padding: var(--space-6);
+      }
+
+      @include motion-safe {
+        transition: border-color 0.25s, transform 0.3s var(--ease);
+      }
+
+      &:hover {
+        border-color: rgba(var(--color-accent-text), 0.5);
+        transform: translateX(4px);
+      }
+    }
+
+    &__head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    &__role {
+      font-size: 2rem;
+    }
+
+    &__company {
+      margin-top: 4px;
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__where {
+      font-size: 0.9rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__when {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: rgb(var(--color-fg-muted));
+      white-space: nowrap;
+
+      b {
+        padding: 0.15rem 0.6rem;
+        font-weight: 500;
+        color: rgb(var(--color-fg));
+        border: 1px solid rgb(var(--color-border-strong));
+        border-radius: var(--radius-pill);
+      }
+    }
+
+    &__summary {
+      max-width: 70ch;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__block {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    &__label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &__impact {
+      display: grid;
+      gap: var(--space-2);
+
+      li {
+        position: relative;
+        padding-left: 1.4rem;
+        font-size: 0.97rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0.7em;
+          left: 0;
+          width: 8px;
+          height: 2px;
+          background: rgb(var(--color-accent-text));
+        }
+      }
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+  }
+</style>
