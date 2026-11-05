@@ -16,6 +16,6 @@ const [profile, experience, education, projects, skills] = await Promise.all([
   getSkills(locale),
 ]);
 ---
-<DocumentLayout {locale} path="resume" title={`${SITE.name} — ${ui(locale).resumePage.title}`} description={profile.description} jobTitle={profile.role}>
+<DocumentLayout {locale} path="resume" title={`${SITE.name} — ${ui(locale).resumePage.title}`} description={`${profile.firstName} ${profile.lastName}: ${ui(locale).resumePage.description}`} jobTitle={profile.role}>
   <Resume {locale} {profile} {experience} {education} {projects} groups={skills.groups} />
 </DocumentLayout>
