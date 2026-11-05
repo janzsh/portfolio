@@ -1,0 +1,107 @@
+---
+import { SITE } from '../../config/site';
+import { localePath } from '../../i18n/paths';
+import { ui } from '../../i18n/ui';
+import Icon from '../../ui/Icon.astro';
+import { decoration } from '../../ui/decorations';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = ui(locale);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="footer__decoration" aria-hidden="true" set:html={decoration('footer-decoration')} />
+  <div class="container footer__row">
+    <a class="footer__wordmark" href={localePath(locale)} aria-label={SITE.name}><Icon name="name" size="84px" /></a>
+    <p class="footer__credits">
+      <span>© {year} {SITE.name}.</span>
+      <span>{t.footer.designedBy} <strong>{SITE.designer}</strong> · {t.footer.builtBy} <a href={SITE.social.github} rel="noopener noreferrer">{SITE.handle}</a></span>
+    </p>
+    <ul class="footer__social">
+      <li><a href={SITE.social.github} rel="noopener noreferrer" target="_blank">GitHub</a></li>
+      <li><a href={SITE.social.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+      <li><a href={`${localePath(locale)}#contact`}>{t.nav.contact}</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .footer {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-8);
+    font-size: 0.9rem;
+    color: rgb(var(--color-fg-muted));
+    background: rgba(var(--color-bg), 0.55);
+    border-top: 1px solid rgb(var(--color-border));
+    backdrop-filter: blur(16px) saturate(1.2);
+
+    a:hover {
+      color: rgb(var(--color-fg));
+    }
+
+    strong {
+      font-weight: 600;
+      color: rgb(var(--color-fg));
+    }
+
+    &__decoration {
+      position: absolute;
+      inset: 0;
+      color: rgb(var(--color-border-strong));
+      opacity: 0.6;
+      pointer-events: none;
+
+      :global(svg) {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    &__wordmark {
+      display: inline-flex;
+      color: rgb(var(--color-fg));
+    }
+
+    &__credits {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--space-2);
+
+      span {
+        white-space: nowrap;
+      }
+    }
+
+    &__social {
+      display: flex;
+      gap: var(--space-6);
+    }
+
+    @include down('sm') {
+      &__row {
+        flex-direction: column;
+        gap: var(--space-6);
+        text-align: center;
+      }
+
+      &__credits {
+        flex-direction: column;
+        row-gap: var(--space-1);
+      }
+    }
+  }
+</style>

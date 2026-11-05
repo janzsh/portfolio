@@ -1,16 +1,29 @@
 ---
+import Background from '../features/background/Background.astro';
+import Footer from '../features/footer/Footer.astro';
+import Header from '../features/header/Header.astro';
 import { SITE } from '../config/site';
 import { getProfile } from '../data/queries';
 import type { Locale } from '../i18n/locales';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ThemeToggle from '../ui/ThemeToggle.astro';
+import Button from '../ui/Button.astro';
+import Section from '../ui/Section.astro';
+import Tag from '../ui/Tag.astro';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const profile = await getProfile(locale);
 ---
 <BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
-  <ThemeToggle {locale} />
-  <h1>{profile.headline}</h1>
-  <p>{profile.tagline}</p>
+  <Background slot="header" />
+  <Header slot="header" {locale} />
+  <Section id="home" eyebrow={profile.role} title={profile.headline}>
+    <p>{profile.tagline}</p>
+    <p>
+      <Button href="#contact">Primary</Button>
+      <Button href="#contact" variant="ghost">Ghost</Button>
+      <Tag>neutral</Tag> <Tag tone="accent">accent</Tag>
+    </p>
+  </Section>
+  <Footer slot="footer" {locale} />
 </BaseLayout>

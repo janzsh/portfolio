@@ -1,0 +1,256 @@
+---
+import { SITE } from '../../config/site';
+import { localePath } from '../../i18n/paths';
+import { ui } from '../../i18n/ui';
+import Icon from '../../ui/Icon.astro';
+import ThemeToggle from '../../ui/ThemeToggle.astro';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  /** Section id to mark as current when not on the home page. */
+  current?: string;
+  onHome?: boolean;
+  /** Path of the current page without locale prefix, so the language switch stays on the same page. */
+  path?: string;
+}
+const { locale, current, onHome = true, path = '' } = Astro.props;
+const t = ui(locale);
+const other: Locale = locale === 'en' ? 'es' : 'en';
+const links = [
+  { id: 'home', label: t.nav.home },
+  { id: 'experience', label: t.nav.experience },
+  { id: 'education', label: t.nav.education },
+  { id: 'projects', label: t.nav.projects },
+  { id: 'contact', label: t.nav.contact },
+];
+---
+<header class="header" data-header>
+  <nav class="header__bar" aria-label={t.nav.label}>
+    <a class="header__brand" href={localePath(locale)} aria-label={SITE.name}>
+      <Icon name="logo" size="26px" />
+    </a>
+
+    <ul class="header__links" id="primary-links" data-links>
+      {links.map((link) => (
+        <li>
+          <a
+            class="header__link"
+            href={onHome ? `#${link.id}` : `${localePath(locale)}#${link.id}`}
+            data-link={link.id}
+            aria-current={current === link.id ? 'true' : undefined}
+          >{link.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="header__actions">
+      <a class="header__lang" href={localePath(other, path)} hreflang={other} lang={other} aria-label={t.switchLanguage} title={t.switchLanguage}>
+        <Icon name="locale" size="1.35em" />
+      </a>
+      <ThemeToggle {locale} />
+      <a class="header__resume" href={localePath(locale, 'resume')}>{t.resume}</a>
+      <button class="header__burger" type="button" aria-expanded="false" aria-controls="primary-links" data-burger>
+        <span class="sr-only">{t.nav.menu}</span><i></i><i></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  import { initHeader } from './header.client';
+  initHeader();
+</script>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4) var(--page-pad);
+
+    &__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      width: 100%;
+      padding: 0.55rem 0;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+
+      @include motion-safe {
+        transition: background-color 0.3s, border-color 0.3s, width 0.4s var(--ease), padding 0.3s var(--ease);
+      }
+    }
+
+    &--scrolled &__bar {
+      width: min(100%, 760px);
+      padding-inline: 0.75rem;
+      background: rgba(var(--color-bg), 0.72);
+      border-color: rgb(var(--color-border));
+      backdrop-filter: blur(16px) saturate(1.4);
+    }
+
+    &__brand {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: rgb(var(--color-fg));
+      border-radius: 12px;
+
+      &:hover {
+        background: rgba(var(--color-accent), 0.2);
+      }
+    }
+
+    &__links {
+      display: flex;
+      gap: var(--space-1);
+    }
+
+    &__link {
+      position: relative;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.92rem;
+      color: rgb(var(--color-fg-muted));
+      border-radius: var(--radius-pill);
+
+      &:hover,
+      &[aria-current='true'] {
+        color: rgb(var(--color-fg));
+      }
+
+      &[aria-current='true']::after {
+        content: '';
+        position: absolute;
+        inset: auto 22% 0;
+        height: 2px;
+        background: rgb(var(--color-accent-text));
+        border-radius: 2px;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    &__lang {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: rgb(var(--color-fg-muted));
+      border-radius: 50%;
+
+      &:hover {
+        color: rgb(var(--color-fg));
+        background: rgba(var(--color-accent), 0.2);
+      }
+    }
+
+    &__resume {
+      padding: 0.45rem 1rem;
+      font-size: 0.88rem;
+      border: 1.5px solid rgb(var(--color-border-strong));
+      border-radius: var(--radius-pill);
+
+      &:hover {
+        border-color: rgb(var(--color-accent-text));
+        background: rgba(var(--color-accent), 0.16);
+      }
+    }
+
+    &__burger {
+      display: none;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: transparent;
+      border: 1.5px solid rgb(var(--color-border-strong));
+      border-radius: 50%;
+
+      i {
+        position: absolute;
+        inset-inline: 11px;
+        height: 2px;
+        background: rgb(var(--color-fg));
+
+        @include motion-safe {
+          transition: transform 0.25s var(--ease);
+        }
+
+        &:first-of-type {
+          top: 15px;
+        }
+
+        &:last-of-type {
+          top: 21px;
+        }
+      }
+
+      &[aria-expanded='true'] i:first-of-type {
+        transform: translateY(3px) rotate(45deg);
+      }
+
+      &[aria-expanded='true'] i:last-of-type {
+        transform: translateY(-3px) rotate(-45deg);
+      }
+    }
+
+    @include down('md') {
+      &__burger {
+        display: block;
+      }
+
+      &__resume {
+        display: none;
+      }
+
+      &__links {
+        position: absolute;
+        top: calc(100% + 4px);
+        inset-inline: var(--page-pad);
+        flex-direction: column;
+        padding: var(--space-3);
+        background: rgb(var(--color-surface));
+        border: 1px solid rgb(var(--color-border));
+        border-radius: var(--radius);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+
+        @include motion-safe {
+          transition: opacity 0.2s, transform 0.25s var(--ease), visibility 0.2s;
+        }
+
+        &--open {
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+      }
+
+      &__link {
+        display: block;
+        padding: 0.75rem 1rem;
+
+        &[aria-current='true'] {
+          background: rgba(var(--color-accent), 0.2);
+        }
+
+        &[aria-current='true']::after {
+          display: none;
+        }
+      }
+    }
+  }
+</style>

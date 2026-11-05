@@ -3,7 +3,7 @@ import type { Locale } from './locales';
 /** Static UI copy. Long-form content lives in `src/content`. */
 export interface UiStrings {
   skipToContent: string;
-  nav: { home: string; skills: string; experience: string; education: string; projects: string; contact: string };
+  nav: { label: string; menu: string; home: string; skills: string; experience: string; education: string; projects: string; contact: string };
   resume: string;
   switchLanguage: string;
   hero: { eyebrow: string; cta: string; secondaryCta: string; available: string };
@@ -36,7 +36,7 @@ export interface UiStrings {
 
 const en: UiStrings = {
   skipToContent: 'Skip to content',
-  nav: { home: 'Home', skills: 'Skills', experience: 'Experience', education: 'Education', projects: 'Projects', contact: 'Contact' },
+  nav: { label: 'Primary', menu: 'Menu', home: 'Home', skills: 'Skills', experience: 'Experience', education: 'Education', projects: 'Projects', contact: 'Contact' },
   resume: 'Resume',
   switchLanguage: 'Español',
   hero: {
@@ -102,7 +102,7 @@ const en: UiStrings = {
 
 const es: UiStrings = {
   skipToContent: 'Saltar al contenido',
-  nav: { home: 'Inicio', skills: 'Skills', experience: 'Experiencia', education: 'Educación', projects: 'Proyectos', contact: 'Contacto' },
+  nav: { label: 'Principal', menu: 'Menú', home: 'Inicio', skills: 'Skills', experience: 'Experiencia', education: 'Educación', projects: 'Proyectos', contact: 'Contacto' },
   resume: 'Currículum',
   switchLanguage: 'English',
   hero: {
