@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "astro sync && tsc --noEmit",
+    "og": "node scripts/build-og.mjs",
     "verify": "bun run check && bun run test && astro build"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "sass": "^1.107.1",
+    "sharp": "^0.35.5",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
   }

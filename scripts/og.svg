@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#45c0f0"/><stop offset="1" stop-color="#a894ff"/></linearGradient>
+    <radialGradient id="glow-a" cx="0.12" cy="0.05" r="0.65"><stop offset="0" stop-color="#45c0f0" stop-opacity=".32"/><stop offset="1" stop-color="#45c0f0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow-b" cx="0.95" cy="0.95" r="0.6"><stop offset="0" stop-color="#a894ff" stop-opacity=".28"/><stop offset="1" stop-color="#a894ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0c14"/>
+  <rect width="1200" height="630" fill="url(#glow-a)"/>
+  <rect width="1200" height="630" fill="url(#glow-b)"/>
+  <g font-family="JetBrainsMono Nerd Font, JetBrains Mono, monospace">
+    <text x="80" y="110" fill="#45c0f0" font-size="26">// janz.dev</text>
+    <text x="80" y="300" fill="#e9eef8" font-size="80" font-weight="700">Juan Camilo Zúñiga</text>
+    <text x="80" y="390" fill="url(#g)" font-size="52" font-weight="700">Software Engineer</text>
+    <text x="80" y="460" fill="#96a0b6" font-size="30">Backend · Frontend · Cloud</text>
+  </g>
+  <rect x="80" y="520" width="120" height="6" rx="3" fill="url(#g)"/>
+</svg>
