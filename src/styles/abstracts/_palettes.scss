@@ -26,6 +26,12 @@ $light: (
   'on-accent': '22, 24, 40',
   'danger': '190, 40, 60',
   'shadow': '40, 36, 90',
+  // Code syntax, >= 4.5:1 on the code surface and on a hovered line.
+  'syntax-key': '0, 90, 160',
+  'syntax-string': '16, 112, 48',
+  'syntax-number': '166, 70, 8',
+  'syntax-literal': '112, 52, 186',
+  'syntax-code': '138, 88, 0',
 );
 
 $dark: (
@@ -46,6 +52,11 @@ $dark: (
   'on-accent': '8, 12, 20',
   'danger': '255, 107, 122',
   'shadow': '0, 0, 0',
+  'syntax-key': '124, 196, 255',
+  'syntax-string': '165, 227, 160',
+  'syntax-number': '245, 169, 127',
+  'syntax-literal': '198, 160, 246',
+  'syntax-code': '245, 197, 66',
 );
 
 @mixin emit($palette) {
