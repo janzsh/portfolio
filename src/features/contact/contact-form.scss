@@ -1,0 +1,74 @@
+@use '../../styles/abstracts' as *;
+
+// Styles for the ContactForm island (a Preact component, so no scoped <style>).
+.contact-form {
+  display: grid;
+  gap: var(--space-4);
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+
+    @include down('sm') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: grid;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: rgb(var(--color-fg-muted));
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: rgb(var(--color-fg));
+    background: rgb(var(--color-surface));
+    border: 1.5px solid rgb(var(--color-border-strong));
+    border-radius: var(--radius-sm);
+
+    @include motion-safe {
+      transition: border-color 0.2s;
+    }
+
+    &:focus-visible {
+      border-color: rgb(var(--color-accent-text));
+    }
+
+    &[aria-invalid='true'] {
+      border-color: rgb(var(--color-danger));
+    }
+
+    &--area {
+      min-height: 9rem;
+      resize: vertical;
+    }
+  }
+
+  // Honeypot: hidden from people and assistive tech, bots fill it.
+  &__trap {
+    @include visually-hidden;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  &__status {
+    font-size: 0.9rem;
+
+    &--ok {
+      color: rgb(var(--color-accent-3-text));
+    }
+
+    &--bad {
+      color: rgb(var(--color-danger));
+    }
+  }
+}

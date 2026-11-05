@@ -1,0 +1,119 @@
+---
+import Section from '../../ui/Section.astro';
+import ContactForm from './ContactForm';
+import { buildChannels } from './channels';
+import { SITE } from '../../config/site';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = ui(locale);
+const channels = buildChannels(SITE.social);
+---
+<Section id="contact" eyebrow={t.sections.contact} title={t.titles.contact}>
+  <div class="contact">
+    <div class="contact__side">
+      <p class="contact__lead">{t.contactInfo.lead}</p>
+      <p class="contact__direct">{t.contactInfo.direct}</p>
+      <ul class="contact__channels">
+        {channels.map((channel) => (
+          <li>
+            <a class="contact__channel" href={channel.href} target="_blank" rel="noopener noreferrer">
+              <span>{channel.label}</span><b>{channel.value}</b>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="card contact__panel">
+      <ContactForm client:visible labels={t.contact} />
+    </div>
+  </div>
+</Section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    align-items: stretch;
+    gap: var(--space-12);
+
+    @include down('lg') {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    &__side {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__lead {
+      max-width: 40ch;
+      font-size: 1.15rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__direct {
+      margin-top: var(--space-8);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &__channels {
+      display: grid;
+      flex: 1;
+      grid-auto-rows: 1fr;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+
+      li {
+        display: grid;
+      }
+    }
+
+    &__channel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: 0.85rem 1rem;
+      background: rgba(var(--color-surface), 0.7);
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px) saturate(1.2);
+
+      @include motion-safe {
+        transition: border-color 0.2s, background-color 0.2s;
+      }
+
+      &:hover {
+        border-color: rgb(var(--color-accent-text));
+        background: rgba(var(--color-accent), 0.16);
+      }
+
+      span {
+        color: rgb(var(--color-fg-muted));
+      }
+
+      b {
+        font-weight: 500;
+      }
+    }
+
+    &__panel {
+      padding: var(--space-8);
+      backdrop-filter: blur(18px) saturate(1.2);
+
+      @include down('lg') {
+        padding: var(--space-6);
+      }
+    }
+  }
+</style>
