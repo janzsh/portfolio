@@ -16,7 +16,7 @@ const dialogId = `project-${project.id}`;
   <button class="project__open" type="button" data-open-dialog={dialogId} aria-label={`${t.projects.details}: ${project.name}`}></button>
   <div class={`project__media project__media--tone-${mediaTone(project.id)}`}>
     {project.picture
-      ? <img class="project__image" src={project.picture} alt="" loading="lazy" decoding="async" />
+      ? <img class="project__image" src={project.picture} alt="" width="640" height="360" loading="lazy" decoding="async" />
       : <span class="project__monogram" aria-hidden="true">{project.name.slice(0, 2).toUpperCase()}</span>}
     {project.placeholder && <span class="project__sample">{t.projects.sample}</span>}
   </div>
@@ -168,6 +168,7 @@ const dialogId = `project-${project.id}`;
 
   .project-dialog {
     width: min(680px, calc(100% - 2rem));
+    overscroll-behavior: contain;
     max-height: 86vh;
     padding: 0;
     color: rgb(var(--color-fg));

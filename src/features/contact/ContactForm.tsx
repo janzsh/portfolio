@@ -1,5 +1,6 @@
 import { useSignal } from '@preact/signals';
 import type { TargetedSubmitEvent } from 'preact';
+import { firstInvalidField } from './first-invalid';
 import { sendContact, type ContactOutcome } from './send-contact';
 import './contact-form.scss';
 
@@ -17,6 +18,7 @@ export interface ContactLabels {
 }
 
 const STATUS_ID = 'contact-status';
+const FIELD_ORDER = ['name', 'email', 'message'] as const;
 
 export default function ContactForm({ labels }: { labels: ContactLabels }) {
   const pending = useSignal(false);
@@ -30,6 +32,10 @@ export default function ContactForm({ labels }: { labels: ContactLabels }) {
     outcome.value = result;
     if (result.status === 'sent') form.reset();
     pending.value = false;
+
+    // Move focus to the first field that needs fixing.
+    const invalid = firstInvalidField(result.fieldErrors, FIELD_ORDER);
+    if (invalid) (form.elements.namedItem(invalid) as HTMLElement | null)?.focus();
   };
 
   // Invalid fields point at the status message so assistive tech reads what went wrong.
@@ -50,7 +56,7 @@ export default function ContactForm({ labels }: { labels: ContactLabels }) {
         </label>
         <label class="contact-form__field">
           <span>{labels.email}</span>
-          <input class="contact-form__input" name="email" type="email" autoComplete="email" required maxLength={120} {...fieldProps('email')} />
+          <input class="contact-form__input" name="email" type="email" inputmode="email" spellcheck={false} autoComplete="email" required maxLength={120} {...fieldProps('email')} />
         </label>
       </div>
       <label class="contact-form__field">

@@ -32,6 +32,16 @@ pre {
   font-family: var(--font-mono);
 }
 
+// No double-tap zoom delay on controls.
+a,
+button,
+input,
+textarea,
+select,
+summary {
+  touch-action: manipulation;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
