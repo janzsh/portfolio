@@ -1,0 +1,220 @@
+{
+  "groups": [
+    {
+      "id": "backend",
+      "tier": "primary"
+    },
+    {
+      "id": "frontend",
+      "tier": "primary"
+    },
+    {
+      "id": "data",
+      "tier": "secondary"
+    },
+    {
+      "id": "cloud",
+      "tier": "growing"
+    },
+    {
+      "id": "also",
+      "tier": "also"
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Java",
+      "group": "backend",
+      "since": "01/2020",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Kotlin",
+      "group": "backend",
+      "since": "12/2023",
+      "status": "hands-on"
+    },
+    {
+      "name": "Spring Boot",
+      "group": "backend",
+      "since": "08/2021",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "NestJS",
+      "group": "backend",
+      "since": "01/2022",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Go",
+      "group": "backend",
+      "since": "01/2024",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Gin",
+      "group": "backend",
+      "since": "12/2024",
+      "status": "hands-on"
+    },
+    {
+      "name": "Fiber",
+      "group": "backend",
+      "since": "02/2024",
+      "status": "hands-on"
+    },
+    {
+      "name": "Chi",
+      "group": "backend",
+      "status": "hands-on"
+    },
+    {
+      "name": "Cobra",
+      "group": "backend",
+      "status": "hands-on"
+    },
+    {
+      "name": "C#",
+      "group": "backend",
+      "since": "10/2020",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "ASP.NET Core",
+      "group": "backend",
+      "since": "08/2021",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Python",
+      "group": "backend",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "group": "backend",
+      "status": "hands-on"
+    },
+    {
+      "name": "TypeScript",
+      "group": "frontend",
+      "since": "01/2020",
+      "usedIn": [
+        "experience:igd",
+        "project:igd-plus",
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Angular",
+      "group": "frontend",
+      "since": "09/2021",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Astro",
+      "group": "frontend",
+      "since": "08/2023",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "React",
+      "group": "frontend",
+      "since": "03/2020",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Next.js",
+      "group": "frontend",
+      "since": "08/2021",
+      "usedIn": [
+        "experience:igd",
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "SQL",
+      "group": "data",
+      "since": "03/2020"
+    },
+    {
+      "name": "DynamoDB",
+      "group": "data",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "AWS",
+      "group": "cloud",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "AWS CDK",
+      "group": "cloud",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "ECS Fargate",
+      "group": "cloud",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Docker",
+      "group": "cloud",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "group": "cloud",
+      "status": "learning"
+    },
+    {
+      "name": "Lua",
+      "group": "also",
+      "since": "08/2023",
+      "usedIn": [
+        "project:neovim"
+      ]
+    }
+  ]
+}

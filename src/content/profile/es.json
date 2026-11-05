@@ -1,0 +1,39 @@
+{
+  "firstName": "Juan Camilo",
+  "lastName": "Zúñiga",
+  "role": "Ingeniero de Software",
+  "headline": "Construyo los sistemas sobre los que corre tu negocio.",
+  "tagline": "Ingeniero de software que construye productos fiables de punta a punta: servicios backend, interfaces rápidas e infraestructura cloud, con el lenguaje que pide el problema, y creciendo hacia AWS, DevOps y desarrollo cloud-first.",
+  "aboutTitle": "El humano en el ciclo",
+  "about": [
+    "Entré a la tecnología a los 18 como una decisión consciente y poco tradicional, y se volvió el centro de mi vida. Aprendo más rápido donde todo es más difícil: un cuello de botella técnico es, para mí, un campo de juego.",
+    "He liderado la migración y modernización de plataformas SaaS financieras y contables, diseñado backends en NestJS y ASP.NET Core, y entregado interfaces rápidas con React, Next.js y Astro.",
+    "Me importa entender qué necesita el negocio y elegir la arquitectura más simple que lo resuelva. Trabajo en todo el stack (backends en Java, Kotlin, Go, TypeScript y C#; interfaces en Angular, React y Astro) y elijo la herramienta según el problema, no al revés. Estoy creciendo hacia AWS, infraestructura como código y DevOps para construir cloud-first."
+  ],
+  "location": "Santa Marta, Colombia",
+  "languages": [
+    {
+      "name": "Español",
+      "level": "Nativo"
+    },
+    {
+      "name": "Inglés",
+      "level": "B1"
+    }
+  ],
+  "workMode": "Remoto / Híbrido · Dispuesto a reubicarme",
+  "stats": [
+    {
+      "value": "4+",
+      "label": "años construyendo software en producción"
+    },
+    {
+      "value": "Full stack",
+      "label": "APIs, interfaces y cloud, con el lenguaje que pide el problema"
+    },
+    {
+      "value": "5",
+      "label": "productos freelance entregados de punta a punta"
+    }
+  ]
+}

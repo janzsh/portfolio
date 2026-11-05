@@ -1,0 +1,19 @@
+{
+  "company": "IGD S.A.S",
+  "role": "Semi-Senior Full-stack Developer",
+  "mode": "Remote",
+  "location": "Barranquilla, Colombia",
+  "summary": "Led the development and migration of enterprise fintech and accounting SaaS platforms, from NestJS and ASP.NET Core backends to Next.js and Astro frontends.",
+  "start": "01/2021",
+  "end": "02/2025",
+  "responsibilities": ["Design", "Development", "Quality assurance", "Deployment", "Maintenance"],
+  "achievements": [
+    "Improved scalability and concurrency of core systems, reducing latency by 17%.",
+    "Led legacy modernization and technical-debt reduction, lifting team productivity by 12%.",
+    "Defined engineering standards and design patterns for consistency across platforms.",
+    "Designed SQL/NoSQL data models and workflows that increased system throughput.",
+    "Acted as technical lead on full-stack initiatives aligned with business goals."
+  ],
+  "stack": ["React", "Next.js", "Angular", "Astro", "Tailwind", "NestJS", "ASP.NET Core", "Spring Boot", "Docker"],
+  "url": "https://igdsas.com/"
+}

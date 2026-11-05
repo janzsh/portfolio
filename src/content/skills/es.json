@@ -1,0 +1,34 @@
+{
+  "groups": {
+    "backend": {
+      "title": "Backend",
+      "description": "Servicios y APIs que se mantienen fiables por años: Java, Kotlin y Spring Boot, Go, NestJS, ASP.NET Core y Python."
+    },
+    "frontend": {
+      "title": "Frontend",
+      "description": "Interfaces tipadas del componente a la página: TypeScript con Angular, React, Next.js y Astro."
+    },
+    "data": {
+      "title": "Datos",
+      "description": "Modelado relacional y SQL sólido, además de almacenes clave-valor como DynamoDB."
+    },
+    "cloud": {
+      "title": "Cloud y DevOps",
+      "description": "Hacia dónde voy: infraestructura como código, contenedores y AWS, diseñados desde el primer día."
+    },
+    "also": {
+      "title": "También he trabajado con",
+      "description": "Usadas en proyectos personales, fuera de mi día a día."
+    }
+  },
+  "heading": {
+    "lead": "Tecnologías, desde cuándo y dónde las usé de verdad. Sin barras de autoevaluación.",
+    "direction": "Hacia dónde voy",
+    "directionLead": "Estoy construyendo mi camino hacia el desarrollo cloud-first.",
+    "directionItems": [
+      "AWS",
+      "DevOps",
+      "Desarrollo cloud-first"
+    ]
+  }
+}

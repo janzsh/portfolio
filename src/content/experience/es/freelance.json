@@ -1,0 +1,16 @@
+{
+  "company": "Freelance",
+  "role": "Desarrollador Full-stack",
+  "mode": "Remoto",
+  "location": "Santa Marta, Colombia",
+  "summary": "Entrega de punta a punta de productos multiplataforma, integrando lógica de backend compleja con apps pulidas de cara al usuario.",
+  "start": "04/2025",
+  "responsibilities": ["Diseño", "Gestión de proyectos", "Desarrollo", "QA", "Despliegue", "Mantenimiento"],
+  "achievements": [
+    "Aplicación móvil de entrenamiento deportivo con blog.",
+    "Plataforma de gestión y programación de reciclaje industrial.",
+    "Optimización de rendimiento y rediseño de un sitio empresarial.",
+    "MVP de reservas hoteleras y MVP de logística de distribución de inventario."
+  ],
+  "stack": ["React Native", "Expo", "React", "Next.js", "Angular", "Redux", "NestJS", "Astro", "Spring Boot", "ASP.NET Core"]
+}

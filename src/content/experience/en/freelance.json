@@ -1,0 +1,16 @@
+{
+  "company": "Freelance",
+  "role": "Full-stack Developer",
+  "mode": "Remote",
+  "location": "Santa Marta, Colombia",
+  "summary": "End-to-end delivery of cross-platform products, integrating complex backend logic with polished user-facing apps.",
+  "start": "04/2025",
+  "responsibilities": ["Design", "Project management", "Development", "QA", "Deployment", "Maintenance"],
+  "achievements": [
+    "Mobile athletic training and blog application.",
+    "Industrial recycling scheduling and management platform.",
+    "Enterprise web performance optimization and redesign.",
+    "Hotel reservation MVP and inventory-distribution logistics MVP."
+  ],
+  "stack": ["React Native", "Expo", "React", "Next.js", "Angular", "Redux", "NestJS", "Astro", "Spring Boot", "ASP.NET Core"]
+}
