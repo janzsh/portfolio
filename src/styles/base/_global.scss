@@ -33,6 +33,10 @@ pre {
   @include focus-ring;
 }
 
+.sr-only {
+  @include visually-hidden;
+}
+
 .skip-link {
   @include visually-hidden;
 

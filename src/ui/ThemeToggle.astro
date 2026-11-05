@@ -1,0 +1,85 @@
+---
+import { ui } from '../i18n/ui';
+import type { Locale } from '../i18n/locales';
+
+interface Props { locale: Locale; }
+const t = ui(Astro.props.locale);
+---
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+  <span class="sr-only">{t.theme.toggle}</span>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+  </svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+    </g>
+  </svg>
+</button>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    cursor: pointer;
+    color: rgb(var(--color-accent-text));
+    background: rgba(var(--color-surface), 0.7);
+    border: 1.5px solid rgb(var(--color-border-strong));
+    border-radius: var(--radius-pill);
+
+    @include motion-safe {
+      transition: background-color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+
+    &:hover {
+      background: rgb(var(--color-surface-2));
+    }
+
+    &__icon {
+      grid-area: 1 / 1;
+      width: 1.25rem;
+      height: 1.25rem;
+
+      // Shows the theme the button switches to.
+      &--sun {
+        display: none;
+      }
+    }
+
+    &[aria-pressed='true'] &__icon--sun {
+      display: block;
+    }
+
+    &[aria-pressed='true'] &__icon--moon {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { isTheme, nextTheme, resolveTheme, storeTheme } from '../scripts/theme';
+
+  const root = document.documentElement;
+  const osDark = matchMedia('(prefers-color-scheme: dark)');
+  const toggles = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+
+  const current = () => resolveTheme(isTheme(root.dataset.theme) ? root.dataset.theme : null, osDark.matches);
+  const sync = () => toggles.forEach((button) => button.setAttribute('aria-pressed', String(current() === 'dark')));
+
+  toggles.forEach((button) =>
+    button.addEventListener('click', () => {
+      const theme = nextTheme(current());
+      root.dataset.theme = theme;
+      storeTheme(localStorage, theme);
+      sync();
+    }),
+  );
+  osDark.addEventListener('change', sync);
+  sync();
+</script>
