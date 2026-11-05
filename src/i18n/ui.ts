@@ -13,7 +13,7 @@ export interface UiStrings {
   more: { skills: string; experience: string; projects: string };
   skills: { since: string; usedIn: string; status: string; production: string; handsOn: string; learning: string; tech: string; alsoLabel: string; tiers: Record<'primary' | 'secondary' | 'tertiary' | 'growing' | 'also', string> };
   pages: { back: string; skills: { title: string }; experience: { title: string; lead: string }; projects: { title: string; lead: string } };
-  ide: { menu: string[]; explorer: string; projects: string; terminal: string; output: string; emptyEditor: string; openToWork: string; closeFile: string; sampleNote: string };
+  ide: { explorer: string; openFiles: string; emptyEditor: string; openToWork: string; closeFile: string; sampleNote: string };
   projects: { sample: string; code: string; live: string; details: string; close: string };
   contactInfo: { lead: string; direct: string };
   contact: {
@@ -75,7 +75,7 @@ const en: UiStrings = {
     experience: { title: 'Full experience', lead: 'Every role in detail: what I did, what it delivered and the stack behind it.' },
     projects: { title: 'All projects', lead: 'Beyond the highlights: professional work, tests and personal experiments.' },
   },
-  ide: { menu: ['File', 'Edit', 'Selection', 'View', 'Go', 'Run', 'Terminal', 'Help'], explorer: 'Explorer', projects: 'Projects', terminal: 'Terminal', output: 'Output', emptyEditor: 'Select a file to open it', openToWork: 'Open to work', closeFile: 'Close', sampleNote: 'Sample content' },
+  ide: { explorer: 'Explorer', openFiles: 'Open files', emptyEditor: 'Select a file to open it', openToWork: 'Open to work', closeFile: 'Close', sampleNote: 'Sample content' },
   projects: { sample: 'Sample', code: 'Code', live: 'Live', details: 'Case study', close: 'Close' },
   contactInfo: {
     lead: 'Hiring, a project or just a technical question? Write me and I’ll reply within 24 hours.',
@@ -140,7 +140,7 @@ const es: UiStrings = {
     experience: { title: 'Experiencia completa', lead: 'Cada rol en detalle: qué hice, qué logró y el stack detrás.' },
     projects: { title: 'Todos los proyectos', lead: 'Más allá de lo destacado: trabajo profesional, pruebas y experimentos personales.' },
   },
-  ide: { menu: ['Archivo', 'Editar', 'Selección', 'Ver', 'Ir', 'Ejecutar', 'Terminal', 'Ayuda'], explorer: 'Explorador', projects: 'Proyectos', terminal: 'Terminal', output: 'Salida', emptyEditor: 'Selecciona un archivo para abrirlo', openToWork: 'Disponible', closeFile: 'Cerrar', sampleNote: 'Contenido de ejemplo' },
+  ide: { explorer: 'Explorador', openFiles: 'Archivos abiertos', emptyEditor: 'Selecciona un archivo para abrirlo', openToWork: 'Disponible', closeFile: 'Cerrar', sampleNote: 'Contenido de ejemplo' },
   projects: { sample: 'Ejemplo', code: 'Código', live: 'En vivo', details: 'Caso de estudio', close: 'Cerrar' },
   contactInfo: {
     lead: '¿Contratación, un proyecto o solo una duda técnica? Escríbeme y te respondo en menos de 24 horas.',

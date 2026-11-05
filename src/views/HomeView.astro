@@ -1,5 +1,6 @@
 ---
 import About from '../features/about/About.astro';
+import Code from '../features/ide/Code.astro';
 import Contact from '../features/contact/Contact.astro';
 import Education from '../features/education/Education.astro';
 import Experience from '../features/experience/Experience.astro';
@@ -23,6 +24,7 @@ const [profile, experience, education, projects, skills] = await Promise.all([
 ---
 <BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
   <Hero {locale} {profile} />
+  <Code {locale} {profile} {experience} {education} {projects} groups={skills.groups} />
   <About {locale} {profile} />
   <Skills {locale} groups={skills.groups} />
   <Experience {locale} items={experience} />

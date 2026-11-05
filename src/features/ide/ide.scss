@@ -1,0 +1,324 @@
+@use '../../styles/abstracts' as *;
+
+// Styles for the IdeWindow island (a Preact component, so no scoped <style>).
+.ide {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(var(--color-surface), 0.94);
+  border: 1px solid rgb(var(--color-border-strong));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+
+  &__titlebar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    height: 40px;
+    padding-inline: 0.9rem;
+    background: rgb(var(--color-surface-2));
+    border-bottom: 1px solid rgb(var(--color-border));
+  }
+
+  &__logo {
+    color: rgb(var(--color-fg));
+  }
+
+  &__title {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.78rem;
+    color: rgb(var(--color-fg-muted));
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__body {
+    display: flex;
+    height: clamp(480px, 68vh, 700px);
+  }
+
+  &__sidebar {
+    flex: none;
+    width: 260px;
+    padding: 0.6rem 0.5rem;
+    overflow-y: auto;
+    background: rgb(var(--color-surface-2));
+    border-right: 1px solid rgb(var(--color-border));
+  }
+
+  &__heading {
+    padding: 0.3rem 0.5rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(var(--color-fg-faint));
+  }
+
+  &__root {
+    padding: 0.2rem 0.5rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgb(var(--color-fg-muted));
+  }
+
+  &__tree {
+    display: grid;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 0.3rem 0.6rem 0.3rem calc(0.5rem + var(--depth, 0) * 0.9rem);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: rgb(var(--color-fg-muted));
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+
+    @include motion-safe {
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    &:hover {
+      color: rgb(var(--color-fg));
+      background: rgba(var(--color-accent), 0.14);
+    }
+
+    &:focus-visible {
+      outline-offset: -2px;
+    }
+
+    &--active {
+      color: rgb(var(--color-fg));
+      background: rgba(var(--color-accent), 0.26);
+    }
+  }
+
+  &__chevron {
+    color: rgb(var(--color-fg-muted));
+  }
+
+  &__spacer {
+    display: inline-block;
+    flex: none;
+    width: 1em;
+  }
+
+  &__folder {
+    color: rgb(var(--color-syntax-code));
+  }
+
+  &__file {
+    color: rgb(var(--color-accent-text));
+  }
+
+  &__main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__tabs {
+    display: flex;
+    flex: none;
+    min-height: 40px;
+    overflow-x: auto;
+    background: rgb(var(--color-surface-2));
+    border-bottom: 1px solid rgb(var(--color-border));
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__tab {
+    display: flex;
+    flex: none;
+    align-items: center;
+    color: rgb(var(--color-fg-muted));
+    border-top: 2px solid transparent;
+    border-right: 1px solid rgb(var(--color-border));
+
+    &--active {
+      color: rgb(var(--color-fg));
+      background: rgb(var(--color-surface));
+      border-top-color: rgb(var(--color-accent-text));
+    }
+  }
+
+  &__tab-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.55rem 0.3rem 0.55rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+
+    &:focus-visible {
+      outline-offset: -2px;
+    }
+  }
+
+  &__tab-close {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    margin-right: 6px;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+
+    &:hover {
+      background: rgba(var(--color-accent), 0.26);
+    }
+  }
+
+  &__code {
+    flex: 1;
+    min-height: 0;
+    padding: 0.9rem 0;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    counter-reset: line;
+
+    &:focus-visible {
+      outline-offset: -3px;
+    }
+  }
+
+  &__line {
+    position: relative;
+    display: block;
+    padding: 0 1rem 0 calc(3.2rem + var(--indent) * 1.5ch);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    counter-increment: line;
+
+    &::before {
+      content: counter(line);
+      position: absolute;
+      left: 0;
+      width: 2.2rem;
+      color: rgb(var(--color-fg-faint));
+      text-align: right;
+      user-select: none;
+    }
+
+    &:hover {
+      background: rgba(var(--color-accent), 0.08);
+    }
+  }
+
+  &__token {
+    &--key {
+      color: rgb(var(--color-syntax-key));
+    }
+
+    &--string {
+      color: rgb(var(--color-syntax-string));
+    }
+
+    &--number {
+      color: rgb(var(--color-syntax-number));
+    }
+
+    &--literal {
+      color: rgb(var(--color-syntax-literal));
+    }
+
+    &--code {
+      color: rgb(var(--color-syntax-code));
+    }
+
+    &--punct {
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &--heading {
+      font-weight: 600;
+      color: rgb(var(--color-accent-text));
+    }
+
+    &--bold {
+      font-weight: 600;
+      color: rgb(var(--color-fg));
+    }
+
+    &--text {
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &--muted {
+      font-style: italic;
+      color: rgb(var(--color-fg-faint));
+    }
+  }
+
+  &__empty {
+    margin: auto;
+    padding: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: rgb(var(--color-fg-faint));
+    text-align: center;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    height: 26px;
+    padding-inline: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgb(var(--color-on-accent));
+    background: rgb(var(--color-accent));
+  }
+
+  &__status-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__status-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    &--optional {
+      @include down('sm') {
+        display: none;
+      }
+    }
+  }
+
+  &__dot {
+    width: 7px;
+    height: 7px;
+    background: rgb(var(--color-on-accent));
+    border-radius: 50%;
+  }
+}

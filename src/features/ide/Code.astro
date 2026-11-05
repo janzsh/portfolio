@@ -1,0 +1,26 @@
+---
+import Section from '../../ui/Section.astro';
+import IdeWindow from './IdeWindow';
+import { buildWorkspace, type WorkspaceInput } from './model/build-workspace';
+import { ui } from '../../i18n/ui';
+
+type Props = Omit<WorkspaceInput, 't' | 'now'>;
+const input = Astro.props;
+const t = ui(input.locale);
+const workspace = buildWorkspace({ ...input, t });
+---
+<div class="ide-only">
+  <Section id="code" eyebrow={t.sections.code} title={t.titles.code}>
+    <IdeWindow client:visible {workspace} labels={t.ide} locale={input.locale} />
+  </Section>
+</div>
+
+<style lang="scss">
+  // The IDE needs room to be useful: below this size the whole section is dropped. A hidden
+  // client:visible island never hydrates, so small screens do not pay for it.
+  @media (max-width: 960px), (max-height: 620px) {
+    .ide-only {
+      display: none;
+    }
+  }
+</style>
