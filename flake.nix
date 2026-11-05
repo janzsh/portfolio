@@ -12,6 +12,7 @@
         default = pkgs.mkShell {
           packages = [
             pkgs.bun
+            pkgs.nodejs
             pkgs.agent-browser
             pkgs.chromium
           ];
