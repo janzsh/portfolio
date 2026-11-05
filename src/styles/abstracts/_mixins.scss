@@ -43,3 +43,12 @@ $breakpoints: (
     @content;
   }
 }
+
+// Small mono uppercase label that introduces a section or page ("/ experience").
+@mixin eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgb(var(--color-accent-text));
+}

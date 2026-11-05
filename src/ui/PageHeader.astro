@@ -1,0 +1,40 @@
+---
+import ArrowLink from './ArrowLink.astro';
+
+interface Props { eyebrow: string; title: string; lead?: string; backHref: string; backLabel: string; }
+const { eyebrow, title, lead, backHref, backLabel } = Astro.props;
+---
+<header class="page-header container">
+  <ArrowLink href={backHref} direction="back">{backLabel}</ArrowLink>
+  <p class="page-header__eyebrow"><span aria-hidden="true">/</span> {eyebrow}</p>
+  <h1 class="page-header__title">{title}</h1>
+  {lead && <p class="page-header__lead">{lead}</p>}
+</header>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .page-header {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-3);
+    padding-top: calc(var(--header-h) + var(--space-16));
+    padding-bottom: var(--space-12);
+
+    &__eyebrow {
+      @include eyebrow;
+      margin-top: var(--space-4);
+    }
+
+    &__title {
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      line-height: 0.95;
+    }
+
+    &__lead {
+      max-width: 60ch;
+      font-size: 1.15rem;
+      color: rgb(var(--color-fg-muted));
+    }
+  }
+</style>

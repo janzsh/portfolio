@@ -1,0 +1,17 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgb(var(--color-fg-muted));
+  background: rgb(var(--color-surface));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--radius-pill);
+
+  &--accent {
+    color: rgb(var(--color-accent-text));
+    background: rgba(var(--color-accent), 0.18);
+    border-color: rgba(var(--color-accent-text), 0.4);
+  }
+}

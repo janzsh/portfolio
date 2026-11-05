@@ -1,0 +1,12 @@
+// Inline SVG icon. Shared by Icon.astro and the Preact islands.
+.icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--size, 1.25em);
+  height: var(--size, 1.25em);
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+}

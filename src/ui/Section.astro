@@ -1,0 +1,52 @@
+---
+import ArrowLink from './ArrowLink.astro';
+
+interface Props { id: string; eyebrow: string; title?: string; more?: { href: string; label: string }; }
+const { id, eyebrow, title, more } = Astro.props;
+---
+<section {id} aria-labelledby={`${id}-title`} class="section">
+  <div class="container">
+    <header class="section__head">
+      <p class="section__eyebrow"><span aria-hidden="true">/</span> {eyebrow}</p>
+      <h2 id={`${id}-title`} class:list={['section__title', { 'sr-only': !title }]}>{title ?? eyebrow}</h2>
+    </header>
+  </div>
+  <div class="container">
+    <slot />
+    {more && <p class="section__more"><ArrowLink href={more.href}>{more.label}</ArrowLink></p>}
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .section {
+    position: relative;
+    padding-block: var(--space-24);
+
+    &__head {
+      display: grid;
+      justify-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-12);
+      text-align: center;
+    }
+
+    &__eyebrow {
+      @include eyebrow;
+    }
+
+    &__title {
+      max-width: 28ch;
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+
+    &__more {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: var(--space-8);
+    }
+  }
+</style>

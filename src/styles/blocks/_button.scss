@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+// Shared by Button.astro and the Preact islands (e.g. the contact form).
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+
+  @include motion-safe {
+    transition: transform 0.2s var(--ease), background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &--primary {
+    color: rgb(var(--color-on-accent));
+    background: rgb(var(--color-accent));
+    border-color: rgb(var(--color-accent-text));
+    box-shadow: 0 8px 30px -12px rgba(var(--color-accent), 0.9);
+
+    &:hover {
+      box-shadow: 0 10px 34px -10px rgba(var(--color-accent), 1);
+    }
+  }
+
+  &--ghost {
+    color: rgb(var(--color-fg));
+    background: transparent;
+    border-color: rgb(var(--color-border-strong));
+
+    &:hover {
+      border-color: rgb(var(--color-accent-text));
+      background: rgba(var(--color-accent), 0.16);
+    }
+  }
+}

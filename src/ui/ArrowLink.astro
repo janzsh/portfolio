@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+
+/** Mono text link with an arrow that nudges on hover; `back` points the other way. */
+interface Props { href: string; direction?: 'forward' | 'back'; }
+const { href, direction = 'forward' } = Astro.props;
+---
+<a class:list={['arrow-link', `arrow-link--${direction}`]} {href}>
+  {direction === 'back' && <Icon name="right-arrow" size="1.1em" />}
+  <slot />
+  {direction === 'forward' && <Icon name="right-arrow" size="1.1em" />}
+</a>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: rgb(var(--color-fg-muted));
+    border-bottom: 1px solid rgb(var(--color-border-strong));
+
+    @include motion-safe {
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    :global(.icon) {
+      @include motion-safe {
+        transition: transform 0.25s var(--ease);
+      }
+    }
+
+    &:hover {
+      color: rgb(var(--color-accent-text));
+      border-color: rgb(var(--color-accent-text));
+    }
+
+    &--forward:hover :global(.icon) {
+      transform: translateX(4px);
+    }
+
+    &--back {
+      border-bottom-color: transparent;
+
+      :global(.icon) {
+        transform: rotate(180deg);
+      }
+
+      &:hover :global(.icon) {
+        transform: rotate(180deg) translateX(4px);
+      }
+    }
+  }
+</style>

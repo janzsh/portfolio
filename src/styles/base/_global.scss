@@ -1,7 +1,14 @@
 @use '../abstracts' as *;
 
+html {
+  @include motion-safe {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   min-height: 100dvh;
+  overflow-x: clip;
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
@@ -23,6 +30,20 @@ code,
 kbd,
 pre {
   font-family: var(--font-mono);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border-strong));
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 ::selection {
@@ -56,10 +77,6 @@ pre {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
