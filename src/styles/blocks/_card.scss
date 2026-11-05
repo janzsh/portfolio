@@ -1,0 +1,6 @@
+// Bordered translucent surface. Each component sets its own padding and layout.
+.card {
+  background: rgba(var(--color-surface), 0.85);
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--radius-lg);
+}
