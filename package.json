@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "check": "astro sync && tsc --noEmit",
     "og": "node scripts/build-og.mjs",
-    "verify": "bun run check && bun run test && astro build"
+    "verify": "pnpm run check && pnpm run test && astro build"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.1",

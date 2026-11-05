@@ -5,12 +5,12 @@ Personal portfolio. Fast, accessible, SEO-first, minimalist and technical in ton
 ## Stack
 
 - **Astro** (static output by default) with **Preact** islands. Preact only where interactivity is needed.
-- **bun** as package manager and runtime. Never `npm`/`npx`; use `bun` / `bunx`.
+- **pnpm** as package manager, provided by the Nix dev shell (run commands inside `nix develop`). Never `npm`/`npx`/`bun`; use `pnpm` / `pnpm dlx`. Dependency install scripts are denied by default: allow or deny each one in `pnpm-workspace.yaml` (`allowBuilds`) on purpose.
 - **SCSS** + **BEM**. No Tailwind, no CSS-in-JS, no GSAP (animations are our own light modules).
 - **Zod** + **Astro content collections** (Markdown or JSON) for all content.
 - **Vitest** for tests. **TDD** (see `tdd` skill).
 - Deploy: **Vercel**. Add `@astrojs/vercel` only if something truly needs SSR; stay static otherwise.
-- `flake.nix` is a **local dev shell only** (bun, agent-browser, chromium). Enter with `nix develop`. Never reference it in CI/deploy.
+- `flake.nix` is a **local dev shell only** (pnpm, nodejs, agent-browser, chromium). Enter with `nix develop`. Never reference it in CI/deploy.
 
 Verify API details against the installed Astro/Preact versions before relying on memory; both move fast.
 
@@ -103,7 +103,8 @@ Applied pragmatically; this is a small site, so favor the simplest thing that wo
 
 ## Workflow
 
-- Commands (once the project exists): `bun install`, `bun dev`, `bun run build`, `bun run test`, `bun run check` (`astro check` + type-check).
+- Commands: `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm test`, `pnpm check` (`astro sync` + `tsc --noEmit`; `astro check` does not support TypeScript 7, so `.astro` files are not type-checked), `pnpm verify` (check + test + build).
+- `pnpm og` regenerates `public/og.png` from `scripts/og.svg`. `sharp` only loads under Node inside `nix develop`, not under bun or outside the shell.
 - Before calling a task done: tests pass, `astro check` is clean, and UI changes were looked at in a browser in both themes and both locales.
-- Skills live in `.claude/skills/` (lock file: `skills-lock.json`). Add with `bunx skills add <owner/repo> -s <skill> -a claude-code -y`.
+- Skills live in `.claude/skills/` (lock file: `skills-lock.json`). Add with `pnpm dlx skills add <owner/repo> -s <skill> -a claude-code -y`.
 - Commit only when asked. Keep commits small and focused.
