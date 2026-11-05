@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "skills": {
+    "accessibility": {
+      "source": "addyosmani/web-quality-skills",
+      "sourceType": "github",
+      "skillPath": "skills/accessibility/SKILL.md",
+      "computedHash": "612f913bcb03f0787b103c848cd7664b676a9aaf31f25d3270cc69cf5caaab95"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "computedHash": "60a9cbe5af176150582c019e16e5d3703a41bb02d88438e881349876120d7944"
+    },
+    "astro": {
+      "source": "astrolicious/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/astro/SKILL.md",
+      "computedHash": "ebefe26b231d32379c14e41a46c2de7b4b0184543bedab7febdabe4fb21fba4e"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
+    },
+    "preact-compat-aliasing": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-compat-aliasing/SKILL.md",
+      "computedHash": "2f1901f9ceaf6983bd3077aced19e87082105b588219026260e0da3012f2235b"
+    },
+    "preact-debug-warnings": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-debug-warnings/SKILL.md",
+      "computedHash": "a36158647a1c034065604d6bcb756de2d9716daf1b771694362336181c987218"
+    },
+    "preact-forms-events": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-forms-events/SKILL.md",
+      "computedHash": "dec26ac42ec5a588aedb853ba89b1da0b6eb5c96ef347ab5ee1fd1689d2241a0"
+    },
+    "preact-hooks-debugging": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-hooks-debugging/SKILL.md",
+      "computedHash": "96cd2e755e95d32b307ba33225b85a25d750230605f5a733bfcbf239304c2f25"
+    },
+    "preact-hydration-mismatches": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-hydration-mismatches/SKILL.md",
+      "computedHash": "791445138e70a021af79ff1b7b1ac3408f0685e9073e3202583dfc8bb79f2478"
+    },
+    "preact-signals-core": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-signals-core/SKILL.md",
+      "computedHash": "66e0d537efd40c87192fd21df1292945f1e728b4745a2a73af0e46dcfffd6208"
+    },
+    "preact-signals-preact-integration": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-signals-preact-integration/SKILL.md",
+      "computedHash": "5d2d8e3fdbeeb0fb4901c318fdd89ef0fa809b966801492539e4b69a8b37f682"
+    },
+    "preact-typescript-jsx": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "preact-typescript-jsx/SKILL.md",
+      "computedHash": "2e15c4e49aebdc813b3d83e2ea526a3c580f25decea73ddaca6da4ead29c2ece"
+    },
+    "seo": {
+      "source": "addyosmani/web-quality-skills",
+      "sourceType": "github",
+      "skillPath": "skills/seo/SKILL.md",
+      "computedHash": "01a735ac18ceb15536ac40b11a5712b3ab8f78ebe94748b3ebc3afc7f58a6f2f"
+    },
+    "tdd": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/tdd/SKILL.md",
+      "computedHash": "daf55026f456af104a72fa43247f7bcec89e5127316dc5b1b8d675d6a9d8ce94"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    },
+    "web-performance-patterns": {
+      "source": "jovidecroock/skills",
+      "sourceType": "github",
+      "skillPath": "web-performance-patterns/SKILL.md",
+      "computedHash": "54a77de9509a64b5d0f5762469905d419c494832b8051a6ea1e18d1fddce1cf4"
+    }
+  }
+}
