@@ -1,0 +1,229 @@
+---
+import type { SkillGroup } from '../../domain/skills';
+import type { SkillsCopy } from '../../schemas/skills-copy';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; groups: SkillGroup[]; heading: SkillsCopy['heading']; }
+const { locale, groups, heading } = Astro.props;
+const t = ui(locale);
+const statusLabel = { production: t.skills.production, 'hands-on': t.skills.handsOn, learning: t.skills.learning } as const;
+---
+<div class="skills-detail">
+  {groups.map((group) => (
+    <section class={`card skills-detail__group skills-detail__group--${group.tier}`} aria-labelledby={`skill-${group.id}`}>
+      <header class="skills-detail__head">
+        <p class="skills-detail__tier">{t.skills.tiers[group.tier]}</p>
+        <h2 class="skills-detail__title" id={`skill-${group.id}`}>{group.title}</h2>
+        <p class="skills-detail__description">{group.description}</p>
+      </header>
+      <table class="skills-detail__table">
+        <caption class="sr-only">{group.title}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t.skills.tech}</th>
+            <th scope="col">{t.skills.since}</th>
+            <th scope="col">{t.skills.status}</th>
+            <th scope="col">{t.skills.usedIn}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {group.items.map((item) => (
+            <tr>
+              <th scope="row">{item.name}</th>
+              <td data-label={t.skills.since}>{item.since ?? '—'}</td>
+              <td data-label={t.skills.status}><span class="skills-detail__status" data-status={item.status}>{statusLabel[item.status]}</span></td>
+              <td data-label={t.skills.usedIn}>
+                {item.usedIn.length
+                  ? item.usedIn.map((evidence, index) => <>{index > 0 && ', '}<a href={evidence.href}>{evidence.label}</a></>)
+                  : '—'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  ))}
+
+  <aside class="skills-detail__direction" aria-labelledby="direction-title">
+    <p class="skills-detail__tier skills-detail__tier--accent">{t.skills.tiers.growing}</p>
+    <h2 class="skills-detail__title" id="direction-title">{heading.direction}</h2>
+    <p class="skills-detail__description">{heading.directionLead}</p>
+    <ul class="skills-detail__chips">{heading.directionItems.map((item) => <li>{item}</li>)}</ul>
+  </aside>
+</div>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .skills-detail {
+    display: grid;
+    gap: var(--space-8);
+
+    &__group {
+      display: grid;
+      gap: var(--space-6);
+      padding: var(--space-8);
+
+      @include down('md') {
+        padding: var(--space-6);
+      }
+
+      &--growing {
+        border-color: rgba(var(--color-accent-text), 0.4);
+      }
+    }
+
+    &__head {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    &__tier {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+
+      &--accent {
+        color: rgb(var(--color-accent-text));
+      }
+    }
+
+    &__group--growing &__tier {
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__title {
+      font-size: 2.8rem;
+    }
+
+    &__description {
+      max-width: 60ch;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+
+      th,
+      td {
+        padding: 0.7rem 0.5rem;
+        text-align: left;
+        vertical-align: top;
+        border-top: 1px solid rgb(var(--color-border));
+      }
+
+      thead th {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgb(var(--color-fg-faint));
+        border-top: 0;
+      }
+
+      tbody th {
+        font-weight: 600;
+        color: rgb(var(--color-fg));
+      }
+
+      td {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: rgb(var(--color-fg-muted));
+      }
+
+      td a {
+        color: rgb(var(--color-accent-text));
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      @include down('md') {
+        thead {
+          display: none;
+        }
+
+        tr {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2px var(--space-4);
+          padding: 0.7rem 0;
+          border-top: 1px solid rgb(var(--color-border));
+        }
+
+        th,
+        td {
+          padding: 0.15rem 0;
+          border: 0;
+        }
+
+        tbody th {
+          grid-column: 1 / -1;
+        }
+
+        td::before {
+          content: attr(data-label);
+          display: block;
+          font-size: 0.66rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgb(var(--color-fg-faint));
+        }
+      }
+    }
+
+    &__status {
+      padding: 0.12rem 0.6rem;
+      font-size: 0.74rem;
+      color: rgb(var(--color-fg));
+      white-space: nowrap;
+      border: 1px solid rgb(var(--color-border-strong));
+      border-radius: var(--radius-pill);
+
+      &[data-status='hands-on'] {
+        border-color: rgba(var(--color-accent-2-text), 0.6);
+      }
+
+      &[data-status='learning'] {
+        color: rgb(var(--color-fg-muted));
+        border-style: dashed;
+      }
+    }
+
+    &__direction {
+      display: grid;
+      gap: var(--space-3);
+      padding: var(--space-8);
+      background: linear-gradient(135deg, rgba(var(--color-accent), 0.2), transparent 70%);
+      border: 1px solid rgba(var(--color-accent-text), 0.4);
+      border-radius: var(--radius-lg);
+
+      @include down('md') {
+        padding: var(--space-6);
+      }
+    }
+
+    &__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: var(--space-2);
+
+      li {
+        padding: 0.3rem 0.9rem;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        border: 1px solid rgba(var(--color-accent-text), 0.5);
+        border-radius: var(--radius-pill);
+      }
+    }
+  }
+</style>

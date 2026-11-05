@@ -1,0 +1,139 @@
+---
+import Section from '../../ui/Section.astro';
+import { splitSkillGroups, type SkillGroup } from '../../domain/skills';
+import { localePath } from '../../i18n/paths';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; groups: SkillGroup[]; }
+const { locale, groups } = Astro.props;
+const t = ui(locale);
+const { focus, also } = splitSkillGroups(groups);
+---
+<Section id="skills" eyebrow={t.sections.skills} title={t.titles.skills} more={{ href: localePath(locale, 'skills'), label: t.more.skills }}>
+  <div class="skills">
+    {focus.map((group) => (
+      <article class={`card skills__group skills__group--${group.tier}`}>
+        <p class="skills__tier">{t.skills.tiers[group.tier]}</p>
+        <h3 class="skills__title">{group.title}</h3>
+        <p class="skills__description">{group.description}</p>
+        <ul class="skills__chips">
+          {group.items.map((item) => (
+            <li
+              class:list={['skills__chip', { 'skills__chip--learning': item.status === 'learning' }]}
+              title={item.status === 'learning' ? t.skills.learning : undefined}
+            >{item.name}</li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+  {also && <p class="skills__also"><span>{t.skills.alsoLabel}</span> {also.items.map((item) => item.name).join(' · ')}</p>}
+</Section>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--space-4);
+
+    // Priority shows in order and emphasis, never in self-rated levels.
+    &__group {
+      display: grid;
+      align-content: start;
+      gap: var(--space-3);
+      padding: var(--space-8);
+
+      @include down('md') {
+        padding: var(--space-6);
+      }
+
+      @include motion-safe {
+        transition: border-color 0.25s, transform 0.3s var(--ease);
+      }
+
+      &:hover {
+        border-color: rgba(var(--color-accent-text), 0.5);
+        transform: translateY(-3px);
+      }
+
+      &--growing {
+        grid-column: 1 / -1;
+        border-color: rgba(var(--color-accent-text), 0.4);
+        background: linear-gradient(135deg, rgba(var(--color-accent), 0.2), rgba(var(--color-surface), 0.85) 60%);
+      }
+    }
+
+    &__tier {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &__group--growing &__tier {
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__title {
+      font-size: 2.6rem;
+    }
+
+    &__group--primary &__title {
+      font-size: 3.2rem;
+    }
+
+    &__description {
+      max-width: 56ch;
+      font-size: 0.95rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: var(--space-2);
+    }
+
+    &__chip {
+      padding: 0.2rem 0.7rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: rgb(var(--color-fg));
+      background: rgb(var(--color-surface));
+      border: 1px solid rgb(var(--color-border-strong));
+      border-radius: var(--radius-pill);
+
+      &--learning {
+        color: rgb(var(--color-fg-muted));
+        border-style: dashed;
+      }
+    }
+
+    &__also {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-1) var(--space-2);
+      margin-top: var(--space-6);
+      font-size: 0.9rem;
+      color: rgb(var(--color-fg-muted));
+
+      @include down('sm') {
+        flex-direction: column;
+      }
+
+      span {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgb(var(--color-fg-faint));
+      }
+    }
+  }
+</style>

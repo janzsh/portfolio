@@ -1,4 +1,7 @@
 ---
+import Background from '../features/background/Background.astro';
+import Footer from '../features/footer/Footer.astro';
+import Header from '../features/header/Header.astro';
 import { ui } from '../i18n/ui';
 import type { Locale } from '../i18n/locales';
 import Head from './Head.astro';
@@ -8,9 +11,13 @@ interface Props {
   title: string;
   description: string;
   jobTitle: string;
+  /** Path without locale prefix ("" for home), for hreflang and the language switch. */
   path?: string;
+  /** Section id to mark as current in the nav when not on the home page. */
+  current?: string;
+  onHome?: boolean;
 }
-const { locale, ...head } = Astro.props;
+const { locale, current, onHome = true, ...head } = Astro.props;
 const t = ui(locale);
 ---
 <!doctype html>
@@ -18,8 +25,9 @@ const t = ui(locale);
   <head><Head {locale} {...head} /></head>
   <body>
     <a class="skip-link" href="#main">{t.skipToContent}</a>
-    <slot name="header" />
+    <Background />
+    <Header {locale} {current} {onHome} path={head.path} />
     <main id="main"><slot /></main>
-    <slot name="footer" />
+    <Footer {locale} />
   </body>
 </html>

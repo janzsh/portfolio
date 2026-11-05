@@ -1,35 +1,32 @@
 ---
 import About from '../features/about/About.astro';
-import Background from '../features/background/Background.astro';
 import Contact from '../features/contact/Contact.astro';
 import Education from '../features/education/Education.astro';
 import Experience from '../features/experience/Experience.astro';
-import Footer from '../features/footer/Footer.astro';
-import Header from '../features/header/Header.astro';
 import Hero from '../features/hero/Hero.astro';
 import Projects from '../features/projects/Projects.astro';
+import Skills from '../features/skills/Skills.astro';
 import { SITE } from '../config/site';
-import { getEducation, getExperience, getProfile, getProjects } from '../data/queries';
+import { getEducation, getExperience, getProfile, getProjects, getSkills } from '../data/queries';
 import type { Locale } from '../i18n/locales';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
-const [profile, experience, education, projects] = await Promise.all([
+const [profile, experience, education, projects, skills] = await Promise.all([
   getProfile(locale),
   getExperience(locale),
   getEducation(locale),
   getProjects(locale),
+  getSkills(locale),
 ]);
 ---
 <BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
-  <Background slot="header" />
-  <Header slot="header" {locale} />
   <Hero {locale} {profile} />
   <About {locale} {profile} />
+  <Skills {locale} groups={skills.groups} />
   <Experience {locale} items={experience} />
   <Education {locale} items={education} />
   <Projects {locale} {projects} />
   <Contact {locale} />
-  <Footer slot="footer" {locale} />
 </BaseLayout>

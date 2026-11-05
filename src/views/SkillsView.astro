@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SkillsDetail from '../features/skills/SkillsDetail.astro';
+import PageHeader from '../ui/PageHeader.astro';
+import { SITE } from '../config/site';
+import { getProfile, getSkills } from '../data/queries';
+import { localePath } from '../i18n/paths';
+import { ui } from '../i18n/ui';
+import type { Locale } from '../i18n/locales';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = ui(locale);
+const [profile, skills] = await Promise.all([getProfile(locale), getSkills(locale)]);
+---
+<BaseLayout {locale} path="skills" current="skills" onHome={false} title={`${t.pages.skills.title} — ${SITE.name}`} description={skills.heading.lead} jobTitle={profile.role}>
+  <PageHeader eyebrow={t.sections.skills} title={t.pages.skills.title} lead={skills.heading.lead} backHref={localePath(locale)} backLabel={t.pages.back} />
+  <div class="container skills-page">
+    <SkillsDetail {locale} groups={skills.groups} heading={skills.heading} />
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  .skills-page {
+    padding-bottom: var(--space-24);
+  }
+</style>
