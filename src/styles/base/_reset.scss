@@ -8,6 +8,11 @@
   margin: 0;
 }
 
+// The universal margin reset would strip the auto margins that center a modal <dialog>.
+dialog {
+  margin: auto;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: calc(var(--header-h) + 16px);

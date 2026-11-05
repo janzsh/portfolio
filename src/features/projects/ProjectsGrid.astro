@@ -1,0 +1,24 @@
+---
+import type { ProjectItem } from '../../data/queries';
+import type { Locale } from '../../i18n/locales';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props { locale: Locale; projects: ProjectItem[]; level?: 'h2' | 'h3'; }
+const { locale, projects, level } = Astro.props;
+---
+<div class="projects-grid">
+  {projects.map((project) => <ProjectCard {locale} {project} {level} />)}
+</div>
+
+<script>
+  import { initDialogs } from './dialogs.client';
+  initDialogs();
+</script>
+
+<style lang="scss">
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: var(--space-6);
+  }
+</style>

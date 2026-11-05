@@ -1,0 +1,15 @@
+---
+import Section from '../../ui/Section.astro';
+import type { ProjectItem } from '../../data/queries';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+import ProjectsGrid from './ProjectsGrid.astro';
+
+interface Props { locale: Locale; projects: ProjectItem[]; }
+const { locale, projects } = Astro.props;
+const t = ui(locale);
+const featured = projects.filter((project) => project.featured);
+---
+<Section id="projects" eyebrow={t.sections.projects} title={t.titles.projects}>
+  <ProjectsGrid {locale} projects={featured} />
+</Section>

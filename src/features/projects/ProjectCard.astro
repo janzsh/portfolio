@@ -1,0 +1,238 @@
+---
+import { render } from 'astro:content';
+import Tag from '../../ui/Tag.astro';
+import type { ProjectItem } from '../../data/queries';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+import { mediaTone } from './media-tone';
+
+interface Props { locale: Locale; project: ProjectItem; level?: 'h2' | 'h3'; }
+const { locale, project, level: Heading = 'h3' } = Astro.props;
+const t = ui(locale);
+const { Content } = await render(project.entry);
+const dialogId = `project-${project.id}`;
+---
+<article class="card project">
+  <button class="project__open" type="button" data-open-dialog={dialogId} aria-label={`${t.projects.details}: ${project.name}`}></button>
+  <div class={`project__media project__media--tone-${mediaTone(project.id)}`}>
+    {project.picture
+      ? <img class="project__image" src={project.picture} alt="" loading="lazy" decoding="async" />
+      : <span class="project__monogram" aria-hidden="true">{project.name.slice(0, 2).toUpperCase()}</span>}
+    {project.placeholder && <span class="project__sample">{t.projects.sample}</span>}
+  </div>
+  <div class="project__content">
+    <p class="project__meta">{project.year} · {project.type}</p>
+    <Heading class="project__title">{project.name}</Heading>
+    <p class="project__summary">{project.summary}</p>
+    <div class="project__tags">{project.skills.slice(0, 4).map((skill) => <Tag>{skill}</Tag>)}</div>
+  </div>
+</article>
+
+<dialog id={dialogId} class="project-dialog" aria-labelledby={`${dialogId}-title`}>
+  <div class="project-dialog__body">
+    <button class="project-dialog__close" type="button" data-close-dialog aria-label={t.projects.close}>×</button>
+    <p class="project__meta">{project.year} · {project.type}{project.role ? ` · ${project.role}` : ''}</p>
+    <h3 class="project-dialog__title" id={`${dialogId}-title`}>{project.name}</h3>
+    {project.placeholder && <p class="project-dialog__note">{t.projects.sample}</p>}
+    <div class="project__tags">{project.skills.map((skill) => <Tag tone="accent">{skill}</Tag>)}</div>
+    <div class="project-dialog__prose"><Content /></div>
+    <div class="project-dialog__links">
+      {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t.projects.code} ↗</a>}
+      {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer">{t.projects.live} ↗</a>}
+    </div>
+  </div>
+</dialog>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .project {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    @include motion-safe {
+      transition: transform 0.35s var(--ease), border-color 0.25s, box-shadow 0.3s;
+    }
+
+    &:hover {
+      border-color: rgba(var(--color-accent-text), 0.55);
+      box-shadow: 0 24px 50px -28px rgba(var(--color-accent), 0.9);
+      transform: translateY(-4px);
+    }
+
+    // The whole card is one big button that opens the dialog.
+    &__open {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      border-radius: inherit;
+    }
+
+    &__media {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+
+      &--tone-0 {
+        background: linear-gradient(135deg, rgba(var(--color-accent), 0.55), rgba(var(--color-accent-2), 0.45));
+      }
+
+      &--tone-1 {
+        background: linear-gradient(135deg, rgba(var(--color-accent-2), 0.55), rgba(var(--color-accent-3), 0.45));
+      }
+
+      &--tone-2 {
+        background: linear-gradient(135deg, rgba(var(--color-accent-3), 0.55), rgba(var(--color-accent), 0.45));
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @include motion-safe {
+        transition: transform 0.6s var(--ease);
+      }
+    }
+
+    &:hover &__image {
+      transform: scale(1.04);
+    }
+
+    &__monogram {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: rgb(var(--color-fg));
+    }
+
+    &__sample {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 0.15rem 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: rgb(var(--color-fg));
+      background: rgba(var(--color-surface), 0.85);
+      border: 1px dashed rgb(var(--color-border-strong));
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(6px);
+    }
+
+    &__content {
+      display: grid;
+      flex: 1;
+      align-content: start;
+      gap: var(--space-3);
+      padding: var(--space-6);
+    }
+
+    &__meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &__title {
+      font-size: 1.9rem;
+    }
+
+    &__summary {
+      display: -webkit-box;
+      overflow: hidden;
+      font-size: 0.95rem;
+      color: rgb(var(--color-fg-muted));
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+  }
+
+  .project-dialog {
+    width: min(680px, calc(100% - 2rem));
+    max-height: 86vh;
+    padding: 0;
+    color: rgb(var(--color-fg));
+    background: rgb(var(--color-surface));
+    border: 1px solid rgb(var(--color-border-strong));
+    border-radius: var(--radius-lg);
+    box-shadow: 0 40px 100px -20px rgba(var(--color-shadow), 0.6);
+
+    &::backdrop {
+      background: rgba(var(--color-shadow), 0.55);
+      backdrop-filter: blur(6px);
+    }
+
+    &__body {
+      position: relative;
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-8);
+    }
+
+    &__close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      background: transparent;
+      border: 1.5px solid rgb(var(--color-border-strong));
+      border-radius: 50%;
+
+      &:hover {
+        border-color: rgb(var(--color-accent-text));
+      }
+    }
+
+    &__title {
+      font-size: 2.3rem;
+    }
+
+    &__note {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: rgb(var(--color-accent-2-text));
+    }
+
+    &__prose {
+      display: grid;
+      gap: var(--space-3);
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__links {
+      display: flex;
+      gap: var(--space-6);
+      font-weight: 500;
+
+      a {
+        color: rgb(var(--color-accent-text));
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>
