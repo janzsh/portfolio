@@ -1,0 +1,238 @@
+---
+import { SITE } from '../../config/site';
+import { formatMonthYear } from '../../domain/dates';
+import type { SkillGroup } from '../../domain/skills';
+import type { Education } from '../../schemas/education';
+import type { Profile } from '../../schemas/profile';
+import type { ProjectItem } from '../../data/queries';
+import { localePath } from '../../i18n/paths';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+import ArrowLink from '../../ui/ArrowLink.astro';
+import { toExperienceView, type ExperienceEntry } from '../experience/to-view';
+import { displayUrl } from './display-url';
+import { skillLines } from './skill-lines';
+
+interface Props {
+  locale: Locale;
+  profile: Profile;
+  experience: ExperienceEntry[];
+  education: (Education & { id: string })[];
+  projects: ProjectItem[];
+  groups: SkillGroup[];
+}
+const { locale, profile, experience, education, projects, groups } = Astro.props;
+const t = ui(locale);
+
+const jobs = experience.map((entry) => toExperienceView(entry, locale, t.resumePage.present));
+const lines = skillLines(groups, t.skills.learning);
+const realProjects = projects.filter((project) => !project.placeholder);
+// Email and phone are intentionally absent: this page is public HTML that scrapers read.
+const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) => ({ href, text: displayUrl(href) }));
+---
+<div class="resume-toolbar">
+  <ArrowLink href={localePath(locale)} direction="back">{t.resumePage.back}</ArrowLink>
+  <button class="button button--primary" type="button" data-print>{t.resumePage.print}</button>
+</div>
+
+<article class="sheet">
+  <header class="sheet__top">
+    <h1 class="sheet__name">{profile.firstName} {profile.lastName}</h1>
+    <p class="sheet__role">{profile.role}</p>
+    <ul class="sheet__contact">
+      {contact.map((item) => <li><a href={item.href}>{item.text}</a></li>)}
+      <li>{profile.location}</li>
+    </ul>
+  </header>
+
+  <p class="sheet__summary">{profile.tagline}</p>
+
+  <section class="sheet__section">
+    <h2 class="sheet__heading">{t.resumePage.experience}</h2>
+    {jobs.map((job) => (
+      <div class="sheet__item">
+        <div class="sheet__row"><h3 class="sheet__title">{job.role} · {job.company}</h3><span>{job.period} · {job.duration}</span></div>
+        <p class="sheet__sub">{job.location} · {job.mode}</p>
+        <p>{job.summary}</p>
+        <ul class="sheet__bullets">{job.achievements.map((achievement) => <li>{achievement}</li>)}</ul>
+        <p class="sheet__stack"><b>{t.resumePage.skills}:</b> {job.stack.join(', ')}</p>
+      </div>
+    ))}
+  </section>
+
+  {realProjects.length > 0 && (
+    <section class="sheet__section">
+      <h2 class="sheet__heading">{t.resumePage.projects}</h2>
+      {realProjects.map((project) => (
+        <div class="sheet__item">
+          <div class="sheet__row"><h3 class="sheet__title">{project.name}</h3><span>{project.year}</span></div>
+          <p>{project.summary}</p>
+          {project.repo && <p class="sheet__sub">{project.repo}</p>}
+        </div>
+      ))}
+    </section>
+  )}
+
+  <section class="sheet__section">
+    <h2 class="sheet__heading">{t.resumePage.education}</h2>
+    {education.map((item) => (
+      <div class="sheet__item">
+        <div class="sheet__row"><h3 class="sheet__title">{item.program} · {item.institution}</h3><span>{formatMonthYear(item.start, locale)} – {item.status}</span></div>
+        <p>{item.summary}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="sheet__section">
+    <h2 class="sheet__heading">{t.resumePage.skills}</h2>
+    {lines.map((line) => <p class="sheet__skill">{line.title && <b>{line.title}: </b>}{line.items}</p>)}
+    <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}`).join(' · ')}</p>
+  </section>
+</article>
+
+<script>
+  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+</script>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+  @use '../../styles/abstracts/palettes';
+
+  .resume-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(100% - 2rem, 820px);
+    margin: var(--space-6) auto;
+
+    @media print {
+      display: none;
+    }
+  }
+
+  // A sheet of paper: always the light palette, whichever theme the site is in.
+  .sheet {
+    @include palettes.emit(palettes.$light);
+    width: min(100% - 2rem, 820px);
+    margin: 0 auto var(--space-16);
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgb(var(--color-fg));
+    color-scheme: light;
+    background: rgb(var(--color-surface));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-glow);
+
+    a {
+      text-decoration: underline;
+      text-decoration-color: rgb(var(--color-border-strong));
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-body);
+    }
+
+    &__name {
+      font-size: 2.2rem;
+    }
+
+    &__role {
+      margin-top: 4px;
+      font-weight: 600;
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 18px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__summary {
+      margin-top: 18px;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__section {
+      margin-top: 26px;
+    }
+
+    &__heading {
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgb(var(--color-accent-text));
+      border-bottom: 1px solid rgb(var(--color-border));
+    }
+
+    &__item {
+      margin-bottom: 18px;
+      break-inside: avoid;
+    }
+
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+
+      span {
+        font-size: 0.82rem;
+        color: rgb(var(--color-fg-muted));
+      }
+    }
+
+    &__title {
+      font-size: 1.02rem;
+      letter-spacing: 0;
+    }
+
+    &__sub {
+      font-size: 0.82rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__bullets {
+      display: grid;
+      gap: 3px;
+      margin: 6px 0 6px 1.1rem;
+      list-style: disc;
+    }
+
+    &__skill {
+      margin-bottom: 4px;
+    }
+
+    &__stack {
+      font-size: 0.85rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    @media print {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  @media print {
+    @page {
+      margin: 14mm;
+    }
+
+    :global(body) {
+      background: none;
+    }
+  }
+</style>
