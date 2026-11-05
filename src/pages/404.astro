@@ -1,0 +1,55 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import Button from '../ui/Button.astro';
+import { localePath } from '../i18n/paths';
+import { LOCALES } from '../i18n/locales';
+import { ui } from '../i18n/ui';
+
+// Hosting serves one 404 for every URL, so the visitor's language is unknown: show both.
+const messages = LOCALES.map((locale) => ({ locale, t: ui(locale) }));
+const [{ t: en }] = messages;
+---
+<DocumentLayout locale="en" title={en.notFound.title} description={en.notFound.text} jobTitle="Software Engineer" noindex>
+  <section class="not-found">
+    <p class="not-found__code">404</p>
+    {messages.map(({ locale, t }) => (
+      <div class="not-found__message" lang={locale}>
+        <h1 class="not-found__title">{t.notFound.title}</h1>
+        <p class="not-found__text">{t.notFound.text}</p>
+        <Button href={localePath(locale)}>{t.notFound.home}</Button>
+      </div>
+    ))}
+  </section>
+</DocumentLayout>
+
+<style lang="scss">
+  .not-found {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-8);
+    min-height: 100svh;
+    padding: var(--gutter);
+    text-align: center;
+
+    &__code {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__message {
+      display: grid;
+      justify-items: center;
+      gap: var(--space-3);
+    }
+
+    &__title {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+    }
+
+    &__text {
+      color: rgb(var(--color-fg-muted));
+    }
+  }
+</style>
