@@ -10,6 +10,7 @@
 [![Sass](https://img.shields.io/badge/SCSS-BEM-CC6699?logo=sass&logoColor=white)](https://sass-lang.com)
 [![Vitest](https://img.shields.io/badge/tested%20with-Vitest-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20%C2%B7%20100%20%C2%B7%20100%20%C2%B7%20100-0CCE6B?logo=lighthouse&logoColor=white)](#measured-quality)
+[![CI](https://github.com/janzsh/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/janzsh/portfolio/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 
 <br />
@@ -180,10 +181,17 @@ The in-memory rate limiter is per serverless instance. It is a best-effort guard
 
 This project was built with [Claude Code](https://claude.com/claude-code). The conventions it follows (stack, SCSS/BEM rules, theming, testing and engineering principles) are written down in [`CLAUDE.md`](CLAUDE.md), and the third-party agent skills it uses live in [`.claude/skills`](.claude/skills).
 
+## Continuous integration
+
+Every push to `main` and every pull request runs [`pnpm verify`](.github/workflows/ci.yml) on GitHub Actions: strict type-check, the Vitest suite and the production build, with a frozen lockfile.
+
+## Credits
+
+Visual design by **RZOR**. Built by [Juan Camilo Zúñiga](https://github.com/cd-janz).
+
 ## Roadmap
 
 - [ ] Interactive "IDE" section that presents the career as a browsable codebase (ported from the previous version, rebuilt on Preact)
-- [ ] CI pipeline running `pnpm verify`
 - [ ] Follow the manual theme in `theme-color`
 
 ## License
