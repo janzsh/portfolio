@@ -1,0 +1,28 @@
+---
+import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import mono from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
+import tekoUrl from '@fontsource-variable/teko/files/teko-latin-wght-normal.woff2?url';
+
+// Latin subset only: it covers English and Spanish, and skips the other nine subsets
+// (cyrillic, devanagari...) that the default Fontsource CSS declares for nothing.
+const LATIN =
+  'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
+
+const faces = [
+  { family: 'Inter Variable', url: interUrl, weight: '100 900' },
+  { family: 'Teko Variable', url: tekoUrl, weight: '300 700' },
+  { family: 'JetBrains Mono Variable', url: mono, weight: '100 800' },
+];
+const css = faces
+  .map(
+    ({ family, url, weight }) =>
+      `@font-face{font-family:'${family}';font-style:normal;font-display:swap;font-weight:${weight};src:url(${url}) format('woff2-variations');unicode-range:${LATIN}}`,
+  )
+  .join('');
+
+// Only the fonts used above the fold are preloaded, which is what stops the headline
+// from jumping when the web font replaces the fallback.
+const preload = [tekoUrl, interUrl];
+---
+{preload.map((href) => <link rel="preload" as="font" type="font/woff2" crossorigin href={href} />)}
+<style set:html={css} is:inline />

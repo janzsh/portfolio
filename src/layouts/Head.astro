@@ -1,8 +1,6 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource-variable/teko';
-import '@fontsource-variable/jetbrains-mono';
 import '../styles/main.scss';
+import Fonts from './Fonts.astro';
 import Seo from '../features/seo/Seo.astro';
 import type { Locale } from '../i18n/locales';
 import { initTheme, THEME_KEY } from '../scripts/theme';
@@ -29,4 +27,5 @@ const themeInit = `(${initTheme.toString()})(${JSON.stringify(THEME_KEY)})`;
 <meta name="generator" content={Astro.generator} />
 {noindex && <meta name="robots" content="noindex" />}
 <script is:inline set:html={themeInit} />
+<Fonts />
 <Seo {...seo} />

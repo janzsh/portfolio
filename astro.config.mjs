@@ -26,6 +26,8 @@ export default defineConfig({
       }),
     },
   },
+  // The whole stylesheet is ~12 KB: inlining it removes the render-blocking requests.
+  build: { inlineStylesheets: 'always' },
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   devToolbar: { enabled: false },
 });
