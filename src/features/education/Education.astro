@@ -1,7 +1,9 @@
 ---
 import Section from '../../ui/Section.astro';
 import Icon from '../../ui/Icon.astro';
-import { formatMonthYear } from '../../domain/dates';
+import Timeline from '../../ui/Timeline.astro';
+import TimelineItem from '../../ui/TimelineItem.astro';
+import { dateBadge } from '../../domain/dates';
 import type { Education } from '../../schemas/education';
 import { ui } from '../../i18n/ui';
 import type { Locale } from '../../i18n/locales';
@@ -11,70 +13,33 @@ const { locale, items } = Astro.props;
 const t = ui(locale);
 ---
 <Section id="education" eyebrow={t.sections.education} title={t.titles.education}>
-  <ul class="education">
-    {items.map((item) => (
-      <li class="card education__item">
-        <span class="education__badge"><Icon name="award" size="1.4em" /></span>
-        <div class="education__body">
-          <p class="education__status">{item.status}</p>
-          <h3 class="education__program">{item.program}</h3>
-          <p class="education__school">{item.institution}</p>
-          <p class="education__meta">
-            <Icon name="calendar" size="1em" />{formatMonthYear(item.start, locale)}
-            <Icon name="location" size="1em" />{item.location}
-          </p>
-          <p class="education__summary">{item.summary}</p>
-        </div>
-      </li>
-    ))}
-  </ul>
+  <Timeline>
+    {items.map((item) => {
+      const { month, year } = dateBadge(item.start, locale);
+      return (
+        <TimelineItem
+          id={`education-${item.id}`}
+          title={item.program}
+          subtitle={item.institution}
+          summary={item.summary}
+          kicker={item.status}
+          {month}
+          {year}
+          detailsLabel={`${t.common.details}: ${item.program}, ${item.institution}`}
+          closeLabel={t.common.close}
+        >
+          <p slot="meta" class="education-dialog__status">{item.status}</p>
+          <p class="education-dialog__school">{item.institution}</p>
+          <p class="education-dialog__location"><Icon name="location" size="1em" />{item.location}</p>
+          <p class="education-dialog__summary">{item.summary}</p>
+        </TimelineItem>
+      );
+    })}
+  </Timeline>
 </Section>
 
 <style lang="scss">
-  @use '../../styles/abstracts' as *;
-
-  .education {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
-    gap: var(--space-6);
-
-    &__item {
-      display: flex;
-      gap: var(--space-6);
-      padding: var(--space-8);
-
-      @include down('sm') {
-        flex-direction: column;
-        padding: var(--space-6);
-      }
-
-      @include motion-safe {
-        transition: border-color 0.25s, transform 0.3s var(--ease);
-      }
-
-      &:hover {
-        border-color: rgba(var(--color-accent-text), 0.5);
-        transform: translateY(-3px);
-      }
-    }
-
-    &__badge {
-      display: grid;
-      flex: none;
-      place-items: center;
-      width: 52px;
-      height: 52px;
-      color: rgb(var(--color-accent-text));
-      background: rgba(var(--color-accent), 0.22);
-      border: 1px solid rgba(var(--color-accent-text), 0.35);
-      border-radius: 14px;
-    }
-
-    &__body {
-      display: grid;
-      gap: var(--space-2);
-    }
-
+  .education-dialog {
     &__status {
       font-family: var(--font-mono);
       font-size: 0.75rem;
@@ -83,27 +48,20 @@ const t = ui(locale);
       color: rgb(var(--color-accent-2-text));
     }
 
-    &__program {
-      font-size: 2rem;
+    &__school {
+      color: rgb(var(--color-accent-text));
     }
 
-    &__meta {
-      display: flex;
-      flex-wrap: wrap;
+    &__location {
+      display: inline-flex;
       align-items: center;
-      gap: 6px 8px;
+      gap: 8px;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: rgb(var(--color-fg-muted));
-
-      :global(.icon:not(:first-child)) {
-        margin-left: 10px;
-      }
     }
 
     &__summary {
-      margin-top: var(--space-2);
-      font-size: 0.96rem;
       color: rgb(var(--color-fg-muted));
     }
   }

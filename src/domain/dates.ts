@@ -26,3 +26,12 @@ export function formatDuration({ years, months }: Duration, locale: 'en' | 'es')
 export function formatMonthYear(value: string, locale: 'en' | 'es'): string {
   return new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric' }).format(parseDate(value));
 }
+
+export function formatMonthShort(value: string, locale: 'en' | 'es'): string {
+  return new Intl.DateTimeFormat(locale, { month: 'short' }).format(parseDate(value));
+}
+
+/** Short month and year of a date, for the badge on timeline cards. */
+export function dateBadge(value: string, locale: 'en' | 'es'): { month: string; year: string } {
+  return { month: formatMonthShort(value, locale), year: String(parseDate(value).getFullYear()) };
+}

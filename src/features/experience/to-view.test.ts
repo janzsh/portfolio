@@ -32,6 +32,13 @@ describe('toExperienceView', () => {
     expect(view.current).toBe(true);
   });
 
+  it('splits the start date into a short month and a year for the date badge', () => {
+    const view = toExperienceView(entry({ start: '09/02/2026' }), 'en', 'Present', now);
+    expect(view.startMonth).toBe('Feb');
+    expect(view.startYear).toBe('2026');
+    expect(toExperienceView(entry({ start: '01/2020' }), 'es', 'Actualidad', now).startMonth).toBe('ene');
+  });
+
   it('localizes the duration', () => {
     expect(toExperienceView(entry(), 'es', 'Actualidad', now).duration).toBe('2 años 2 meses');
   });

@@ -1,0 +1,71 @@
+---
+// The list that draws the vertical line; each <TimelineItem> is a child.
+---
+<ol class="timeline"><slot /></ol>
+
+<script>
+  import { initDialogs } from './dialogs.client';
+  initDialogs();
+</script>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .timeline {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    gap: var(--space-8);
+    padding-left: var(--space-6);
+
+    @include up('lg') {
+      padding-left: 0;
+    }
+
+    // The track is always visible; the fill is drawn on top of it as the list scrolls past.
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 8px auto 8px 7px;
+      z-index: 0;
+      width: 2px;
+
+      @include up('lg') {
+        left: calc(50% - 1px);
+      }
+    }
+
+    &::before {
+      background: rgb(var(--color-border));
+    }
+
+    &::after {
+      background: rgb(var(--color-accent-text));
+      transform-origin: top;
+    }
+
+    // Without scroll-driven animations (or with reduced motion) the fill simply stays complete.
+    @include motion-safe {
+      @supports (animation-timeline: view()) {
+        &::after {
+          // Longhands on purpose: the minifier folds `animation` + `animation-timeline` into a
+          // shorthand that some browsers drop, which would leave the line unanimated.
+          animation-name: timeline-fill;
+          animation-duration: auto;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: view();
+          // Starts when the list's top is about 70% down the viewport, ends when its bottom
+          // is about 60% down: the line stays near the reader's eyes.
+          animation-range: cover 8% cover 75%;
+        }
+      }
+    }
+  }
+
+  @keyframes timeline-fill {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+</style>
