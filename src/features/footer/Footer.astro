@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
     <a class="footer__wordmark" href={localePath(locale)} aria-label={SITE.name}><Icon name="name" size="84px" /></a>
     <p class="footer__credits">
       <span>© {year} {SITE.name}.</span>
-      <span>{t.footer.designedBy} <strong>{SITE.designer}</strong> · {t.footer.builtBy} <a href={SITE.social.github} rel="noopener noreferrer">{SITE.handle}</a></span>
+      <span>{t.footer.designedBy} <a href={SITE.designerUrl} rel="noopener noreferrer" target="_blank"><strong>{SITE.designer}</strong></a> · {t.footer.builtBy} <a href={SITE.social.github} rel="noopener noreferrer">{SITE.handle}</a></span>
     </p>
     <ul class="footer__social">
       <li><a href={SITE.social.github} rel="noopener noreferrer" target="_blank">GitHub</a></li>
