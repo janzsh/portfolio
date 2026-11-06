@@ -29,6 +29,15 @@ describe('buildSkillGroups', () => {
     const [go] = buildSkillGroups(stack, copy, resolve, 'en');
     expect(go.items[0].usedIn).toEqual([{ label: 'X', href: '/projects' }]);
   });
+  it('lists a technology in every group it belongs to', () => {
+    const shared: Stack = {
+      groups: [{ id: 'go', tier: 'primary' }, { id: 'cloud', tier: 'primary' }],
+      technologies: [{ name: 'Both', group: ['go', 'cloud'], status: 'production', usedIn: [] }],
+    };
+    const [go, cloud] = buildSkillGroups(shared, copy, resolve, 'en');
+    expect(go.items.map((i) => i.name)).toEqual(['Both']);
+    expect(cloud.items.map((i) => i.name)).toEqual(['Both']);
+  });
   it('fails loudly when a group has no copy for the locale', () => {
     expect(() => buildSkillGroups(stack, { ...copy, groups: {} }, resolve, 'en')).toThrow(/Missing skills copy/);
   });

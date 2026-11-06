@@ -9,7 +9,8 @@ const evidenceRef = z.string().regex(/^(project|experience):[a-z0-9-]+$/);
 
 export const technologySchema = z.object({
   name: z.string(),
-  group: z.string(),
+  /** One group id, or several when a technology belongs to more than one (e.g. TypeScript). */
+  group: z.union([z.string(), z.array(z.string()).min(1)]),
   since: dateString.optional(),
   /** production = shipped at work; hands-on = built in projects; learning = in progress. */
   status: z.enum(STATUSES).default('production'),

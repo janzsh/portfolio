@@ -37,7 +37,7 @@ export function buildSkillGroups(
     const text = copy.groups[id];
     if (!text) throw new Error(`Missing skills copy for group "${id}" (${locale})`);
     const items = stack.technologies
-      .filter((t) => t.group === id)
+      .filter((t) => [t.group].flat().includes(id))
       .map((t): SkillItem => ({
         name: t.name,
         since: t.since ? formatMonthYear(t.since, locale) : undefined,
