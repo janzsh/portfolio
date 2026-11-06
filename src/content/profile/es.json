@@ -1,15 +1,15 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "Ingeniero de Software",
-  "headline": "Construyo los sistemas sobre los que corre tu negocio.",
-  "tagline": "Ingeniero de software que construye productos fiables de punta a punta: servicios backend, interfaces rápidas e infraestructura cloud, con el lenguaje que pide el problema, y creciendo hacia AWS, DevOps y desarrollo cloud-first.",
-  "description": "Ingeniero de software que construye productos fiables de punta a punta: backends, interfaces rápidas e infraestructura cloud.",
-  "aboutTitle": "El humano en el ciclo",
+  "role": "Ingeniero Backend en forma de T",
+  "headline": "Construyo el backend sobre el que corre tu negocio.",
+  "tagline": "Me incorporo a tu equipo de backend o datos y me hago cargo de lo difícil: el cuello de botella, el proceso que no escala, la arquitectura que nadie quiere tocar. Donde otros ven caos, yo pongo orden y dirección.",
+  "description": "Ingeniero backend en forma de T: servicios en Python, TypeScript y Go, pipelines de datos, SQL, Linux y AWS.",
+  "aboutTitle": "Ecce homo: he aquí al hombre",
   "about": [
-    "Entré a la tecnología a los 18 como una decisión consciente y poco tradicional, y se volvió el centro de mi vida. Aprendo más rápido donde todo es más difícil: un cuello de botella técnico es, para mí, un campo de juego.",
-    "He liderado la migración y modernización de plataformas SaaS financieras y contables, diseñado backends en NestJS y ASP.NET Core, y entregado interfaces rápidas con React, Next.js y Astro.",
-    "Me importa entender qué necesita el negocio y elegir la arquitectura más simple que lo resuelva. Trabajo en todo el stack (backends en Java, Kotlin, Go, TypeScript y C#; interfaces en Angular, React y Astro) y elijo la herramienta según el problema, no al revés. Estoy creciendo hacia AWS, infraestructura como código y DevOps para construir cloud-first."
+    "Inicié en la tecnología desde muy joven, pero fue a los 18 años, con mi ingreso a la carrera, que realmente descubrí para qué soy bueno. Entre más grande el cuello de botella y más caótica la arquitectura, más placer me da hacerlo funcionar bien. Libertad y recursos es todo lo que se necesita para convertir el caos en orden.",
+    "Lo que obtienes es alguien que parte de lo que el negocio necesita, elige la arquitectura más simple que lo resuelve y responde por el resultado desde el diseño hasta producción en Linux y AWS. El backend es donde más profundizo; también llego a pipelines de datos e interfaces, para que el trabajo no se detenga en la frontera entre equipos.",
+    "Nací en Santa Marta y he vivido allí la mayor parte de mi vida. Me gustan la música, el baloncesto, el ricing de Linux y el cine, y sobre todo amo las historias de terror. En mi tiempo libre salgo al cine, voy a la playa, programo algo o simplemente veo una película."
   ],
   "location": "Santa Marta, Colombia",
   "languages": [
@@ -25,16 +25,17 @@
   "workMode": "Remoto / Híbrido · Dispuesto a reubicarme",
   "stats": [
     {
-      "value": "4+",
+      "value": "5+",
       "label": "años construyendo software en producción"
     },
     {
-      "value": "Full stack",
-      "label": "APIs, interfaces y cloud, con el lenguaje que pide el problema"
+      "value": "Backend y datos",
+      "label": "Servicios backend, ETL y scrapers corriendo en Linux y AWS"
     },
     {
       "value": "5",
       "label": "productos freelance entregados de punta a punta"
     }
-  ]
+  ],
+  "timezone": "UTC−5"
 }
