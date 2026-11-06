@@ -207,7 +207,7 @@ You can run the same audit locally after a build: `pnpm build && pnpm audit:web`
 
 ## Credits
 
-Visual design by **RZOR**. Built by [Juan Camilo Zúñiga](https://github.com/cd-janz).
+Visual design by [**RZOR**](https://yefersonruzon.vercel.app/). Built by [janzsh](https://github.com/janzsh).
 
 ## Roadmap
 

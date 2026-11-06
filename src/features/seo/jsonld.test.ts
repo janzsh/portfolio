@@ -12,7 +12,7 @@ describe('siteJsonLd', () => {
       jobTitle: 'Software Engineer',
       description: 'Builds things.',
     });
-    expect(person?.sameAs).toContain('https://github.com/cd-janz');
+    expect(person?.sameAs).toContain('https://github.com/janzsh');
   });
 
   it('does not publish contact details that spam bots could harvest', () => {

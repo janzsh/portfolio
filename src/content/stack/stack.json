@@ -5,16 +5,16 @@
       "tier": "primary"
     },
     {
-      "id": "frontend",
-      "tier": "primary"
-    },
-    {
       "id": "data",
       "tier": "primary"
     },
     {
       "id": "cloud",
-      "tier": "growing"
+      "tier": "primary"
+    },
+    {
+      "id": "frontend",
+      "tier": "primary"
     },
     {
       "id": "also",
@@ -22,6 +22,70 @@
     }
   ],
   "technologies": [
+    {
+      "name": "Python",
+      "group": "backend",
+      "usedIn": [
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "group": "backend",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "group": [
+        "backend",
+        "frontend"
+      ],
+      "since": "01/2020",
+      "usedIn": [
+        "experience:igd",
+        "project:igd-plus",
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "NestJS",
+      "group": "backend",
+      "since": "01/2022",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Go",
+      "group": "backend",
+      "since": "01/2024",
+      "status": "hands-on",
+      "usedIn": [
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Gin",
+      "group": "backend",
+      "since": "12/2024",
+      "status": "hands-on"
+    },
+    {
+      "name": "Chi",
+      "group": "backend",
+      "status": "hands-on"
+    },
+    {
+      "name": "Cobra",
+      "group": "backend",
+      "status": "hands-on"
+    },
     {
       "name": "Java",
       "group": "backend",
@@ -46,86 +110,6 @@
       ]
     },
     {
-      "name": "NestJS",
-      "group": "backend",
-      "since": "01/2022",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
-      "name": "Go",
-      "group": "backend",
-      "since": "01/2024",
-      "status": "hands-on",
-      "usedIn": [
-        "project:efrouting"
-      ]
-    },
-    {
-      "name": "Gin",
-      "group": "backend",
-      "since": "12/2024",
-      "status": "hands-on"
-    },
-    {
-      "name": "Fiber",
-      "group": "backend",
-      "since": "02/2024",
-      "status": "hands-on"
-    },
-    {
-      "name": "Chi",
-      "group": "backend",
-      "status": "hands-on"
-    },
-    {
-      "name": "Cobra",
-      "group": "backend",
-      "status": "hands-on"
-    },
-    {
-      "name": "C#",
-      "group": "backend",
-      "since": "10/2020",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
-      "name": "ASP.NET Core",
-      "group": "backend",
-      "since": "08/2021",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
-      "name": "Python",
-      "group": "backend",
-      "status": "hands-on",
-      "usedIn": [
-        "project:efrouting"
-      ]
-    },
-    {
-      "name": "FastAPI",
-      "group": "backend",
-      "status": "hands-on"
-    },
-    {
-      "name": "TypeScript",
-      "group": "frontend",
-      "since": "01/2020",
-      "usedIn": [
-        "experience:igd",
-        "project:igd-plus",
-        "project:efrouting"
-      ]
-    },
-    {
       "name": "Angular",
       "group": "frontend",
       "since": "09/2021",
@@ -142,42 +126,57 @@
       ]
     },
     {
-      "name": "React",
-      "group": "frontend",
-      "since": "03/2020",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
-      "name": "Next.js",
-      "group": "frontend",
-      "since": "08/2021",
-      "usedIn": [
-        "experience:igd",
-        "project:efrouting"
-      ]
-    },
-    {
       "name": "SQL",
       "group": "data",
-      "since": "03/2020"
+      "since": "03/2020",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "group": "data"
+    },
+    {
+      "name": "MySQL",
+      "group": "data"
+    },
+    {
+      "name": "MongoDB",
+      "group": "data"
+    },
+    {
+      "name": "Redis / Valkey",
+      "group": "data"
     },
     {
       "name": "DynamoDB",
       "group": "data",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
       "name": "AWS",
       "group": "cloud",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Lambda",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "S3",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
       ]
     },
     {
@@ -191,16 +190,24 @@
     {
       "name": "ECS Fargate",
       "group": "cloud",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
       "name": "Docker",
       "group": "cloud",
       "usedIn": [
-        "experience:igd"
+        "experience:igd",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Linux",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
       ]
     },
     {

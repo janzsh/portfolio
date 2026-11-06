@@ -19,6 +19,7 @@ const input = (over: Partial<WorkspaceInput> = {}): WorkspaceInput => ({
     location: 'Bogotá',
     languages: [],
     workMode: 'Remote',
+    timezone: 'UTC−5',
     stats: [],
   },
   experience: [
@@ -107,6 +108,6 @@ describe('buildWorkspace', () => {
     expect(everything).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.]+/);
     expect(everything).not.toMatch(/\+\d[\d ]{8,}/);
     expect(everything).not.toMatch(/mailto:|tel:/);
-    expect(byId('README.md').source).toContain('https://github.com/cd-janz');
+    expect(byId('README.md').source).toContain('https://github.com/janzsh');
   });
 });

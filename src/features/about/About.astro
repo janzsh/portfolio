@@ -9,13 +9,19 @@ import type { Locale } from '../../i18n/locales';
 interface Props { locale: Locale; profile: Profile; }
 const { locale, profile } = Astro.props;
 const t = ui(locale);
+// A non-breaking space before the last word keeps a lone "T" from wrapping onto its own line.
+const role = profile.role.replace(/ (\S+)$/, '\u00a0$1');
 ---
 <Section id="about" eyebrow={t.sections.about} title={profile.aboutTitle}>
   <div class="about">
     <aside class="card about__profile">
       <Image src={portrait} alt={`${profile.firstName} ${profile.lastName}`} width={360} height={360} class="about__photo" />
       <h3 class="about__name">{profile.firstName} {profile.lastName}</h3>
-      <p class="about__role">{profile.role}</p>
+      <p class="about__role">{role}</p>
+      <ul class="about__details">
+        <li>{profile.location}</li>
+        <li class="about__status"><span class="about__dot" aria-hidden="true"></span>{t.hero.eyebrow}</li>
+      </ul>
     </aside>
 
     <div class="about__body">
@@ -27,6 +33,7 @@ const t = ui(locale);
           <li class="about__fact"><span>{language.name}</span><b>{language.level}</b></li>
         ))}
         <li class="about__fact">{profile.workMode}</li>
+        <li class="about__fact">{profile.timezone}</li>
       </ul>
     </div>
   </div>
@@ -37,8 +44,13 @@ const t = ui(locale);
 
   .about {
     display: grid;
-    grid-template-columns: 300px minmax(0, 70ch);
-    justify-content: center;
+    grid-template-columns: minmax(260px, 21rem) minmax(0, 1fr);
+    width: 100%;
+
+    @include up('xl') {
+      width: 80%;
+      margin-inline: auto;
+    }
     align-items: stretch;
     gap: var(--space-8);
 
@@ -78,8 +90,31 @@ const t = ui(locale);
 
     &__role {
       font-family: var(--font-mono);
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: rgb(var(--color-accent-text));
+    }
+
+    &__details {
+      display: grid;
+      gap: var(--space-1);
+      padding-top: var(--space-3);
+      font-size: 1rem;
+      color: rgb(var(--color-fg-muted));
+      border-top: 1px solid rgb(var(--color-border));
+    }
+
+    &__status {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: rgb(var(--color-fg));
+    }
+
+    &__dot {
+      width: 8px;
+      height: 8px;
+      background: rgb(var(--color-accent-3-text));
+      border-radius: 50%;
     }
 
     &__body {
@@ -92,7 +127,7 @@ const t = ui(locale);
     &__prose {
       display: grid;
       gap: var(--space-4);
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       color: rgb(var(--color-fg-muted));
 
       p:first-child {

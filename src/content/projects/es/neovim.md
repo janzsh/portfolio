@@ -3,7 +3,7 @@ name: "Dotfiles de Neovim"
 year: "2025"
 type: "personal"
 role: "Autor"
-summary: "Una configuración ligera de Neovim en Lua para liberar RAM para los servicios que realmente corro, sin perder un flujo full-stack."
+summary: "Una configuración ligera de Neovim en Lua para liberar RAM para los servicios que realmente corro, sin perder un flujo de desarrollo completo."
 skills: ["Lua", "Neovim", "LSP", "Treesitter"]
 featured: true
 order: 3

@@ -1,0 +1,35 @@
+{
+  "company": "efRouting Tech S.A.S",
+  "role": "Full-stack Developer",
+  "mode": "Remote",
+  "location": "Barranquilla, Colombia",
+  "summary": "Backend and data work with data-science and backend teams: scrapers, ETL pipelines and the Linux and AWS infrastructure that runs them.",
+  "start": "09/02/2026",
+  "responsibilities": [
+    "Backend development",
+    "Data pipelines",
+    "Scraping",
+    "Deployment",
+    "Maintenance"
+  ],
+  "achievements": [
+    "Rebuilt a scraper-based ETL: from about 5k records in nearly 2 hours to 200k in 6, on four Docker instances.",
+    "Optimized an ETL that took almost 4 hours and over 60 GB of RAM: it now runs in at most 1 hour and 40 GB.",
+    "Build and operate Python and TypeScript services backed by SQL, on Linux servers and AWS."
+  ],
+  "stack": [
+    "Python",
+    "FastAPI",
+    "TypeScript",
+    "NestJS",
+    "SQL",
+    "DynamoDB",
+    "Docker",
+    "Linux",
+    "AWS",
+    "Lambda",
+    "S3",
+    "ECS Fargate"
+  ],
+  "url": "https://www.efrouting.com/"
+}

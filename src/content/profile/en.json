@@ -1,15 +1,15 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "Software Engineer",
-  "headline": "I build the systems your business runs on.",
-  "tagline": "Software engineer building reliable products end to end: backend services, fast interfaces and cloud infrastructure, with the language the problem calls for, and growing into AWS, DevOps and cloud-first development.",
-  "description": "Software engineer building reliable products end to end: backend services, fast interfaces and cloud infrastructure.",
-  "aboutTitle": "The human in the loop",
+  "role": "T-shaped Backend Engineer",
+  "headline": "I build the backend your business runs on.",
+  "tagline": "I join your backend or data team and take on the hard part: the bottleneck, the process that does not scale, the architecture nobody wants to touch. Where others see chaos, I bring order and direction.",
+  "description": "T-shaped backend engineer: Python, TypeScript and Go services, data pipelines, SQL, Linux and AWS.",
+  "aboutTitle": "Ecce homo: behold the man",
   "about": [
-    "I started in technology at 18 as a deliberate, non-traditional choice, and it became the center of my life. I learn fastest where things are hardest: a tough technical bottleneck is, for me, a playground.",
-    "I have led the migration and modernization of fintech and accounting SaaS platforms, designed backends in NestJS and ASP.NET Core, and shipped fast interfaces with React, Next.js and Astro.",
-    "I care about understanding what the business needs and choosing the simplest architecture that solves it. I work across the stack (backends in Java, Kotlin, Go, TypeScript and C#; interfaces in Angular, React and Astro) and pick the tool for the problem, not the other way around. I’m growing into AWS, infrastructure as code and DevOps to build cloud-first."
+    "I got into technology at a young age, but it was at 18, when I started my degree, that I really found out what I am good at. The bigger the bottleneck and the more chaotic the architecture, the more I enjoy making it work well. Freedom and resources are all it takes to turn chaos into order.",
+    "What you get is someone who starts from what the business needs, picks the simplest architecture that solves it and owns the result from design to production on Linux and AWS. Backend is where I go deepest; I also reach into data pipelines and interfaces, so work does not stall at the boundary between teams.",
+    "I was born in Santa Marta and have lived there most of my life. I like music, basketball, Linux ricing and movies, and above all I love horror stories. In my free time I go to the cinema, head to the beach, build something or simply watch a film."
   ],
   "location": "Santa Marta, Colombia",
   "languages": [
@@ -25,16 +25,17 @@
   "workMode": "Remote / Hybrid · Open to relocation",
   "stats": [
     {
-      "value": "4+",
+      "value": "5+",
       "label": "years building production software"
     },
     {
-      "value": "Full stack",
-      "label": "APIs, interfaces and cloud, using the language the problem needs"
+      "value": "Backend & data",
+      "label": "Backend services, ETL and scrapers running on Linux and AWS"
     },
     {
       "value": "5",
       "label": "freelance products shipped end to end"
     }
-  ]
+  ],
+  "timezone": "UTC−5"
 }

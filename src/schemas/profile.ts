@@ -13,6 +13,7 @@ export const profileSchema = z.object({
   location: z.string(),
   languages: z.array(z.object({ name: z.string(), level: z.string() })),
   workMode: z.string(),
+  timezone: z.string(),
   stats: z.array(z.object({ value: z.string(), label: z.string() })),
 });
 export type Profile = z.infer<typeof profileSchema>;

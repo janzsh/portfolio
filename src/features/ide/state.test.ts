@@ -66,10 +66,11 @@ describe('close', () => {
     expect(state.activeId).toBe('experience/b.json');
   });
 
-  it('leaves nothing active when the last tab closes', () => {
-    const state = ideReducer(start(), { type: 'close', id: 'README.md' });
-    expect(state.openIds).toEqual([]);
-    expect(state.activeId).toBeUndefined();
+  it('falls back to the initial file when the last tab closes', () => {
+    const state = ideReducer(ideReducer(start(), { type: 'open', id: 'projects/x.md' }), { type: 'close', id: 'README.md' });
+    const last = ideReducer(state, { type: 'close', id: 'projects/x.md' });
+    expect(last.openIds).toEqual(['README.md']);
+    expect(last.activeId).toBe('README.md');
   });
 });
 

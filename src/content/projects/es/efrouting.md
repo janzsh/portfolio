@@ -2,7 +2,7 @@
 name: "Prueba técnica efRouting"
 year: "2026"
 type: "test"
-role: "Desarrollador full-stack mid-level"
+role: "Desarrollador backend"
 summary: "Visualizador de lanzamientos de SpaceX con Go y Next.js, arquitectura hexagonal e infraestructura 100% como código."
 skills: ["Go", "Next.js", "TypeScript", "Python", "AWS CDK", "DynamoDB"]
 picture: "https://raw.githubusercontent.com/cd-janz/projects_resourses/refs/heads/main/efRouting/ss1.png"
