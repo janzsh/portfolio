@@ -56,7 +56,7 @@ export default function IdeWindow({ workspace, labels, locale }: Props) {
             onSelect={(id) => dispatch({ type: 'open', id })}
             onClose={(id) => dispatch({ type: 'close', id })}
           />
-          {active ? <CodeView lines={lines} labelledBy={openFileId(active.id)} /> : <p class="ide__empty">{labels.emptyEditor}</p>}
+          {active && <CodeView lines={lines} labelledBy={openFileId(active.id)} />}
         </div>
       </div>
 
