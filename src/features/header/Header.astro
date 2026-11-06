@@ -89,7 +89,7 @@ const links = [
     }
 
     &--scrolled &__bar {
-      width: min(100%, 760px);
+      width: min(100%, 820px);
       padding-inline: 0.75rem;
       background: rgba(var(--color-bg), 0.72);
       border-color: rgb(var(--color-border));
@@ -126,13 +126,47 @@ const links = [
         color: rgb(var(--color-fg));
       }
 
-      &[aria-current='true']::after {
+      // Hover pill and current-section underline: both animate only opacity/transform.
+      &::before,
+      &::after {
         content: '';
         position: absolute;
+        pointer-events: none;
+      }
+
+      &::before {
+        inset: 0;
+        background: rgba(var(--color-accent), 0.14);
+        border-radius: inherit;
+        opacity: 0;
+      }
+
+      &::after {
         inset: auto 22% 0;
         height: 2px;
         background: rgb(var(--color-accent-text));
         border-radius: 2px;
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      &[aria-current='true']::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      @include motion-safe {
+        &::before {
+          transition: opacity 0.2s;
+        }
+
+        &::after {
+          transition: transform 0.35s var(--ease), opacity 0.2s;
+        }
       }
     }
 
@@ -206,7 +240,7 @@ const links = [
       }
     }
 
-    @include down('md') {
+    @include down('lg') {
       &__burger {
         display: block;
       }
@@ -248,7 +282,7 @@ const links = [
           background: rgba(var(--color-accent), 0.2);
         }
 
-        &[aria-current='true']::after {
+        &::after {
           display: none;
         }
       }
