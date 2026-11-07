@@ -33,6 +33,40 @@
     white-space: nowrap;
   }
 
+  // Decorative window controls: not focusable, hidden from assistive tech.
+  &__controls {
+    display: flex;
+    gap: var(--space-1);
+    margin-inline-start: auto;
+    color: rgb(var(--color-fg-muted));
+    pointer-events: none;
+  }
+
+  &__control {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 24px;
+    border-radius: 6px;
+
+    &--minimize::before,
+    &--maximize::before {
+      width: 10px;
+      content: '';
+      border: 0 solid currentcolor;
+    }
+
+    &--minimize::before {
+      border-bottom-width: 1.5px;
+    }
+
+    &--maximize::before {
+      height: 10px;
+      border-width: 1.5px;
+      border-radius: 2px;
+    }
+  }
+
   &__body {
     display: flex;
     height: clamp(480px, 68vh, 700px);
