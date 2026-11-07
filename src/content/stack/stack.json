@@ -139,7 +139,10 @@
     },
     {
       "name": "MySQL",
-      "group": "data"
+      "group": "data",
+      "usedIn": [
+        "experience:efrouting"
+      ]
     },
     {
       "name": "MongoDB",
@@ -219,6 +222,7 @@
       "name": "Lua",
       "group": "also",
       "since": "08/2023",
+      "status": "hands-on",
       "usedIn": [
         "project:neovim"
       ]

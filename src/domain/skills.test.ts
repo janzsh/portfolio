@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SkillsCopy } from '../schemas/skills-copy';
 import type { Stack } from '../schemas/stack';
-import { buildSkillGroups, splitSkillGroups, type SkillGroup } from './skills';
+import { buildSkillGroups, limitEvidence, splitSkillGroups, type SkillGroup } from './skills';
 
 const stack: Stack = {
   groups: [{ id: 'go', tier: 'primary' }, { id: 'cloud', tier: 'growing' }],
@@ -54,5 +54,15 @@ describe('splitSkillGroups', () => {
 
   it('has no "also" group when the stack does not define one', () => {
     expect(splitSkillGroups([group('backend', 'primary')]).also).toBeUndefined();
+  });
+});
+
+describe('limitEvidence', () => {
+  const refs = ['a', 'b', 'c', 'd', 'e'].map((label) => ({ label, href: `/${label}` }));
+  it('keeps everything when it fits in the limit', () => {
+    expect(limitEvidence(refs.slice(0, 3), 3)).toEqual({ shown: refs.slice(0, 3), hidden: [] });
+  });
+  it('keeps the first ones and hands back the rest', () => {
+    expect(limitEvidence(refs, 3)).toEqual({ shown: refs.slice(0, 3), hidden: refs.slice(3) });
   });
 });
