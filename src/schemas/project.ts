@@ -1,9 +1,12 @@
 import { z } from 'astro/zod';
+import { PROJECT_KINDS, PROJECT_TYPES } from '../domain/project-facets';
 
 export const projectSchema = z.object({
   name: z.string(),
   year: z.string(),
-  type: z.enum(['personal', 'enterprise', 'test']),
+  type: z.enum(PROJECT_TYPES),
+  /** What the project is made of, as opposed to who it was for. */
+  kind: z.enum(PROJECT_KINDS),
   role: z.string().optional(),
   summary: z.string(),
   skills: z.array(z.string()).min(1),

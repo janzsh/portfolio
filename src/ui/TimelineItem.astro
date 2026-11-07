@@ -1,0 +1,218 @@
+---
+import Dialog from './Dialog.astro';
+
+interface Props {
+  /** Dialog id; must be unique on the page. */
+  id: string;
+  title: string;
+  level?: 'h2' | 'h3';
+  subtitle: string;
+  summary: string;
+  /** Short month and year shown in the date badge. */
+  month: string;
+  year: string;
+  caption?: string;
+  /** Small uppercase line above the title. */
+  kicker?: string;
+  live?: boolean;
+  detailsLabel: string;
+  closeLabel: string;
+}
+const { id, title, level: Heading = 'h3', subtitle, summary, month, year, caption, kicker, live = false, detailsLabel, closeLabel } = Astro.props;
+---
+<li class="timeline-item">
+  <span class:list={['timeline-item__node', { 'timeline-item__node--live': live }]} aria-hidden="true"></span>
+  <article class="card timeline-item__card">
+    <button class="timeline-item__open" type="button" data-open-dialog={id} aria-label={detailsLabel}></button>
+    <p class="timeline-item__date">
+      <span class="timeline-item__month">{month}</span>
+      <b class="timeline-item__year">{year}</b>
+      {caption && <span class="timeline-item__caption">{caption}</span>}
+    </p>
+    <div class="timeline-item__content">
+      {kicker && <p class="timeline-item__kicker">{kicker}</p>}
+      <Heading class="timeline-item__title">{title}</Heading>
+      <p class="timeline-item__subtitle">{subtitle}</p>
+      <p class="timeline-item__summary">{summary}</p>
+    </div>
+  </article>
+  <Dialog {id} {closeLabel}>
+    <slot name="meta" />
+    <h3 class="timeline-item__dialog-title" id={`${id}-title`}>{title}</h3>
+    <slot />
+  </Dialog>
+</li>
+
+<style lang="scss">
+  @use '../styles/abstracts' as *;
+
+  .timeline-item {
+    position: relative;
+
+    // The solid background hides the timeline line behind the dot.
+    &__node {
+      position: absolute;
+      top: 28px;
+      left: calc(var(--space-6) * -1);
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+      background: rgb(var(--color-bg));
+      border: 2px solid rgb(var(--color-accent-text));
+      border-radius: 50%;
+
+      @include up('lg') {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &--live {
+        background: rgb(var(--color-accent));
+        box-shadow: 0 0 0 4px rgb(var(--color-bg)), 0 0 0 6px rgba(var(--color-accent), 0.35);
+      }
+    }
+
+    // Desktop: cards alternate on both sides of the centre line, joined to it by a short stem.
+    @include up('lg') {
+      &::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 1px);
+        left: calc(50% - var(--space-8));
+        width: var(--space-8);
+        height: 2px;
+        background: rgb(var(--color-border-strong));
+      }
+
+      &:nth-child(even)::before {
+        left: 50%;
+      }
+
+      &:nth-child(even) &__card {
+        margin-left: auto;
+      }
+    }
+
+    &__card {
+      position: relative;
+      display: flex;
+      overflow: hidden;
+
+      @include up('lg') {
+        width: calc(50% - var(--space-8));
+      }
+
+      @include motion-safe {
+        transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
+      }
+
+      &:hover {
+        border-color: rgba(var(--color-accent-text), 0.55);
+        box-shadow: 0 24px 50px -28px rgba(var(--color-accent), 0.9);
+        transform: translateY(-3px);
+      }
+    }
+
+    // The whole card is one big button that opens the dialog.
+    &__open {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      border-radius: inherit;
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    &__date {
+      display: grid;
+      flex: 0 0 7rem;
+      align-content: center;
+      justify-items: center;
+      gap: 2px;
+      padding: var(--space-4) var(--space-1);
+      font-family: var(--font-mono);
+      text-align: center;
+      background: rgba(var(--color-accent), 0.12);
+      border-right: 1px solid rgb(var(--color-border));
+
+      @include up('lg') {
+        // On the left-hand cards the date sits next to the line, on the right.
+        .timeline-item:nth-child(odd) & {
+          order: 2;
+          border-right: 0;
+          border-left: 1px solid rgb(var(--color-border));
+        }
+      }
+    }
+
+    &__month {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__year {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+      color: rgb(var(--color-fg));
+    }
+
+    &__caption {
+      margin-top: var(--space-1);
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      color: rgb(var(--color-fg));
+    }
+
+    &__content {
+      display: grid;
+      flex: 1;
+      min-width: 0;
+      align-content: center;
+      gap: var(--space-1);
+      padding: var(--space-6);
+    }
+
+    &__kicker {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgb(var(--color-accent-2-text));
+    }
+
+    &__title {
+      font-size: 1.7rem;
+      overflow-wrap: anywhere;
+    }
+
+    &__subtitle {
+      color: rgb(var(--color-accent-text));
+    }
+
+    &__summary {
+      display: -webkit-box;
+      margin-top: var(--space-2);
+      overflow: hidden;
+      font-size: 0.92rem;
+      color: rgb(var(--color-fg-muted));
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+
+    &__dialog-title {
+      font-size: 2.3rem;
+    }
+  }
+</style>

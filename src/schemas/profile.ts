@@ -6,6 +6,8 @@ export const profileSchema = z.object({
   role: z.string(),
   headline: z.string(),
   tagline: z.string(),
+  /** One line of the core stack, shown under the headline. */
+  stackLine: z.string(),
   /** Meta description for search results; Google truncates past ~160 characters. */
   description: z.string().max(160),
   aboutTitle: z.string(),
@@ -13,6 +15,7 @@ export const profileSchema = z.object({
   location: z.string(),
   languages: z.array(z.object({ name: z.string(), level: z.string() })),
   workMode: z.string(),
+  timezone: z.string(),
   stats: z.array(z.object({ value: z.string(), label: z.string() })),
 });
 export type Profile = z.infer<typeof profileSchema>;

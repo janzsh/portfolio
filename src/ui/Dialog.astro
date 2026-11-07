@@ -1,0 +1,54 @@
+---
+interface Props { id: string; closeLabel: string; }
+const { id, closeLabel } = Astro.props;
+---
+<!-- The slot must hold the element that carries `id={`${id}-title`}`: it names the dialog. -->
+<dialog {id} class="dialog" aria-labelledby={`${id}-title`}>
+  <div class="dialog__body">
+    <button class="dialog__close" type="button" data-close-dialog aria-label={closeLabel}>×</button>
+    <slot />
+  </div>
+</dialog>
+
+<style lang="scss">
+  .dialog {
+    width: min(680px, calc(100% - 2rem));
+    overscroll-behavior: contain;
+    max-height: 86vh;
+    padding: 0;
+    color: rgb(var(--color-fg));
+    background: rgb(var(--color-surface));
+    border: 1px solid rgb(var(--color-border-strong));
+    border-radius: var(--radius-lg);
+    box-shadow: 0 40px 100px -20px rgba(var(--color-shadow), 0.6);
+
+    &::backdrop {
+      background: rgba(var(--color-shadow), 0.55);
+      backdrop-filter: blur(6px);
+    }
+
+    &__body {
+      position: relative;
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-8);
+    }
+
+    &__close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      background: transparent;
+      border: 1.5px solid rgb(var(--color-border-strong));
+      border-radius: 50%;
+
+      &:hover {
+        border-color: rgb(var(--color-accent-text));
+      }
+    }
+  }
+</style>

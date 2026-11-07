@@ -32,6 +32,13 @@ export default function IdeWindow({ workspace, labels, locale }: Props) {
       <div class="ide__titlebar">
         <IdeIcon name="logo" size="18px" class="ide__logo" />
         <p class="ide__title">{`${workspace.name}${active ? ` — ${active.name}` : ''}`}</p>
+        <div class="ide__controls" aria-hidden="true">
+          <span class="ide__control ide__control--minimize" />
+          <span class="ide__control ide__control--maximize" />
+          <span class="ide__control ide__control--close">
+            <IdeIcon name="close" size="14px" />
+          </span>
+        </div>
       </div>
 
       <div class="ide__body">
@@ -56,7 +63,7 @@ export default function IdeWindow({ workspace, labels, locale }: Props) {
             onSelect={(id) => dispatch({ type: 'open', id })}
             onClose={(id) => dispatch({ type: 'close', id })}
           />
-          {active ? <CodeView lines={lines} labelledBy={openFileId(active.id)} /> : <p class="ide__empty">{labels.emptyEditor}</p>}
+          {active && <CodeView lines={lines} labelledBy={openFileId(active.id)} />}
         </div>
       </div>
 

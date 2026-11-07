@@ -2,6 +2,7 @@
 name: "Ledger platform"
 year: "2024"
 type: "enterprise"
+kind: "fullstack"
 role: "Full-stack developer"
 summary: "Sample case study: multi-tenant accounting ledger with audit trails and role-based access."
 skills: ["NestJS", "PostgreSQL", "React", "Docker"]

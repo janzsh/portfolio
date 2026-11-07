@@ -7,7 +7,7 @@
   overflow: hidden;
   background: rgba(var(--color-surface), 0.94);
   border: 1px solid rgb(var(--color-border-strong));
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-glow);
 
   &__titlebar {
@@ -31,6 +31,40 @@
     color: rgb(var(--color-fg-muted));
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  // Decorative window controls: not focusable, hidden from assistive tech.
+  &__controls {
+    display: flex;
+    gap: var(--space-1);
+    margin-inline-start: auto;
+    color: rgb(var(--color-fg-muted));
+    pointer-events: none;
+  }
+
+  &__control {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 24px;
+    border-radius: 6px;
+
+    &--minimize::before,
+    &--maximize::before {
+      width: 10px;
+      content: '';
+      border: 0 solid currentcolor;
+    }
+
+    &--minimize::before {
+      border-bottom-width: 1.5px;
+    }
+
+    &--maximize::before {
+      height: 10px;
+      border-width: 1.5px;
+      border-radius: 2px;
+    }
   }
 
   &__body {

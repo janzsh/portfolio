@@ -2,7 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { siteJsonLd } from './jsonld';
 
 const graph = (locale: 'en' | 'es' = 'en') =>
-  siteJsonLd({ jobTitle: 'Software Engineer', description: 'Builds things.', locale })['@graph'];
+  siteJsonLd({
+    jobTitle: 'Software Engineer',
+    description: 'Builds things.',
+    locale,
+    knowsAbout: ['Python', 'Go'],
+    knowsLanguage: ['Spanish', 'English'],
+    location: 'Santa Marta, Colombia',
+  })['@graph'];
 
 describe('siteJsonLd', () => {
   it('describes the person with role, description and profiles', () => {
@@ -12,7 +19,16 @@ describe('siteJsonLd', () => {
       jobTitle: 'Software Engineer',
       description: 'Builds things.',
     });
-    expect(person?.sameAs).toContain('https://github.com/cd-janz');
+    expect(person?.sameAs).toContain('https://github.com/janzsh');
+  });
+
+  it('lists what the person knows, the languages they speak and where they are based', () => {
+    const person = graph().find((node) => node['@type'] === 'Person');
+    expect(person).toMatchObject({
+      knowsAbout: ['Python', 'Go'],
+      knowsLanguage: ['Spanish', 'English'],
+      homeLocation: { '@type': 'Place', name: 'Santa Marta, Colombia' },
+    });
   });
 
   it('does not publish contact details that spam bots could harvest', () => {

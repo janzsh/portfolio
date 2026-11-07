@@ -5,16 +5,16 @@
       "tier": "primary"
     },
     {
-      "id": "frontend",
-      "tier": "primary"
-    },
-    {
       "id": "data",
       "tier": "primary"
     },
     {
       "id": "cloud",
-      "tier": "growing"
+      "tier": "primary"
+    },
+    {
+      "id": "frontend",
+      "tier": "primary"
     },
     {
       "id": "also",
@@ -23,40 +23,54 @@
   ],
   "technologies": [
     {
-      "name": "Java",
+      "name": "Python",
       "group": "backend",
-      "since": "01/2020",
+      "category": "language",
       "usedIn": [
-        "experience:igd"
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
-      "name": "Kotlin",
+      "name": "FastAPI",
       "group": "backend",
-      "since": "12/2023",
-      "status": "hands-on"
+      "category": "framework",
+      "language": "Python",
+      "usedIn": [
+        "experience:efrouting"
+      ]
     },
     {
-      "name": "Spring Boot",
-      "group": "backend",
-      "since": "08/2021",
+      "name": "TypeScript",
+      "group": [
+        "backend",
+        "frontend"
+      ],
+      "category": "language",
+      "since": "01/2020",
       "usedIn": [
         "experience:igd",
-        "experience:freelance"
+        "project:igd-plus",
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
       "name": "NestJS",
       "group": "backend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "01/2022",
       "usedIn": [
         "experience:igd",
-        "experience:freelance"
+        "experience:freelance",
+        "experience:efrouting"
       ]
     },
     {
       "name": "Go",
       "group": "backend",
+      "category": "language",
       "since": "01/2024",
       "status": "hands-on",
       "usedIn": [
@@ -66,36 +80,49 @@
     {
       "name": "Gin",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "since": "12/2024",
-      "status": "hands-on"
-    },
-    {
-      "name": "Fiber",
-      "group": "backend",
-      "since": "02/2024",
       "status": "hands-on"
     },
     {
       "name": "Chi",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "status": "hands-on"
     },
     {
       "name": "Cobra",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "status": "hands-on"
     },
     {
-      "name": "C#",
+      "name": "Java",
       "group": "backend",
-      "since": "10/2020",
+      "category": "language",
+      "since": "01/2020",
       "usedIn": [
         "experience:igd"
       ]
     },
     {
-      "name": "ASP.NET Core",
+      "name": "Kotlin",
       "group": "backend",
+      "category": "language",
+      "since": "12/2023",
+      "status": "hands-on"
+    },
+    {
+      "name": "Spring Boot",
+      "group": "backend",
+      "category": "framework",
+      "language": [
+        "Java",
+        "Kotlin"
+      ],
       "since": "08/2021",
       "usedIn": [
         "experience:igd",
@@ -103,31 +130,10 @@
       ]
     },
     {
-      "name": "Python",
-      "group": "backend",
-      "status": "hands-on",
-      "usedIn": [
-        "project:efrouting"
-      ]
-    },
-    {
-      "name": "FastAPI",
-      "group": "backend",
-      "status": "hands-on"
-    },
-    {
-      "name": "TypeScript",
-      "group": "frontend",
-      "since": "01/2020",
-      "usedIn": [
-        "experience:igd",
-        "project:igd-plus",
-        "project:efrouting"
-      ]
-    },
-    {
       "name": "Angular",
       "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "09/2021",
       "usedIn": [
         "experience:igd"
@@ -136,48 +142,68 @@
     {
       "name": "Astro",
       "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "08/2023",
       "usedIn": [
         "experience:igd"
       ]
     },
     {
-      "name": "React",
-      "group": "frontend",
-      "since": "03/2020",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
-      "name": "Next.js",
-      "group": "frontend",
-      "since": "08/2021",
-      "usedIn": [
-        "experience:igd",
-        "project:efrouting"
-      ]
-    },
-    {
       "name": "SQL",
       "group": "data",
-      "since": "03/2020"
+      "since": "03/2020",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "group": "data"
+    },
+    {
+      "name": "MySQL",
+      "group": "data",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "MongoDB",
+      "group": "data"
+    },
+    {
+      "name": "Redis / Valkey",
+      "group": "data"
     },
     {
       "name": "DynamoDB",
       "group": "data",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
       "name": "AWS",
       "group": "cloud",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Lambda",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "S3",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
       ]
     },
     {
@@ -191,16 +217,24 @@
     {
       "name": "ECS Fargate",
       "group": "cloud",
-      "status": "hands-on",
       "usedIn": [
-        "project:efrouting"
+        "project:efrouting",
+        "experience:efrouting"
       ]
     },
     {
       "name": "Docker",
       "group": "cloud",
       "usedIn": [
-        "experience:igd"
+        "experience:igd",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Linux",
+      "group": "cloud",
+      "usedIn": [
+        "experience:efrouting"
       ]
     },
     {
@@ -211,7 +245,9 @@
     {
       "name": "Lua",
       "group": "also",
+      "category": "language",
       "since": "08/2023",
+      "status": "hands-on",
       "usedIn": [
         "project:neovim"
       ]

@@ -16,6 +16,6 @@ const [profile, experience] = await Promise.all([getProfile(locale), getExperien
 <BaseLayout {locale} path="experience" current="experience" onHome={false} title={`${t.pages.experience.title} — ${SITE.name}`} description={t.pages.experience.lead} jobTitle={profile.role}>
   <PageHeader eyebrow={t.sections.experience} title={t.pages.experience.title} lead={t.pages.experience.lead} backHref={localePath(locale)} backLabel={t.pages.back} />
   <div class="container container--page">
-    <ExperienceTimeline {locale} items={experience} detailed level="h2" />
+    <ExperienceTimeline {locale} items={experience} level="h2" />
   </div>
 </BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import type { SkillGroup } from '../../domain/skills';
+import { limitEvidence, type SkillGroup } from '../../domain/skills';
 import type { SkillsCopy } from '../../schemas/skills-copy';
 import { ui } from '../../i18n/ui';
 import type { Locale } from '../../i18n/locales';
@@ -7,6 +7,7 @@ import type { Locale } from '../../i18n/locales';
 interface Props { locale: Locale; groups: SkillGroup[]; heading: SkillsCopy['heading']; }
 const { locale, groups, heading } = Astro.props;
 const t = ui(locale);
+const MAX_EVIDENCE = 3;
 const statusLabel = { production: t.skills.production, 'hands-on': t.skills.handsOn, learning: t.skills.learning } as const;
 ---
 <div class="skills-detail">
@@ -35,7 +36,15 @@ const statusLabel = { production: t.skills.production, 'hands-on': t.skills.hand
               <td data-label={t.skills.status}><span class="skills-detail__status" data-status={item.status}>{statusLabel[item.status]}</span></td>
               <td data-label={t.skills.usedIn}>
                 {item.usedIn.length
-                  ? item.usedIn.map((evidence, index) => <>{index > 0 && ', '}<a href={evidence.href}>{evidence.label}</a></>)
+                  ? (() => {
+                      const { shown, hidden } = limitEvidence(item.usedIn, MAX_EVIDENCE);
+                      return (
+                        <>
+                          {shown.map((evidence, index) => <>{index > 0 && ', '}<a href={evidence.href}>{evidence.label}</a></>)}
+                          {hidden.length > 0 && <>{' '}<span class="skills-detail__more" title={hidden.map((evidence) => evidence.label).join(', ')}>+{hidden.length}</span></>}
+                        </>
+                      );
+                    })()
                   : '—'}
               </td>
             </tr>
@@ -93,6 +102,11 @@ const statusLabel = { production: t.skills.production, 'hands-on': t.skills.hand
 
     &__group--growing &__tier {
       color: rgb(var(--color-accent-text));
+    }
+
+    &__more {
+      color: rgb(var(--color-fg-faint));
+      cursor: help;
     }
 
     &__title {

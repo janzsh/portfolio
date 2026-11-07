@@ -2,6 +2,7 @@
 name: "IGD Plus"
 year: "2021 – 2025"
 type: "enterprise"
+kind: "fullstack"
 role: "Líder técnico"
 summary: "Núcleo empresarial modular con arquitectura inspirada en microkernel: contabilidad, créditos y operaciones como módulos aislados."
 skills: ["TypeScript", "React", "Tailwind", "ASP.NET Core", "SQL"]

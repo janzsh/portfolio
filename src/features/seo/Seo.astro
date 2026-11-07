@@ -2,6 +2,7 @@
 import { SITE } from '../../config/site';
 import { alternates, localePath } from '../../i18n/paths';
 import type { Locale } from '../../i18n/locales';
+import { getPersonFacts } from '../../data/queries';
 import { siteJsonLd } from './jsonld';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 }
 const { title, description, locale, jobTitle, path = '' } = Astro.props;
 
+const facts = await getPersonFacts(locale);
 const absolute = (href: string) => new URL(href, SITE.url).href;
 const canonical = absolute(Astro.url.pathname);
 const ogImage = absolute('/og.png');
@@ -40,4 +42,4 @@ const ogImage = absolute('/og.png');
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
-<script type="application/ld+json" set:html={JSON.stringify(siteJsonLd({ jobTitle, description, locale }))} />
+<script type="application/ld+json" set:html={JSON.stringify(siteJsonLd({ jobTitle, description, locale, ...facts }))} />

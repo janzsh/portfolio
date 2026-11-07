@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import Dialog from '../../ui/Dialog.astro';
 import Tag from '../../ui/Tag.astro';
 import type { ProjectItem } from '../../data/queries';
 import { ui } from '../../i18n/ui';
@@ -12,7 +13,7 @@ const t = ui(locale);
 const { Content } = await render(project.entry);
 const dialogId = `project-${project.id}`;
 ---
-<article class="card project">
+<article class="card project" data-project data-skills={project.searchSkills.join('|')} data-type={project.type} data-kind={project.kind}>
   <button class="project__open" type="button" data-open-dialog={dialogId} aria-label={`${t.projects.details}: ${project.name}`}></button>
   <div class={`project__media project__media--tone-${mediaTone(project.id)}`}>
     {project.picture
@@ -28,20 +29,17 @@ const dialogId = `project-${project.id}`;
   </div>
 </article>
 
-<dialog id={dialogId} class="project-dialog" aria-labelledby={`${dialogId}-title`}>
-  <div class="project-dialog__body">
-    <button class="project-dialog__close" type="button" data-close-dialog aria-label={t.projects.close}>×</button>
-    <p class="project__meta">{project.year} · {project.type}{project.role ? ` · ${project.role}` : ''}</p>
-    <h3 class="project-dialog__title" id={`${dialogId}-title`}>{project.name}</h3>
-    {project.placeholder && <p class="project-dialog__note">{t.projects.sample}</p>}
-    <div class="project__tags">{project.skills.map((skill) => <Tag tone="accent">{skill}</Tag>)}</div>
-    <div class="project-dialog__prose"><Content /></div>
-    <div class="project-dialog__links">
-      {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t.projects.code} ↗</a>}
-      {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer">{t.projects.live} ↗</a>}
-    </div>
+<Dialog id={dialogId} closeLabel={t.common.close}>
+  <p class="project__meta">{project.year} · {project.type}{project.role ? ` · ${project.role}` : ''}</p>
+  <h3 class="project-dialog__title" id={`${dialogId}-title`}>{project.name}</h3>
+  {project.placeholder && <p class="project-dialog__note">{t.projects.sample}</p>}
+  <div class="project__tags">{project.skills.map((skill) => <Tag tone="accent">{skill}</Tag>)}</div>
+  <div class="project-dialog__prose"><Content /></div>
+  <div class="project-dialog__links">
+    {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer">{t.projects.code} ↗</a>}
+    {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer">{t.projects.live} ↗</a>}
   </div>
-</dialog>
+</Dialog>
 
 <style lang="scss">
   @use '../../styles/abstracts' as *;
@@ -54,6 +52,10 @@ const dialogId = `project-${project.id}`;
 
     @include motion-safe {
       transition: transform 0.35s var(--ease), border-color 0.25s, box-shadow 0.3s;
+    }
+
+    &[hidden] {
+      display: none;
     }
 
     &:hover {
@@ -167,45 +169,6 @@ const dialogId = `project-${project.id}`;
   }
 
   .project-dialog {
-    width: min(680px, calc(100% - 2rem));
-    overscroll-behavior: contain;
-    max-height: 86vh;
-    padding: 0;
-    color: rgb(var(--color-fg));
-    background: rgb(var(--color-surface));
-    border: 1px solid rgb(var(--color-border-strong));
-    border-radius: var(--radius-lg);
-    box-shadow: 0 40px 100px -20px rgba(var(--color-shadow), 0.6);
-
-    &::backdrop {
-      background: rgba(var(--color-shadow), 0.55);
-      backdrop-filter: blur(6px);
-    }
-
-    &__body {
-      position: relative;
-      display: grid;
-      gap: var(--space-4);
-      padding: var(--space-8);
-    }
-
-    &__close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 40px;
-      height: 40px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      background: transparent;
-      border: 1.5px solid rgb(var(--color-border-strong));
-      border-radius: 50%;
-
-      &:hover {
-        border-color: rgb(var(--color-accent-text));
-      }
-    }
-
     &__title {
       font-size: 2.3rem;
     }

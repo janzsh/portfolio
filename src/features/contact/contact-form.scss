@@ -3,7 +3,7 @@
 // Styles for the ContactForm island (a Preact component, so no scoped <style>).
 .contact-form {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
 
   &__row {
     display: grid;
@@ -17,25 +17,35 @@
 
   &__field {
     display: grid;
-    gap: 6px;
-    font-size: 0.9rem;
-    color: rgb(var(--color-fg-muted));
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-fg-faint));
   }
 
+  // Underline-only inputs: the page background shows through instead of a box per field.
   &__input {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0 0.65rem;
+    font-size: 1rem;
+    letter-spacing: normal;
+    text-transform: none;
     color: rgb(var(--color-fg));
-    background: rgb(var(--color-surface));
-    border: 1.5px solid rgb(var(--color-border-strong));
-    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgb(var(--color-border-strong));
+    border-radius: 0;
 
     @include motion-safe {
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     &:focus-visible {
+      outline: none;
       border-color: rgb(var(--color-accent-text));
+      box-shadow: 0 1px 0 0 rgb(var(--color-accent-text));
     }
 
     &[aria-invalid='true'] {
@@ -43,7 +53,7 @@
     }
 
     &--area {
-      min-height: 9rem;
+      min-height: 7rem;
       resize: vertical;
     }
   }

@@ -20,6 +20,18 @@ export interface SkillGroup {
   items: SkillItem[];
 }
 
+/** Technology names grouped by how far the experience goes, in file order. Feeds the machine-readable summaries. */
+export function stackByStatus(stack: Stack): Record<TechStatus, string[]> {
+  const grouped: Record<TechStatus, string[]> = { production: [], 'hands-on': [], learning: [] };
+  stack.technologies.forEach((tech) => grouped[tech.status].push(tech.name));
+  return grouped;
+}
+
+/** Splits evidence into what the table shows and what collapses into a "+N" counter. */
+export function limitEvidence(usedIn: Evidence[], max: number): { shown: Evidence[]; hidden: Evidence[] } {
+  return { shown: usedIn.slice(0, max), hidden: usedIn.slice(max) };
+}
+
 /** Maps `project:efrouting` / `experience:igd` to something displayable, or undefined when unknown. */
 export type EvidenceResolver = (ref: string) => Evidence | undefined;
 
@@ -37,7 +49,7 @@ export function buildSkillGroups(
     const text = copy.groups[id];
     if (!text) throw new Error(`Missing skills copy for group "${id}" (${locale})`);
     const items = stack.technologies
-      .filter((t) => t.group === id)
+      .filter((t) => [t.group].flat().includes(id))
       .map((t): SkillItem => ({
         name: t.name,
         since: t.since ? formatMonthYear(t.since, locale) : undefined,
