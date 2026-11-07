@@ -2,6 +2,7 @@
 name: "Plataforma de libro contable"
 year: "2024"
 type: "enterprise"
+kind: "fullstack"
 role: "Desarrollador full-stack"
 summary: "Caso de ejemplo: libro contable multi-tenant con auditoría y acceso por roles."
 skills: ["NestJS", "PostgreSQL", "React", "Docker"]

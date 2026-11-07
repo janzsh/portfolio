@@ -25,6 +25,7 @@
     {
       "name": "Python",
       "group": "backend",
+      "category": "language",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -33,6 +34,8 @@
     {
       "name": "FastAPI",
       "group": "backend",
+      "category": "framework",
+      "language": "Python",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -43,6 +46,7 @@
         "backend",
         "frontend"
       ],
+      "category": "language",
       "since": "01/2020",
       "usedIn": [
         "experience:igd",
@@ -54,6 +58,8 @@
     {
       "name": "NestJS",
       "group": "backend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "01/2022",
       "usedIn": [
         "experience:igd",
@@ -64,6 +70,7 @@
     {
       "name": "Go",
       "group": "backend",
+      "category": "language",
       "since": "01/2024",
       "status": "hands-on",
       "usedIn": [
@@ -73,22 +80,29 @@
     {
       "name": "Gin",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "since": "12/2024",
       "status": "hands-on"
     },
     {
       "name": "Chi",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "status": "hands-on"
     },
     {
       "name": "Cobra",
       "group": "backend",
+      "category": "framework",
+      "language": "Go",
       "status": "hands-on"
     },
     {
       "name": "Java",
       "group": "backend",
+      "category": "language",
       "since": "01/2020",
       "usedIn": [
         "experience:igd"
@@ -97,12 +111,18 @@
     {
       "name": "Kotlin",
       "group": "backend",
+      "category": "language",
       "since": "12/2023",
       "status": "hands-on"
     },
     {
       "name": "Spring Boot",
       "group": "backend",
+      "category": "framework",
+      "language": [
+        "Java",
+        "Kotlin"
+      ],
       "since": "08/2021",
       "usedIn": [
         "experience:igd",
@@ -112,6 +132,8 @@
     {
       "name": "Angular",
       "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "09/2021",
       "usedIn": [
         "experience:igd"
@@ -120,6 +142,8 @@
     {
       "name": "Astro",
       "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
       "since": "08/2023",
       "usedIn": [
         "experience:igd"
@@ -139,7 +163,10 @@
     },
     {
       "name": "MySQL",
-      "group": "data"
+      "group": "data",
+      "usedIn": [
+        "experience:efrouting"
+      ]
     },
     {
       "name": "MongoDB",
@@ -218,7 +245,9 @@
     {
       "name": "Lua",
       "group": "also",
+      "category": "language",
       "since": "08/2023",
+      "status": "hands-on",
       "usedIn": [
         "project:neovim"
       ]

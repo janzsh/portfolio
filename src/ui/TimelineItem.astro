@@ -177,6 +177,7 @@ const { id, title, level: Heading = 'h3', subtitle, summary, month, year, captio
     &__content {
       display: grid;
       flex: 1;
+      min-width: 0;
       align-content: center;
       gap: var(--space-1);
       padding: var(--space-6);
@@ -192,6 +193,7 @@ const { id, title, level: Heading = 'h3', subtitle, summary, month, year, captio
 
     &__title {
       font-size: 1.7rem;
+      overflow-wrap: anywhere;
     }
 
     &__subtitle {

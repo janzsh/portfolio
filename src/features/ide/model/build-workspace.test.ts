@@ -13,6 +13,7 @@ const input = (over: Partial<WorkspaceInput> = {}): WorkspaceInput => ({
     role: 'Software Engineer',
     headline: 'h',
     tagline: 'Builds things end to end.',
+    stackLine: 'Go · SQL',
     description: 'd',
     aboutTitle: 'About me',
     about: ['First paragraph.', 'Second paragraph.'],

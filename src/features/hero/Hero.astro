@@ -25,7 +25,11 @@ const { lead, accent } = splitHeadline(profile.headline);
       <Button href="#contact">{t.hero.cta}</Button>
       <Button href="#projects" variant="ghost">{t.hero.secondaryCta}</Button>
     </div>
-    <p class="hero__meta">{profile.role} · {profile.location} · {t.hero.available}</p>
+    <ul class="hero__meta">
+      <li>{profile.role} · {profile.location}</li>
+      <li>{profile.stackLine}</li>
+      <li>{t.hero.available}</li>
+    </ul>
 
     <dl class="hero__stats">
       {profile.stats.map((stat) => (
@@ -144,6 +148,8 @@ const { lead, accent } = splitHeadline(profile.headline);
     }
 
     &__meta {
+      display: grid;
+      gap: var(--space-1);
       font-family: var(--font-mono);
       font-size: 0.8rem;
       color: rgb(var(--color-fg-faint));

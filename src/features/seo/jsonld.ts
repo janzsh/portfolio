@@ -5,6 +5,9 @@ interface Input {
   jobTitle: string;
   description: string;
   locale: Locale;
+  knowsAbout: string[];
+  knowsLanguage: string[];
+  location: string;
 }
 
 const personId = `${SITE.url}/#person`;
@@ -14,7 +17,7 @@ const personId = `${SITE.url}/#person`;
  * Email and phone are deliberately left out: structured data is machine-readable, so it would
  * hand them straight to scrapers and spam bots.
  */
-export const siteJsonLd = ({ jobTitle, description, locale }: Input) => ({
+export const siteJsonLd = ({ jobTitle, description, locale, knowsAbout, knowsLanguage, location }: Input) => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -25,6 +28,9 @@ export const siteJsonLd = ({ jobTitle, description, locale }: Input) => ({
       description,
       url: SITE.url,
       sameAs: [SITE.social.github, SITE.social.linkedin],
+      knowsAbout,
+      knowsLanguage,
+      homeLocation: { '@type': 'Place', name: location },
     },
     {
       '@type': 'WebSite',

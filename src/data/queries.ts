@@ -1,5 +1,6 @@
 import { getCollection, getEntry } from 'astro:content';
-import { buildSkillGroups, type Evidence } from '../domain/skills';
+import { buildFilterOptions, withImpliedLanguages } from '../domain/project-filters';
+import { buildSkillGroups, stackByStatus, type Evidence } from '../domain/skills';
 import { sortNewestFirst } from '../domain/timeline';
 import { localePath } from '../i18n/paths';
 import type { Locale } from '../i18n/locales';
@@ -23,11 +24,22 @@ export async function getEducation(locale: Locale) {
   return sortNewestFirst(entries.map(({ id, data }) => ({ id: id.split('/')[1], ...data })));
 }
 
+export async function getStack() {
+  const entry = await getEntry('stack', 'stack');
+  if (!entry) throw new Error('Missing stack content');
+  return entry.data;
+}
+
 export async function getProjects(locale: Locale) {
-  const entries = await getCollection('projects', inLocale(locale));
+  const [entries, stack] = await Promise.all([getCollection('projects', inLocale(locale)), getStack()]);
   return entries
     .sort((a, b) => a.data.order - b.data.order)
-    .map((entry) => ({ id: entry.id.split('/')[1], ...entry.data, entry }));
+    .map((entry) => ({ id: entry.id.split('/')[1], ...entry.data, searchSkills: withImpliedLanguages(entry.data.skills, stack), entry }));
+}
+
+export async function getProjectFilterOptions(locale: Locale) {
+  const [projects, stack] = await Promise.all([getProjects(locale), getStack()]);
+  return buildFilterOptions(projects, stack);
 }
 
 export async function getSkills(locale: Locale) {
@@ -51,3 +63,13 @@ export async function getSkills(locale: Locale) {
 }
 
 export type ProjectItem = Awaited<ReturnType<typeof getProjects>>[number];
+
+/** What search engines and models read about the person: production stack, spoken languages, base. */
+export async function getPersonFacts(locale: Locale) {
+  const [stack, profile] = await Promise.all([getStack(), getProfile(locale)]);
+  return {
+    knowsAbout: stackByStatus(stack).production,
+    knowsLanguage: profile.languages.map((language) => language.name),
+    location: profile.location,
+  };
+}

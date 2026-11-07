@@ -2,6 +2,7 @@
 name: "efRouting technical test"
 year: "2026"
 type: "test"
+kind: "fullstack"
 role: "Backend developer"
 summary: "SpaceX launch visualizer built with Go and Next.js, hexagonal architecture and 100% infrastructure as code."
 skills: ["Go", "Next.js", "TypeScript", "Python", "AWS CDK", "DynamoDB"]
