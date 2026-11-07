@@ -1,3 +1,4 @@
+import type { ProjectKind, ProjectType } from '../domain/project-facets';
 import type { Locale } from './locales';
 
 /** Static UI copy. Long-form content lives in `src/content`. */
@@ -16,6 +17,11 @@ export interface UiStrings {
   pages: { back: string; skills: { title: string }; experience: { title: string; lead: string }; projects: { title: string; lead: string } };
   ide: { explorer: string; openFiles: string; openToWork: string; closeFile: string; sampleNote: string };
   projects: { sample: string; code: string; live: string; details: string };
+  filters: {
+    label: string; language: string; framework: string; tech: string; type: string; kind: string;
+    all: string; reset: string; count: string; empty: string;
+    types: Record<ProjectType, string>; kinds: Record<ProjectKind, string>;
+  };
   contactInfo: { lead: string; direct: string };
   contact: {
     name: string;
@@ -79,6 +85,12 @@ const en: UiStrings = {
   },
   ide: { explorer: 'Explorer', openFiles: 'Open files', openToWork: 'Open to work', closeFile: 'Close', sampleNote: 'Sample content' },
   projects: { sample: 'Sample', code: 'Code', live: 'Live', details: 'Case study' },
+  filters: {
+    label: 'Filter projects', language: 'Language', framework: 'Framework', tech: 'Other technologies', type: 'Type', kind: 'Kind',
+    all: 'All', reset: 'Clear filters', count: 'Showing {shown} of {total} projects', empty: 'No project matches these filters.',
+    types: { personal: 'Personal', enterprise: 'Enterprise', freelancer: 'Freelance', test: 'Technical test' },
+    kinds: { script: 'Script', backend: 'Backend', frontend: 'Frontend', fullstack: 'Full-stack' },
+  },
   contactInfo: {
     lead: 'Hiring, a project or just a technical question? Write me and I’ll reply within 24 hours.',
     direct: 'Prefer a direct channel?',
@@ -145,6 +157,12 @@ const es: UiStrings = {
   },
   ide: { explorer: 'Explorador', openFiles: 'Archivos abiertos', openToWork: 'Disponible', closeFile: 'Cerrar', sampleNote: 'Contenido de ejemplo' },
   projects: { sample: 'Ejemplo', code: 'Código', live: 'En vivo', details: 'Caso de estudio' },
+  filters: {
+    label: 'Filtrar proyectos', language: 'Lenguaje', framework: 'Framework', tech: 'Otras tecnologías', type: 'Tipo', kind: 'Clase',
+    all: 'Todos', reset: 'Quitar filtros', count: 'Mostrando {shown} de {total} proyectos', empty: 'Ningún proyecto coincide con estos filtros.',
+    types: { personal: 'Personal', enterprise: 'Empresarial', freelancer: 'Freelance', test: 'Prueba técnica' },
+    kinds: { script: 'Script', backend: 'Backend', frontend: 'Frontend', fullstack: 'Full-stack' },
+  },
   contactInfo: {
     lead: '¿Contratación, un proyecto o solo una duda técnica? Escríbeme y te respondo en menos de 24 horas.',
     direct: '¿Prefieres un canal directo?',

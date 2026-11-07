@@ -12,6 +12,10 @@ export const technologySchema = z.object({
   /** One group id, or several when a technology belongs to more than one (e.g. TypeScript). */
   group: z.union([z.string(), z.array(z.string()).min(1)]),
   since: dateString.optional(),
+  /** Drives the project filters: languages are the first level, frameworks hang from a language. */
+  category: z.enum(['language', 'framework']).optional(),
+  /** The language(s) a framework is used with. */
+  language: z.union([z.string(), z.array(z.string()).min(1)]).optional(),
   /** production = shipped at work; hands-on = built in projects; learning = in progress. */
   status: z.enum(STATUSES).default('production'),
   usedIn: z.array(evidenceRef).default([]),

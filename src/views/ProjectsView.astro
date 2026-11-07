@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectFilters from '../features/projects/ProjectFilters.astro';
 import ProjectsGrid from '../features/projects/ProjectsGrid.astro';
 import PageHeader from '../ui/PageHeader.astro';
 import { SITE } from '../config/site';
-import { getProfile, getProjects } from '../data/queries';
+import { getProfile, getProjectFilterOptions, getProjects } from '../data/queries';
 import { localePath } from '../i18n/paths';
 import { ui } from '../i18n/ui';
 import type { Locale } from '../i18n/locales';
@@ -11,11 +12,12 @@ import type { Locale } from '../i18n/locales';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const t = ui(locale);
-const [profile, projects] = await Promise.all([getProfile(locale), getProjects(locale)]);
+const [profile, projects, options] = await Promise.all([getProfile(locale), getProjects(locale), getProjectFilterOptions(locale)]);
 ---
 <BaseLayout {locale} path="projects" current="projects" onHome={false} title={`${t.pages.projects.title} — ${SITE.name}`} description={t.pages.projects.lead} jobTitle={profile.role}>
   <PageHeader eyebrow={t.sections.projects} title={t.pages.projects.title} lead={t.pages.projects.lead} backHref={localePath(locale)} backLabel={t.pages.back} />
   <div class="container container--page">
+    <ProjectFilters {locale} {options} total={projects.length} />
     <ProjectsGrid {locale} {projects} level="h2" />
   </div>
 </BaseLayout>

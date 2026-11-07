@@ -1,0 +1,121 @@
+---
+import type { FilterOptions } from '../../domain/project-filters';
+import { ui } from '../../i18n/ui';
+import type { Locale } from '../../i18n/locales';
+
+interface Props { locale: Locale; options: FilterOptions; total: number; }
+const { locale, options, total } = Astro.props;
+const t = ui(locale).filters;
+const frameworksOf = Object.fromEntries(options.languages.map((language) => [language.name, language.frameworks]));
+const fields = [
+  { group: 'language', label: t.language, values: options.languages.map((language) => ({ value: language.name, label: language.name })) },
+  { group: 'framework', label: t.framework, values: [] },
+  { group: 'type', label: t.type, values: options.types.map((value) => ({ value, label: t.types[value as keyof typeof t.types] })) },
+  { group: 'kind', label: t.kind, values: options.kinds.map((value) => ({ value, label: t.kinds[value as keyof typeof t.kinds] })) },
+  { group: 'tech', label: t.tech, values: options.others.map((value) => ({ value, label: value })) },
+].filter((field) => field.group === 'framework' ? options.languages.some((language) => language.frameworks.length > 0) : field.values.length > 0);
+---
+<!-- Hidden until the script runs: without JS the selects would do nothing. -->
+<section class="project-filters" data-project-filters data-count-template={t.count} data-all={t.all} data-frameworks={JSON.stringify(frameworksOf)} aria-label={t.label} hidden>
+  <div class="project-filters__fields">
+    {fields.map((field) => (
+      <label class="project-filters__field">
+        <span class="project-filters__label">{field.label}</span>
+        <select class="project-filters__select" data-filter-group={field.group} disabled={field.group === 'framework'}>
+          <option value="">{t.all}</option>
+          {field.values.map(({ value, label }) => <option value={value}>{label}</option>)}
+        </select>
+      </label>
+    ))}
+  </div>
+  <div class="project-filters__foot">
+    <p class="project-filters__status" role="status" data-filter-status>{t.count.replace('{shown}', String(total)).replace('{total}', String(total))}</p>
+    <button type="button" class="project-filters__reset" data-filter-reset hidden>{t.reset}</button>
+  </div>
+  <p class="project-filters__empty" data-filter-empty hidden>{t.empty}</p>
+</section>
+
+<script>
+  import { initProjectFilters } from './project-filter.client';
+  initProjectFilters();
+</script>
+
+<style lang="scss">
+  @use '../../styles/abstracts' as *;
+
+  .project-filters {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+
+    &[hidden],
+    &__reset[hidden],
+    &__empty[hidden] {
+      display: none;
+    }
+
+    &__fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+      gap: var(--space-4);
+    }
+
+    &__field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    &__label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgb(var(--color-fg-faint));
+    }
+
+    &__select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font: inherit;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: rgb(var(--color-fg));
+      cursor: pointer;
+      background: rgb(var(--color-surface));
+      border: 1px solid rgb(var(--color-border));
+      border-radius: var(--radius-sm);
+
+      &:hover:not(:disabled) {
+        border-color: rgba(var(--color-accent-text), 0.55);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+
+    &__foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      font-size: 0.85rem;
+      color: rgb(var(--color-fg-muted));
+    }
+
+    &__reset {
+      padding: 0;
+      font: inherit;
+      color: rgb(var(--color-accent-text));
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: 0;
+    }
+
+    &__empty {
+      color: rgb(var(--color-fg-muted));
+    }
+  }
+</style>

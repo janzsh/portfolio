@@ -13,7 +13,7 @@ const t = ui(locale);
 const { Content } = await render(project.entry);
 const dialogId = `project-${project.id}`;
 ---
-<article class="card project">
+<article class="card project" data-project data-skills={project.searchSkills.join('|')} data-type={project.type} data-kind={project.kind}>
   <button class="project__open" type="button" data-open-dialog={dialogId} aria-label={`${t.projects.details}: ${project.name}`}></button>
   <div class={`project__media project__media--tone-${mediaTone(project.id)}`}>
     {project.picture
@@ -52,6 +52,10 @@ const dialogId = `project-${project.id}`;
 
     @include motion-safe {
       transition: transform 0.35s var(--ease), border-color 0.25s, box-shadow 0.3s;
+    }
+
+    &[hidden] {
+      display: none;
     }
 
     &:hover {

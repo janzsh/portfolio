@@ -2,6 +2,7 @@
 name: "Panel de flotas"
 year: "2025"
 type: "personal"
+kind: "fullstack"
 role: "Desarrollador full-stack"
 summary: "Caso de ejemplo: panel logístico en tiempo real con mapas en vivo y analítica de entregas."
 skills: ["Next.js", "WebSockets", "Go", "Redis"]
