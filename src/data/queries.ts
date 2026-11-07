@@ -1,6 +1,6 @@
 import { getCollection, getEntry } from 'astro:content';
 import { buildFilterOptions, withImpliedLanguages } from '../domain/project-filters';
-import { buildSkillGroups, type Evidence } from '../domain/skills';
+import { buildSkillGroups, stackByStatus, type Evidence } from '../domain/skills';
 import { sortNewestFirst } from '../domain/timeline';
 import { localePath } from '../i18n/paths';
 import type { Locale } from '../i18n/locales';
@@ -63,3 +63,13 @@ export async function getSkills(locale: Locale) {
 }
 
 export type ProjectItem = Awaited<ReturnType<typeof getProjects>>[number];
+
+/** What search engines and models read about the person: production stack, spoken languages, base. */
+export async function getPersonFacts(locale: Locale) {
+  const [stack, profile] = await Promise.all([getStack(), getProfile(locale)]);
+  return {
+    knowsAbout: stackByStatus(stack).production,
+    knowsLanguage: profile.languages.map((language) => language.name),
+    location: profile.location,
+  };
+}

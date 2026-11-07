@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SkillsCopy } from '../schemas/skills-copy';
 import type { Stack } from '../schemas/stack';
-import { buildSkillGroups, limitEvidence, splitSkillGroups, type SkillGroup } from './skills';
+import { buildSkillGroups, limitEvidence, stackByStatus, splitSkillGroups, type SkillGroup } from './skills';
 
 const stack: Stack = {
   groups: [{ id: 'go', tier: 'primary' }, { id: 'cloud', tier: 'growing' }],
@@ -64,5 +64,19 @@ describe('limitEvidence', () => {
   });
   it('keeps the first ones and hands back the rest', () => {
     expect(limitEvidence(refs, 3)).toEqual({ shown: refs.slice(0, 3), hidden: refs.slice(3) });
+  });
+});
+
+describe('stackByStatus', () => {
+  it('lists technology names under their status, keeping the file order', () => {
+    const grouped = stackByStatus({
+      groups: [],
+      technologies: [
+        { name: 'Python', group: 'x', status: 'production', usedIn: [] },
+        { name: 'Go', group: 'x', status: 'hands-on', usedIn: [] },
+        { name: 'SQL', group: 'x', status: 'production', usedIn: [] },
+      ],
+    });
+    expect(grouped).toEqual({ production: ['Python', 'SQL'], 'hands-on': ['Go'], learning: [] });
   });
 });

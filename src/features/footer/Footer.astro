@@ -25,6 +25,9 @@ const year = new Date().getFullYear();
       <li><a href={`${localePath(locale)}#contact`}>{t.nav.contact}</a></li>
     </ul>
   </div>
+  <div class="container footer__ai-row">
+    <p class="footer__ai">{t.footer.ai} <a href="/llms.txt">llms.txt</a></p>
+  </div>
 </footer>
 
 <style lang="scss">
@@ -89,6 +92,22 @@ const year = new Date().getFullYear();
     &__social {
       display: flex;
       gap: var(--space-6);
+    }
+
+    &__ai-row {
+      position: relative;
+      margin-top: var(--space-6);
+    }
+
+    &__ai {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: rgb(var(--color-fg-faint));
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+      }
     }
 
     @include down('sm') {
