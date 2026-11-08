@@ -5,7 +5,6 @@ interface Props {
   /** Dialog id; must be unique on the page. */
   id: string;
   title: string;
-  level?: 'h2' | 'h3';
   subtitle: string;
   summary: string;
   /** Short month and year shown in the date badge. */
@@ -18,7 +17,7 @@ interface Props {
   detailsLabel: string;
   closeLabel: string;
 }
-const { id, title, level: Heading = 'h3', subtitle, summary, month, year, caption, kicker, live = false, detailsLabel, closeLabel } = Astro.props;
+const { id, title, subtitle, summary, month, year, caption, kicker, live = false, detailsLabel, closeLabel } = Astro.props;
 ---
 <li class="timeline-item">
   <span class:list={['timeline-item__node', { 'timeline-item__node--live': live }]} aria-hidden="true"></span>
@@ -31,7 +30,7 @@ const { id, title, level: Heading = 'h3', subtitle, summary, month, year, captio
     </p>
     <div class="timeline-item__content">
       {kicker && <p class="timeline-item__kicker">{kicker}</p>}
-      <Heading class="timeline-item__title">{title}</Heading>
+      <h3 class="timeline-item__title">{title}</h3>
       <p class="timeline-item__subtitle">{subtitle}</p>
       <p class="timeline-item__summary">{summary}</p>
     </div>

@@ -12,9 +12,9 @@ export interface UiStrings {
   titles: { skills: string; experience: string; education: string; projects: string; code: string; contact: string };
   experience: { present: string; responsibilities: string };
   common: { close: string; details: string };
-  more: { skills: string; experience: string; projects: string };
+  more: { skills: string; projects: string };
   skills: { since: string; usedIn: string; status: string; production: string; handsOn: string; learning: string; tech: string; alsoLabel: string; tiers: Record<'primary' | 'secondary' | 'tertiary' | 'growing' | 'also', string> };
-  pages: { back: string; skills: { title: string }; experience: { title: string; lead: string }; projects: { title: string; lead: string } };
+  pages: { back: string; skills: { title: string }; projects: { title: string; lead: string } };
   ide: { explorer: string; openFiles: string; openToWork: string; closeFile: string; sampleNote: string };
   projects: { sample: string; code: string; live: string; details: string };
   filters: {
@@ -71,7 +71,7 @@ const en: UiStrings = {
   },
   experience: { present: 'Present', responsibilities: 'What I did' },
   common: { close: 'Close', details: 'Details' },
-  more: { skills: 'See all technologies', experience: 'See full experience', projects: 'See all projects' },
+  more: { skills: 'See all technologies', projects: 'See all projects' },
   skills: {
     since: 'Since', usedIn: 'Used in', status: 'Status', tech: 'Technology', alsoLabel: 'Also worked with',
     production: 'In production', handsOn: 'Hands-on', learning: 'Learning',
@@ -80,7 +80,6 @@ const en: UiStrings = {
   pages: {
     back: 'Back to home',
     skills: { title: 'Stack' },
-    experience: { title: 'Full experience', lead: 'Every role in detail: what I did, what it delivered and the stack behind it.' },
     projects: { title: 'All projects', lead: 'Beyond the highlights: professional work, tests and personal experiments.' },
   },
   ide: { explorer: 'Explorer', openFiles: 'Open files', openToWork: 'Open to work', closeFile: 'Close', sampleNote: 'Sample content' },
@@ -143,7 +142,7 @@ const es: UiStrings = {
   },
   experience: { present: 'Actualidad', responsibilities: 'Qué hice' },
   common: { close: 'Cerrar', details: 'Detalles' },
-  more: { skills: 'Ver todas las tecnologías', experience: 'Ver experiencia completa', projects: 'Ver todos los proyectos' },
+  more: { skills: 'Ver todas las tecnologías', projects: 'Ver todos los proyectos' },
   skills: {
     since: 'Desde', usedIn: 'Usada en', status: 'Estado', tech: 'Tecnología', alsoLabel: 'También he trabajado con',
     production: 'En producción', handsOn: 'Práctica', learning: 'Aprendiendo',
@@ -152,7 +151,6 @@ const es: UiStrings = {
   pages: {
     back: 'Volver al inicio',
     skills: { title: 'Stack' },
-    experience: { title: 'Experiencia completa', lead: 'Cada rol en detalle: qué hice, qué logró y el stack detrás.' },
     projects: { title: 'Todos los proyectos', lead: 'Más allá de lo destacado: trabajo profesional, pruebas y experimentos personales.' },
   },
   ide: { explorer: 'Explorador', openFiles: 'Archivos abiertos', openToWork: 'Disponible', closeFile: 'Cerrar', sampleNote: 'Contenido de ejemplo' },

@@ -6,14 +6,13 @@ import { ui } from '../../i18n/ui';
 import type { Locale } from '../../i18n/locales';
 import type { ExperienceView } from './to-view';
 
-interface Props { locale: Locale; entry: ExperienceView; level?: 'h2' | 'h3'; }
-const { locale, entry: e, level } = Astro.props;
+interface Props { locale: Locale; entry: ExperienceView; }
+const { locale, entry: e } = Astro.props;
 const t = ui(locale);
 ---
 <TimelineItem
   id={`experience-${e.id}`}
   title={e.role}
-  {level}
   subtitle={e.company}
   summary={e.summary}
   month={e.startMonth}
