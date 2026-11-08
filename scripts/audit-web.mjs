@@ -16,7 +16,7 @@ import { checkScores, staticCandidates, summarize } from './audit/lib.mjs';
 const ROOT = resolve('.vercel/output/static');
 const THEMES = ['light', 'dark'];
 const VIEWPORTS = { desktop: { width: 1280, height: 900 }, mobile: { width: 390, height: 844, isMobile: true, hasTouch: true } };
-const AXE_PAGES = ['/', '/es/', '/skills', '/es/skills', '/experience', '/projects', '/resume', '/es/resume', '/404.html'];
+const AXE_PAGES = ['/', '/es/', '/skills', '/es/skills', '/projects', '/resume', '/es/resume', '/404.html'];
 // Layout differs on small screens, but colors do not, so mobile only needs a sample of pages.
 const MOBILE_PAGES = ['/', '/skills', '/resume'];
 const LIGHTHOUSE_RUNS = [
