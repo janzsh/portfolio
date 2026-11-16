@@ -14,7 +14,7 @@ export interface LlmsInput {
   social: { github: string; linkedin: string };
 }
 
-const STATUS_LABEL: Record<TechStatus, string> = { production: 'In production', 'hands-on': 'Hands-on', learning: 'Learning' };
+const STATUS_LABEL: Record<TechStatus, string> = { production: 'In production', 'hands-on': 'In projects', learning: 'Learning' };
 
 /** Plain-text profile for language models, following the llmstxt.org layout. */
 export function llmsTxt(input: LlmsInput): string {

@@ -27,7 +27,7 @@ describe('llmsTxt', () => {
   });
   it('lists the stack by status and skips empty ones', () => {
     expect(text).toContain('- In production: Python, SQL');
-    expect(text).toContain('- Hands-on: Go');
+    expect(text).toContain('- In projects: Go');
     expect(text).not.toContain('Learning');
   });
   it('lists experience and projects with their summaries', () => {

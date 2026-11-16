@@ -74,7 +74,7 @@ const en: UiStrings = {
   more: { skills: 'See all technologies', projects: 'See all projects' },
   skills: {
     since: 'Since', usedIn: 'Used in', status: 'Status', tech: 'Technology', alsoLabel: 'Also worked with',
-    production: 'In production', handsOn: 'Hands-on', learning: 'Learning',
+    production: 'In production', handsOn: 'In projects', learning: 'Learning',
     tiers: { primary: 'Core', secondary: 'Secondary', tertiary: 'Around the stack', growing: 'Growing focus', also: 'Also' },
   },
   pages: {
@@ -145,7 +145,7 @@ const es: UiStrings = {
   more: { skills: 'Ver todas las tecnologías', projects: 'Ver todos los proyectos' },
   skills: {
     since: 'Desde', usedIn: 'Usada en', status: 'Estado', tech: 'Tecnología', alsoLabel: 'También he trabajado con',
-    production: 'En producción', handsOn: 'Práctica', learning: 'Aprendiendo',
+    production: 'En producción', handsOn: 'En proyectos', learning: 'Aprendiendo',
     tiers: { primary: 'Núcleo', secondary: 'Secundario', tertiary: 'Alrededor del stack', growing: 'Foco en crecimiento', also: 'Además' },
   },
   pages: {
