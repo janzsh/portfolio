@@ -41,7 +41,7 @@ describe('siteJsonLd', () => {
     const nodes = graph('es');
     const person = nodes.find((node) => node['@type'] === 'Person');
     const site = nodes.find((node) => node['@type'] === 'WebSite');
-    expect(site).toMatchObject({ url: 'https://janz.dev', inLanguage: 'es' });
+    expect(site).toMatchObject({ url: 'https://www.janzsh.com', inLanguage: 'es' });
     expect(site?.publisher).toEqual({ '@id': person?.['@id'] });
   });
 });

@@ -2,7 +2,7 @@
 export const SITE = {
   name: 'Juan Camilo Zúñiga',
   handle: 'janzsh',
-  url: 'https://janz.dev',
+  url: 'https://www.janzsh.com',
   designer: 'RZOR',
   designerUrl: 'https://yefersonruzon.vercel.app/',
   social: {
