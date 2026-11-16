@@ -21,9 +21,7 @@ export const GET: APIRoute = async () => {
       const job = toExperienceView(entry, 'en', present);
       return { role: job.role, company: job.company, period: job.period, summary: job.summary };
     }),
-    projects: projects
-      .filter((project) => !project.placeholder)
-      .map((project) => ({ name: project.name, year: project.year, summary: project.summary, href: project.repo ?? new URL('/projects', SITE.url).href })),
+    projects: projects.map((project) => ({ name: project.name, year: project.year, summary: project.summary, href: project.repo ?? new URL('/projects', SITE.url).href })),
     social: SITE.social,
   });
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

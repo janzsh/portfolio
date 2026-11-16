@@ -26,7 +26,6 @@ const t = ui(locale);
 
 const jobs = experience.map((entry) => toExperienceView(entry, locale, t.resumePage.present));
 const lines = skillLines(groups, t.skills.learning);
-const realProjects = projects.filter((project) => !project.placeholder);
 // Email and phone are intentionally absent: this page is public HTML that scrapers read.
 const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) => ({ href, text: displayUrl(href) }));
 ---
@@ -60,10 +59,10 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
     ))}
   </section>
 
-  {realProjects.length > 0 && (
+  {projects.length > 0 && (
     <section class="sheet__section">
       <h2 class="sheet__heading">{t.resumePage.projects}</h2>
-      {realProjects.map((project) => (
+      {projects.map((project) => (
         <div class="sheet__item">
           <div class="sheet__row"><h3 class="sheet__title">{project.name}</h3><span>{project.year}</span></div>
           <p>{project.summary}</p>

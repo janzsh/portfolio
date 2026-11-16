@@ -15,8 +15,8 @@ export interface UiStrings {
   more: { skills: string; projects: string };
   skills: { since: string; usedIn: string; status: string; production: string; handsOn: string; learning: string; tech: string; alsoLabel: string; tiers: Record<'primary' | 'secondary' | 'tertiary' | 'growing' | 'also', string> };
   pages: { back: string; skills: { title: string }; projects: { title: string; lead: string } };
-  ide: { explorer: string; openFiles: string; openToWork: string; closeFile: string; sampleNote: string };
-  projects: { sample: string; code: string; live: string; details: string };
+  ide: { explorer: string; openFiles: string; openToWork: string; closeFile: string };
+  projects: { code: string; live: string; details: string };
   filters: {
     label: string; language: string; framework: string; tech: string; type: string; kind: string;
     all: string; reset: string; count: string; empty: string;
@@ -82,8 +82,8 @@ const en: UiStrings = {
     skills: { title: 'Stack' },
     projects: { title: 'All projects', lead: 'Beyond the highlights: professional work, tests and personal experiments.' },
   },
-  ide: { explorer: 'Explorer', openFiles: 'Open files', openToWork: 'Open to work', closeFile: 'Close', sampleNote: 'Sample content' },
-  projects: { sample: 'Sample', code: 'Code', live: 'Live', details: 'Case study' },
+  ide: { explorer: 'Explorer', openFiles: 'Open files', openToWork: 'Open to work', closeFile: 'Close' },
+  projects: { code: 'Code', live: 'Live', details: 'Case study' },
   filters: {
     label: 'Filter projects', language: 'Language', framework: 'Framework', tech: 'Other technologies', type: 'Type', kind: 'Kind',
     all: 'All', reset: 'Clear filters', count: 'Showing {shown} of {total} projects', empty: 'No project matches these filters.',
@@ -153,8 +153,8 @@ const es: UiStrings = {
     skills: { title: 'Stack' },
     projects: { title: 'Todos los proyectos', lead: 'Más allá de lo destacado: trabajo profesional, pruebas y experimentos personales.' },
   },
-  ide: { explorer: 'Explorador', openFiles: 'Archivos abiertos', openToWork: 'Disponible', closeFile: 'Cerrar', sampleNote: 'Contenido de ejemplo' },
-  projects: { sample: 'Ejemplo', code: 'Código', live: 'En vivo', details: 'Caso de estudio' },
+  ide: { explorer: 'Explorador', openFiles: 'Archivos abiertos', openToWork: 'Disponible', closeFile: 'Cerrar' },
+  projects: { code: 'Código', live: 'En vivo', details: 'Caso de estudio' },
   filters: {
     label: 'Filtrar proyectos', language: 'Lenguaje', framework: 'Framework', tech: 'Otras tecnologías', type: 'Tipo', kind: 'Clase',
     all: 'Todos', reset: 'Quitar filtros', count: 'Mostrando {shown} de {total} proyectos', empty: 'Ningún proyecto coincide con estos filtros.',
