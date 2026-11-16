@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
     stack: stackByStatus(stack),
     experience: experience.map((entry) => {
       const job = toExperienceView(entry, 'en', present);
-      return { role: job.role, company: job.company, period: job.period, summary: job.summary };
+      return { role: job.role, company: job.company, period: job.period, summary: job.summary, achievements: job.achievements };
     }),
     projects: projects.map((project) => ({ name: project.name, year: project.year, summary: project.summary, href: project.repo ?? new URL('/projects', SITE.url).href })),
     social: SITE.social,

@@ -85,7 +85,7 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
   <section class="sheet__section">
     <h2 class="sheet__heading">{t.resumePage.skills}</h2>
     {lines.map((line) => <p class="sheet__skill">{line.title && <b>{line.title}: </b>}{line.items}</p>)}
-    <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}`).join(' · ')}</p>
+    <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}${language.detail ? ` (${language.detail})` : ''}`).join(' · ')}</p>
   </section>
 </article>
 

@@ -7,9 +7,9 @@ const input: LlmsInput = {
   description: 'Builds reliable services.',
   location: 'London, UK',
   workMode: 'Remote',
-  languages: [{ name: 'English', level: 'Native' }],
+  languages: [{ name: 'English', level: 'Native' }, { name: 'French', level: 'B1', detail: 'reading and writing' }],
   stack: { production: ['Python', 'SQL'], 'hands-on': ['Go'], learning: [] },
-  experience: [{ role: 'Engineer', company: 'Acme', period: 'Jan 2020 – Present', summary: 'Ran the data platform.' }],
+  experience: [{ role: 'Engineer', company: 'Acme', period: 'Jan 2020 – Present', summary: 'Ran the data platform.', achievements: ['Cut batch time from 4 hours to 1.', 'Halved memory use.'] }],
   projects: [{ name: 'Engine', year: '2024', summary: 'An analytical engine.', href: 'https://github.com/ada/engine' }],
   social: { github: 'https://github.com/ada', linkedin: 'https://www.linkedin.com/in/ada' },
 };
@@ -23,7 +23,7 @@ describe('llmsTxt', () => {
   it('states where they are, how they work and which languages they speak', () => {
     expect(text).toContain('London, UK');
     expect(text).toContain('Remote');
-    expect(text).toContain('English (Native)');
+    expect(text).toContain('English (Native), French (B1: reading and writing)');
   });
   it('lists the stack by status and skips empty ones', () => {
     expect(text).toContain('- In production: Python, SQL');
@@ -33,6 +33,9 @@ describe('llmsTxt', () => {
   it('lists experience and projects with their summaries', () => {
     expect(text).toContain('- Engineer, Acme (Jan 2020 – Present): Ran the data platform.');
     expect(text).toContain('- [Engine](https://github.com/ada/engine) (2024): An analytical engine.');
+  });
+  it('lists each role\'s achievements under it, so a summary does not lose the results', () => {
+    expect(text).toContain('- Engineer, Acme (Jan 2020 – Present): Ran the data platform.\n  - Cut batch time from 4 hours to 1.\n  - Halved memory use.');
   });
   it('points to both language versions and the profiles, and says why there is no email', () => {
     expect(text).toContain('https://janz.dev/es/');
