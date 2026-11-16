@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "check": "astro sync && tsc --noEmit",
     "og": "node scripts/build-og.mjs",
+    "resume:pdf": "node scripts/build-resume-pdf.mjs",
     "verify": "pnpm run check && pnpm run test && astro build",
     "audit:web": "node scripts/audit-web.mjs"
   },

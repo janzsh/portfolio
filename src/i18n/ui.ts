@@ -35,7 +35,7 @@ export interface UiStrings {
     rateLimited: string;
     invalid: string;
   };
-  resumePage: { title: string; description: string; print: string; back: string; experience: string; education: string; projects: string; skills: string; contact: string; present: string };
+  resumePage: { title: string; description: string; download: string; back: string; experience: string; education: string; projects: string; skills: string; contact: string; present: string };
   notFound: { title: string; text: string; home: string };
   footer: { designedBy: string; builtBy: string; plainText: string };
   theme: { toggle: string };
@@ -106,7 +106,7 @@ const en: UiStrings = {
     rateLimited: 'Too many attempts. Please wait a minute and try again.',
     invalid: 'Please check the highlighted fields.',
   },
-  resumePage: { title: 'Resume', description: 'resume with experience, projects, education and skills.', print: 'Download PDF', back: 'Back to site', experience: 'Experience', education: 'Education', projects: 'Selected projects', skills: 'Skills', contact: 'Contact', present: 'Present' },
+  resumePage: { title: 'Resume', description: 'resume with experience, projects, education and skills.', download: 'Download PDF', back: 'Back to site', experience: 'Experience', education: 'Education', projects: 'Selected projects', skills: 'Skills', contact: 'Contact', present: 'Present' },
   notFound: { title: 'Page not found', text: 'The page you’re looking for doesn’t exist.', home: 'Back home' },
   footer: { designedBy: 'Designed by', builtBy: 'built by', plainText: 'Plain-text professional summary:' },
   theme: { toggle: 'Dark theme' },
@@ -177,7 +177,7 @@ const es: UiStrings = {
     rateLimited: 'Demasiados intentos. Espera un minuto e inténtalo otra vez.',
     invalid: 'Revisa los campos marcados.',
   },
-  resumePage: { title: 'Currículum', description: 'currículum con experiencia, proyectos, educación y habilidades.', print: 'Descargar PDF', back: 'Volver al sitio', experience: 'Experiencia', education: 'Educación', projects: 'Proyectos destacados', skills: 'Habilidades', contact: 'Contacto', present: 'Actualidad' },
+  resumePage: { title: 'Currículum', description: 'currículum con experiencia, proyectos, educación y habilidades.', download: 'Descargar PDF', back: 'Volver al sitio', experience: 'Experiencia', education: 'Educación', projects: 'Proyectos destacados', skills: 'Habilidades', contact: 'Contacto', present: 'Actualidad' },
   notFound: { title: 'Página no encontrada', text: 'La página que buscas no existe.', home: 'Volver al inicio' },
   footer: { designedBy: 'Diseñado por', builtBy: 'construido por', plainText: 'Resumen profesional en texto plano:' },
   theme: { toggle: 'Tema oscuro' },

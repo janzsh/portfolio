@@ -13,6 +13,9 @@ node_modules/
 # logs
 *.log
 
+# résumé with personal contact data (pnpm resume:pdf --private)
+private/
+
 # environment variables
 .env
 .env.*

@@ -31,7 +31,7 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
 ---
 <div class="resume-toolbar">
   <ArrowLink href={localePath(locale)} direction="back">{t.resumePage.back}</ArrowLink>
-  <button class="button button--primary" type="button" data-print>{t.resumePage.print}</button>
+  <a class="button button--primary" href={SITE.resumePdf[locale]} download>{t.resumePage.download}</a>
 </div>
 
 <article class="sheet">
@@ -88,10 +88,6 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
     <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}${language.detail ? ` (${language.detail})` : ''}`).join(' · ')}</p>
   </section>
 </article>
-
-<script>
-  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
-</script>
 
 <style lang="scss">
   @use '../../styles/abstracts' as *;
@@ -163,6 +159,8 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
     }
 
     &__heading {
+      // Keep each heading on the same page as its first entry.
+      break-after: avoid;
       margin-bottom: 14px;
       padding-bottom: 6px;
       font-size: 0.8rem;
