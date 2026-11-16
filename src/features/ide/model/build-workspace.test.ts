@@ -47,7 +47,6 @@ const input = (over: Partial<WorkspaceInput> = {}): WorkspaceInput => ({
       type: 'personal',
       summary: 'A demo.',
       skills: ['Go', 'Astro'],
-      placeholder: true,
       featured: true,
       order: 1,
       repo: 'https://github.com/x/demo',
@@ -87,13 +86,12 @@ describe('buildWorkspace', () => {
     expect(JSON.parse(flattenFiles(open.root).find((f) => f.id === 'experience/acme.json')!.source)).toMatchObject({ period: 'Jun 2023 – Present', duration: '1 yr' });
   });
 
-  it('writes a project as Markdown with its stack, body, links and sample note', () => {
+  it('writes a project as Markdown with its stack, body and links', () => {
     const md = byId('projects/demo.md').source;
     expect(md).toContain('# Demo');
     expect(md).toContain('`Go` `Astro`');
     expect(md).toContain('**Problem.** Something.');
     expect(md).toContain('https://github.com/x/demo');
-    expect(md).toContain(ui('en').ide.sampleNote);
   });
 
   it('writes the README from the profile and lists only the focus skill groups', () => {

@@ -6,11 +6,11 @@
     },
     "frontend": {
       "title": "Frontend",
-      "description": "The reach of the T: typed interfaces with TypeScript, Angular and Astro."
+      "description": "As a complement: typed interfaces with TypeScript, React, Next.js, Angular and Astro."
     },
     "data": {
       "title": "Data",
-      "description": "Relational and document modeling, solid SQL, caches and key-value stores, ETL pipelines and scrapers."
+      "description": "Relational and document modeling, solid SQL, caches and key-value stores, ETL and data-ingestion pipelines."
     },
     "cloud": {
       "title": "Cloud",

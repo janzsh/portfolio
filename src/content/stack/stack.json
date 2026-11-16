@@ -26,6 +26,7 @@
       "name": "Python",
       "group": "backend",
       "category": "language",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -36,6 +37,7 @@
       "group": "backend",
       "category": "framework",
       "language": "Python",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -48,9 +50,9 @@
       ],
       "category": "language",
       "since": "01/2020",
+      "status": "production",
       "usedIn": [
         "experience:igd",
-        "project:igd-plus",
         "project:efrouting",
         "experience:efrouting"
       ]
@@ -61,6 +63,7 @@
       "category": "framework",
       "language": "TypeScript",
       "since": "01/2022",
+      "status": "production",
       "usedIn": [
         "experience:igd",
         "experience:freelance",
@@ -72,9 +75,11 @@
       "group": "backend",
       "category": "language",
       "since": "01/2024",
-      "status": "hands-on",
+      "status": "production",
       "usedIn": [
-        "project:efrouting"
+        "experience:efrouting",
+        "project:efrouting",
+        "project:auth-core"
       ]
     },
     {
@@ -90,7 +95,10 @@
       "group": "backend",
       "category": "framework",
       "language": "Go",
-      "status": "hands-on"
+      "status": "hands-on",
+      "usedIn": [
+        "project:auth-core"
+      ]
     },
     {
       "name": "Cobra",
@@ -104,6 +112,7 @@
       "group": "backend",
       "category": "language",
       "since": "01/2020",
+      "status": "production",
       "usedIn": [
         "experience:igd"
       ]
@@ -124,9 +133,42 @@
         "Kotlin"
       ],
       "since": "08/2021",
+      "status": "production",
       "usedIn": [
         "experience:igd",
         "experience:freelance"
+      ]
+    },
+    {
+      "name": "ASP.NET Core",
+      "group": "backend",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "React",
+      "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Next.js",
+      "group": "frontend",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance",
+        "project:efrouting"
       ]
     },
     {
@@ -135,6 +177,7 @@
       "category": "framework",
       "language": "TypeScript",
       "since": "09/2021",
+      "status": "production",
       "usedIn": [
         "experience:igd"
       ]
@@ -145,6 +188,7 @@
       "category": "framework",
       "language": "TypeScript",
       "since": "08/2023",
+      "status": "production",
       "usedIn": [
         "experience:igd"
       ]
@@ -153,32 +197,48 @@
       "name": "SQL",
       "group": "data",
       "since": "03/2020",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
     },
     {
       "name": "PostgreSQL",
-      "group": "data"
+      "group": "data",
+      "status": "hands-on",
+      "usedIn": [
+        "project:auth-core"
+      ]
     },
     {
       "name": "MySQL",
       "group": "data",
+      "status": "production",
       "usedIn": [
-        "experience:efrouting"
+        "experience:efrouting",
+        "experience:igd"
       ]
     },
     {
       "name": "MongoDB",
-      "group": "data"
+      "group": "data",
+      "status": "hands-on",
+      "usedIn": []
     },
     {
       "name": "Redis / Valkey",
-      "group": "data"
+      "group": "data",
+      "status": "production",
+      "usedIn": [
+        "experience:efrouting",
+        "experience:igd",
+        "project:auth-core"
+      ]
     },
     {
       "name": "DynamoDB",
       "group": "data",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -187,6 +247,7 @@
     {
       "name": "AWS",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -195,6 +256,7 @@
     {
       "name": "Lambda",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -202,6 +264,7 @@
     {
       "name": "S3",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -217,6 +280,7 @@
     {
       "name": "ECS Fargate",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -225,14 +289,17 @@
     {
       "name": "Docker",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:igd",
-        "experience:efrouting"
+        "experience:efrouting",
+        "project:auth-core"
       ]
     },
     {
       "name": "Linux",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]

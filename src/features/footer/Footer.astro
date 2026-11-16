@@ -25,8 +25,8 @@ const year = new Date().getFullYear();
       <li><a href={`${localePath(locale)}#contact`}>{t.nav.contact}</a></li>
     </ul>
   </div>
-  <div class="container footer__ai-row">
-    <p class="footer__ai">{t.footer.ai} <a href="/llms.txt">llms.txt</a></p>
+  <div class="container footer__summary-row">
+    <p class="footer__summary">{t.footer.plainText} <a href="/llms.txt">llms.txt</a></p>
   </div>
 </footer>
 
@@ -94,12 +94,12 @@ const year = new Date().getFullYear();
       gap: var(--space-6);
     }
 
-    &__ai-row {
+    &__summary-row {
       position: relative;
       margin-top: var(--space-6);
     }
 
-    &__ai {
+    &__summary {
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: rgb(var(--color-fg-faint));

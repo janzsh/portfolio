@@ -3,11 +3,10 @@ import { defineConfig, envField } from 'astro/config';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
-
-const SITE = 'https://janz.dev';
+import { SITE } from './src/config/site';
 
 export default defineConfig({
-  site: SITE,
+  site: SITE.url,
   adapter: vercel(),
   integrations: [preact(), sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', es: 'es' } } })],
   i18n: {

@@ -8,12 +8,13 @@
   "end": "02/2025",
   "responsibilities": ["Diseño", "Desarrollo", "Aseguramiento de calidad", "Despliegue", "Mantenimiento"],
   "achievements": [
-    "Mejoré la escalabilidad y concurrencia de sistemas críticos, reduciendo la latencia en un 17%.",
-    "Lideré la modernización de código legado y la reducción de deuda técnica, aumentando la productividad del equipo en un 12%.",
-    "Definí estándares de ingeniería y patrones de diseño para dar consistencia entre plataformas.",
-    "Diseñé modelos de datos y flujos SQL/NoSQL que aumentaron el rendimiento del sistema.",
-    "Fui líder técnico en iniciativas alineadas con los objetivos del negocio."
+    "Migré sistemas legados de Visual FoxPro a aplicaciones web con React.",
+    "Reduje los tiempos de respuesta de endpoints paginados de la API con una estrategia combinada de índices y optimización de consultas.",
+    "Rediseñé la arquitectura y la comunicación entre componentes para reducir el acoplamiento: menos errores al añadir funcionalidades, y el equipo pudo dedicar más tiempo a funcionalidades nuevas que a correcciones.",
+    "Definí plantillas, convenciones y lineamientos de arquitectura para dar consistencia entre plataformas.",
+    "Diseñé modelos de datos y flujos en SQL y NoSQL.",
+    "Fui líder técnico en iniciativas del equipo, con desarrolladores a mi cargo."
   ],
-  "stack": ["React", "Next.js", "Angular", "Astro", "Tailwind", "NestJS", "ASP.NET Core", "Spring Boot", "Docker"],
+  "stack": ["React", "Next.js", "Angular", "Astro", "Tailwind", "NestJS", "ASP.NET Core", "Spring Boot", "Docker", "MySQL", "Redis"],
   "url": "https://igdsas.com/"
 }

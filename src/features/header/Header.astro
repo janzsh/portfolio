@@ -20,8 +20,8 @@ const other: Locale = locale === 'en' ? 'es' : 'en';
 const links = [
   { id: 'home', label: t.nav.home },
   { id: 'experience', label: t.nav.experience },
-  { id: 'education', label: t.nav.education },
   { id: 'projects', label: t.nav.projects },
+  { id: 'education', label: t.nav.education },
   { id: 'contact', label: t.nav.contact },
 ];
 ---
@@ -42,6 +42,7 @@ const links = [
           >{link.label}</a>
         </li>
       ))}
+      <li class="header__menu-resume"><a class="header__link" href={localePath(locale, 'resume')}>{t.resume}</a></li>
     </ul>
 
     <div class="header__actions">
@@ -202,6 +203,11 @@ const links = [
       }
     }
 
+    // The résumé lives in the actions on desktop and moves into the menu on small screens.
+    &__menu-resume {
+      display: none;
+    }
+
     &__burger {
       display: none;
       position: relative;
@@ -247,6 +253,10 @@ const links = [
 
       &__resume {
         display: none;
+      }
+
+      &__menu-resume {
+        display: list-item;
       }
 
       &__links {

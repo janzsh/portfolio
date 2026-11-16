@@ -26,13 +26,12 @@ const t = ui(locale);
 
 const jobs = experience.map((entry) => toExperienceView(entry, locale, t.resumePage.present));
 const lines = skillLines(groups, t.skills.learning);
-const realProjects = projects.filter((project) => !project.placeholder);
 // Email and phone are intentionally absent: this page is public HTML that scrapers read.
 const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) => ({ href, text: displayUrl(href) }));
 ---
 <div class="resume-toolbar">
   <ArrowLink href={localePath(locale)} direction="back">{t.resumePage.back}</ArrowLink>
-  <button class="button button--primary" type="button" data-print>{t.resumePage.print}</button>
+  <a class="button button--primary" href={SITE.resumePdf[locale]} download>{t.resumePage.download}</a>
 </div>
 
 <article class="sheet">
@@ -60,10 +59,10 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
     ))}
   </section>
 
-  {realProjects.length > 0 && (
+  {projects.length > 0 && (
     <section class="sheet__section">
       <h2 class="sheet__heading">{t.resumePage.projects}</h2>
-      {realProjects.map((project) => (
+      {projects.map((project) => (
         <div class="sheet__item">
           <div class="sheet__row"><h3 class="sheet__title">{project.name}</h3><span>{project.year}</span></div>
           <p>{project.summary}</p>
@@ -86,13 +85,9 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
   <section class="sheet__section">
     <h2 class="sheet__heading">{t.resumePage.skills}</h2>
     {lines.map((line) => <p class="sheet__skill">{line.title && <b>{line.title}: </b>}{line.items}</p>)}
-    <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}`).join(' · ')}</p>
+    <p class="sheet__sub">{profile.languages.map((language) => `${language.name}: ${language.level}${language.detail ? ` (${language.detail})` : ''}`).join(' · ')}</p>
   </section>
 </article>
-
-<script>
-  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
-</script>
 
 <style lang="scss">
   @use '../../styles/abstracts' as *;
@@ -164,6 +159,8 @@ const contact = [SITE.url, SITE.social.linkedin, SITE.social.github].map((href) 
     }
 
     &__heading {
+      // Keep each heading on the same page as its first entry.
+      break-after: avoid;
       margin-bottom: 14px;
       padding-bottom: 6px;
       font-size: 0.8rem;

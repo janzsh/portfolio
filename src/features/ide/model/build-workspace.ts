@@ -74,7 +74,7 @@ export function buildWorkspace({ locale, t, profile, experience, education, proj
       `projects/${project.id}.md`,
       [
         `# ${project.name}`,
-        `> ${[project.year, project.type, project.role].filter(Boolean).join(' · ')}${project.placeholder ? ` — ${t.ide.sampleNote}` : ''}`,
+        `> ${[project.year, project.type, project.role].filter(Boolean).join(' · ')}`,
         '',
         project.summary,
         '',
