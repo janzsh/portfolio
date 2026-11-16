@@ -1,15 +1,15 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "Ingeniero Backend en forma de T",
+  "role": "Desarrollador backend",
   "headline": "Construyo el backend sobre el que corre tu negocio.",
-  "tagline": "Me incorporo a tu equipo de backend o datos y me hago cargo de lo difícil: el cuello de botella, el proceso que no escala, la arquitectura que nadie quiere tocar. Donde otros ven caos, yo pongo orden y dirección.",
+  "tagline": "Diseño, optimizo y opero servicios, APIs y procesos de datos en producción. Trabajo con el equipo para encontrar el cuello de botella, medirlo y resolverlo con la solución más simple que funcione.",
   "stackLine": "Python · TypeScript · Go · SQL · Linux · AWS",
-  "description": "Ingeniero backend en forma de T: servicios en Python, TypeScript y Go, pipelines de datos, SQL, Linux y AWS.",
+  "description": "Desarrollador backend: servicios, APIs y procesos de datos en producción con Python, TypeScript, Go y SQL sobre Linux y AWS, con experiencia en frontend.",
   "aboutTitle": "Ecce homo: he aquí al hombre",
   "about": [
-    "Inicié en la tecnología desde muy joven, pero fue a los 18 años, con mi ingreso a la carrera, que realmente descubrí para qué soy bueno. Entre más grande el cuello de botella y más caótica la arquitectura, más placer me da hacerlo funcionar bien. Libertad y recursos es todo lo que se necesita para convertir el caos en orden.",
-    "Lo que obtienes es alguien que parte de lo que el negocio necesita, elige la arquitectura más simple que lo resuelve y responde por el resultado desde el diseño hasta producción en Linux y AWS. El backend es donde más profundizo; también llego a pipelines de datos e interfaces, para que el trabajo no se detenga en la frontera entre equipos.",
+    "Empecé con la tecnología desde muy joven, pero fue a los 18 años, al entrar a la carrera, cuando descubrí en qué soy bueno: entender por qué un sistema es lento o frágil y dejarlo funcionando bien. Es el trabajo que más disfruto, y casi nunca empieza de cero: hay un sistema en uso, un presupuesto y decisiones que ya se tomaron.",
+    "Parto de lo que el negocio necesita, mido antes de cambiar y elijo la solución más simple que lo resuelve. Respondo por lo que entrego desde el diseño hasta producción en Linux y AWS. El backend es donde más profundizo; también trabajo en datos e interfaces, para que el trabajo no se detenga en la frontera entre equipos.",
     "Nací en Santa Marta y he vivido allí la mayor parte de mi vida. Me gustan la música, el baloncesto, el ricing de Linux y el cine, y sobre todo amo las historias de terror. En mi tiempo libre salgo al cine, voy a la playa, programo algo o simplemente veo una película."
   ],
   "location": "Santa Marta, Colombia",
@@ -20,7 +20,8 @@
     },
     {
       "name": "Inglés",
-      "level": "B1"
+      "level": "B1",
+      "detail": "lectura, escritura y conversaciones sencillas"
     }
   ],
   "workMode": "Remoto / Híbrido · Dispuesto a reubicarme",
@@ -31,7 +32,7 @@
     },
     {
       "value": "Backend y datos",
-      "label": "Servicios backend, ETL y scrapers corriendo en Linux y AWS"
+      "label": "Servicios backend, ETL e ingesta de datos corriendo en Linux y AWS"
     },
     {
       "value": "5",

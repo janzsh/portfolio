@@ -6,11 +6,11 @@
     },
     "frontend": {
       "title": "Frontend",
-      "description": "El alcance de la T: interfaces tipadas con TypeScript, Angular y Astro."
+      "description": "Como complemento: interfaces tipadas con TypeScript, React, Next.js, Angular y Astro."
     },
     "data": {
       "title": "Datos",
-      "description": "Modelado relacional y de documentos, SQL sólido, cachés y almacenes clave-valor, pipelines ETL y scrapers."
+      "description": "Modelado relacional y de documentos, SQL sólido, cachés y almacenes clave-valor, pipelines ETL y de ingesta de datos."
     },
     "cloud": {
       "title": "Cloud",

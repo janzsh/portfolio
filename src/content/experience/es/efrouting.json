@@ -3,18 +3,18 @@
   "role": "Desarrollador Full-stack",
   "mode": "Remoto",
   "location": "Barranquilla, Colombia",
-  "summary": "Trabajo de backend y datos con equipos de ciencia de datos y backend: scrapers, pipelines ETL y la infraestructura Linux y AWS que los ejecuta.",
+  "summary": "Trabajo de backend y datos con equipos de ciencia de datos y backend: pipelines de extracción e ingesta, ETL y la infraestructura Linux y AWS que los ejecuta.",
   "start": "09/02/2026",
   "responsibilities": [
     "Desarrollo backend",
     "Pipelines de datos",
-    "Scraping",
+    "Ingesta de datos",
     "Despliegue",
     "Mantenimiento"
   ],
   "achievements": [
-    "Rehíce un ETL basado en scrapers: de unos 5 mil registros en casi 2 horas a 200 mil en 6, con cuatro instancias de Docker.",
-    "Optimicé un ETL que tardaba casi 4 horas y usaba más de 60 GB de RAM: ahora corre en máximo 1 hora y 40 GB.",
+    "Migré de Python a Go un pipeline de ingesta de datos de fuentes externas y lo escalé a cuatro contenedores Docker: de unos 8 mil registros limpios en 2 horas con una instancia a casi 200 mil en 6 horas.",
+    "Optimicé un ETL interno que tardaba de 2 a 4 horas y tenía picos de más de 60 GB de RAM que tumbaban la tarea en ECS Fargate: ahora termina en máximo 1 hora, con picos de 36–40 GB según los logs, y el fallo por memoria no volvió a ocurrir.",
     "Construyo y opero servicios en Python y TypeScript con SQL, sobre servidores Linux y AWS."
   ],
   "stack": [
@@ -22,6 +22,7 @@
     "FastAPI",
     "TypeScript",
     "NestJS",
+    "Go",
     "SQL",
     "DynamoDB",
     "Docker",
@@ -29,7 +30,9 @@
     "AWS",
     "Lambda",
     "S3",
-    "ECS Fargate"
+    "ECS Fargate",
+    "MySQL",
+    "Redis"
   ],
   "url": "https://www.efrouting.com/"
 }

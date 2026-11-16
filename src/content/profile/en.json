@@ -1,15 +1,15 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "T-shaped Backend Engineer",
+  "role": "Backend Developer",
   "headline": "I build the backend your business runs on.",
-  "tagline": "I join your backend or data team and take on the hard part: the bottleneck, the process that does not scale, the architecture nobody wants to touch. Where others see chaos, I bring order and direction.",
+  "tagline": "I design, optimize and run production services, APIs and data processes. I work with the team to find the bottleneck, measure it and fix it with the simplest solution that works.",
   "stackLine": "Python · TypeScript · Go · SQL · Linux · AWS",
-  "description": "T-shaped backend engineer: Python, TypeScript and Go services, data pipelines, SQL, Linux and AWS.",
+  "description": "Backend developer: production services, APIs and data processes with Python, TypeScript, Go and SQL on Linux and AWS, with frontend experience.",
   "aboutTitle": "Ecce homo: behold the man",
   "about": [
-    "I got into technology at a young age, but it was at 18, when I started my degree, that I really found out what I am good at. The bigger the bottleneck and the more chaotic the architecture, the more I enjoy making it work well. Freedom and resources are all it takes to turn chaos into order.",
-    "What you get is someone who starts from what the business needs, picks the simplest architecture that solves it and owns the result from design to production on Linux and AWS. Backend is where I go deepest; I also reach into data pipelines and interfaces, so work does not stall at the boundary between teams.",
+    "I got into technology at a young age, but it was at 18, when I started my degree, that I found out what I am good at: understanding why a system is slow or fragile and leaving it running well. It is the work I enjoy most, and it rarely starts from scratch: there is a system in use, a budget and decisions already made.",
+    "I start from what the business needs, measure before I change anything and pick the simplest solution that solves it. I own what I ship from design to production on Linux and AWS. Backend is where I go deepest; I also work on data and interfaces, so work does not stall at the boundary between teams.",
     "I was born in Santa Marta and have lived there most of my life. I like music, basketball, Linux ricing and movies, and above all I love horror stories. In my free time I go to the cinema, head to the beach, build something or simply watch a film."
   ],
   "location": "Santa Marta, Colombia",
@@ -20,7 +20,8 @@
     },
     {
       "name": "English",
-      "level": "B1"
+      "level": "B1",
+      "detail": "reading, writing and simple conversations"
     }
   ],
   "workMode": "Remote / Hybrid · Open to relocation",
@@ -31,7 +32,7 @@
     },
     {
       "value": "Backend & data",
-      "label": "Backend services, ETL and scrapers running on Linux and AWS"
+      "label": "Backend services, ETL and data ingestion running on Linux and AWS"
     },
     {
       "value": "5",
