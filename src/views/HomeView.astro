@@ -24,11 +24,11 @@ const [profile, experience, education, projects, skills] = await Promise.all([
 ---
 <BaseLayout {locale} title={`${SITE.name} — ${profile.role}`} description={profile.description} jobTitle={profile.role}>
   <Hero {locale} {profile} />
-  <Code {locale} {profile} {experience} {education} {projects} groups={skills.groups} />
-  <About {locale} {profile} />
-  <Skills {locale} groups={skills.groups} />
   <Experience {locale} items={experience} />
-  <Education {locale} items={education} />
   <Projects {locale} {projects} />
+  <Skills {locale} groups={skills.groups} />
+  <About {locale} {profile} />
+  <Education {locale} items={education} />
+  <Code {locale} {profile} {experience} {education} {projects} groups={skills.groups} />
   <Contact {locale} />
 </BaseLayout>
