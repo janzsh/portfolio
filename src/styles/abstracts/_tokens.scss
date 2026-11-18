@@ -24,6 +24,9 @@
   --page-pad: max(var(--gutter), 8%);
   --header-h: 72px;
 
+  // Frosted surfaces: blurs the backdrop curve and grid lines that pass behind them.
+  --glass-blur: 16px;
+
   --shadow-glow: 0 0 0 1px rgb(var(--color-border)), 0 24px 60px -24px rgba(var(--color-shadow), 0.45);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }

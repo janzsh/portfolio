@@ -13,23 +13,25 @@ const { lead, accent } = splitHeadline(profile.headline);
 ---
 <section id="home" class="hero" aria-labelledby="hero-title">
   <div class="container hero__inner">
-    <p class="hero__badge"><span class="hero__dot" aria-hidden="true"></span>{t.hero.eyebrow}</p>
-    <h1 class="hero__title" id="hero-title">
-      {lead}{' '}<span class="hero__mark">
-        <span class="hero__gradient">{accent}</span>
-        <span class="hero__curve" aria-hidden="true" set:html={decoration('curve-decoration')} />
-      </span>
-    </h1>
-    <p class="hero__tagline">{profile.tagline}</p>
-    <div class="hero__cta">
-      <Button href="#contact">{t.hero.cta}</Button>
-      <Button href="#projects" variant="ghost">{t.hero.secondaryCta}</Button>
+    <div class="hero__intro">
+      <p class="hero__badge"><span class="hero__dot" aria-hidden="true"></span>{t.hero.eyebrow}</p>
+      <h1 class="hero__title" id="hero-title">
+        {lead}{' '}<span class="hero__mark">
+          <span class="hero__gradient">{accent}</span>
+          <span class="hero__curve" aria-hidden="true" set:html={decoration('curve-decoration')} />
+        </span>
+      </h1>
+      <p class="hero__tagline">{profile.tagline}</p>
+      <div class="hero__cta">
+        <Button href="#contact">{t.hero.cta}</Button>
+        <Button href="#projects" variant="ghost">{t.hero.secondaryCta}</Button>
+      </div>
+      <ul class="hero__meta">
+        <li>{profile.role} · {profile.location}</li>
+        <li>{profile.stackLine}</li>
+        <li>{t.hero.available}</li>
+      </ul>
     </div>
-    <ul class="hero__meta">
-      <li>{profile.role} · {profile.location}</li>
-      <li>{profile.stackLine}</li>
-      <li>{t.hero.available}</li>
-    </ul>
 
     <dl class="hero__stats">
       {profile.stats.map((stat) => (
@@ -47,13 +49,21 @@ const { lead, accent } = splitHeadline(profile.headline);
 
   .hero {
     display: grid;
-    align-items: center;
     min-height: 100svh;
     padding-top: calc(var(--header-h) + var(--space-16));
     padding-bottom: var(--space-24);
 
+    // The intro centers in whatever height the stats leave, and the stats sit at the bottom,
+    // so on tall screens the spare height never lands between the hero and the next section.
     &__inner {
       display: grid;
+      grid-template-rows: 1fr auto;
+      gap: var(--space-8);
+    }
+
+    &__intro {
+      display: grid;
+      align-self: center;
       justify-items: center;
       gap: var(--space-8);
       text-align: center;
@@ -163,6 +173,7 @@ const { lead, accent } = splitHeadline(profile.headline);
       width: 100%;
       margin: var(--space-8) 0 0;
       padding-top: var(--space-8);
+      text-align: center;
       border-top: 1px solid rgb(var(--color-border));
 
       @include down('lg') {

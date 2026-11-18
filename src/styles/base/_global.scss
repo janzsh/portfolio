@@ -6,7 +6,12 @@ html {
   }
 }
 
+// Out-of-flow children (skip link, backdrop, fixed header) take no track, so on a short page
+// main fills the spare height and the footer stays at the bottom.
 body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 100dvh;
   overflow-x: clip;
   font-family: var(--font-body);

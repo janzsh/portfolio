@@ -40,7 +40,7 @@ const channels = buildChannels(SITE.social);
   .contact {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
-    align-items: start;
+    align-items: stretch;
     gap: var(--space-12);
 
     @include down('lg') {
@@ -48,10 +48,21 @@ const channels = buildChannels(SITE.social);
       gap: var(--space-8);
     }
 
+    // Same hairline as the channel rows. Once stacked, the last channel row already separates them.
+    &__panel {
+      padding-inline-start: var(--space-12);
+      border-inline-start: 1px solid rgb(var(--color-border));
+
+      @include down('lg') {
+        padding-inline-start: 0;
+        border-inline-start: 0;
+      }
+    }
+
     &__lead {
       max-width: 40ch;
       font-size: 1.15rem;
-      color: rgb(var(--color-fg-muted));
+      color: rgb(var(--color-fg));
     }
 
     &__direct {
@@ -60,7 +71,7 @@ const channels = buildChannels(SITE.social);
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgb(var(--color-fg-faint));
+      color: rgb(var(--color-fg-muted));
     }
 
     &__channels {
@@ -95,7 +106,7 @@ const channels = buildChannels(SITE.social);
       font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgb(var(--color-fg-muted));
+      color: rgb(var(--color-fg));
     }
 
     &__handle {

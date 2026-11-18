@@ -41,8 +41,9 @@ $dark: (
   'border': '38, 44, 64',
   'border-strong': '88, 98, 128',
   'fg': '233, 238, 248',
-  'fg-muted': '150, 160, 182',
-  'fg-faint': '134, 144, 168',
+  // Lifted so muted text stays >= 4.5:1 where the drifting accent glow lightens the page.
+  'fg-muted': '172, 181, 201',
+  'fg-faint': '160, 170, 192',
   'accent': '69, 192, 240',
   'accent-text': '69, 192, 240',
   'accent-2': '168, 148, 255',

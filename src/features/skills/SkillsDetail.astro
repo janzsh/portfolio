@@ -54,7 +54,7 @@ const statusLabel = { production: t.skills.production, 'hands-on': t.skills.hand
     </section>
   ))}
 
-  <aside class="skills-detail__direction" aria-labelledby="direction-title">
+  <aside class="card skills-detail__direction" aria-labelledby="direction-title">
     <p class="skills-detail__tier skills-detail__tier--accent">{t.skills.tiers.growing}</p>
     <h2 class="skills-detail__title" id="direction-title">{heading.direction}</h2>
     <p class="skills-detail__description">{heading.directionLead}</p>
@@ -218,8 +218,7 @@ const statusLabel = { production: t.skills.production, 'hands-on': t.skills.hand
       gap: var(--space-3);
       padding: var(--space-8);
       background: linear-gradient(135deg, rgba(var(--color-accent), 0.2), transparent 70%);
-      border: 1px solid rgba(var(--color-accent-text), 0.4);
-      border-radius: var(--radius-lg);
+      border-color: rgba(var(--color-accent-text), 0.4);
 
       @include down('md') {
         padding: var(--space-6);

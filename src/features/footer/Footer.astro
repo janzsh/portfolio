@@ -41,7 +41,7 @@ const year = new Date().getFullYear();
     color: rgb(var(--color-fg-muted));
     background: rgba(var(--color-bg), 0.55);
     border-top: 1px solid rgb(var(--color-border));
-    backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.2);
 
     a:hover {
       color: rgb(var(--color-fg));
@@ -65,12 +65,12 @@ const year = new Date().getFullYear();
       }
     }
 
+    // Equal side columns keep the credits on the page's true center, whatever the side widths.
     &__row {
       position: relative;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
       gap: var(--space-4);
     }
 
@@ -82,6 +82,7 @@ const year = new Date().getFullYear();
     &__credits {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       column-gap: var(--space-2);
 
       span {
@@ -91,6 +92,7 @@ const year = new Date().getFullYear();
 
     &__social {
       display: flex;
+      justify-self: end;
       gap: var(--space-6);
     }
 
@@ -110,13 +112,20 @@ const year = new Date().getFullYear();
       }
     }
 
-    @include down('sm') {
+    @include down('md') {
       &__row {
-        flex-direction: column;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
         gap: var(--space-6);
         text-align: center;
       }
 
+      &__social {
+        justify-self: center;
+      }
+    }
+
+    @include down('sm') {
       &__credits {
         flex-direction: column;
         row-gap: var(--space-1);
