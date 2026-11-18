@@ -10,11 +10,7 @@
     },
     {
       "id": "cloud",
-      "tier": "primary"
-    },
-    {
-      "id": "frontend",
-      "tier": "primary"
+      "tier": "secondary"
     },
     {
       "id": "also",
@@ -23,34 +19,13 @@
   ],
   "technologies": [
     {
-      "name": "Python",
-      "group": "backend",
-      "category": "language",
-      "usedIn": [
-        "project:efrouting",
-        "experience:efrouting"
-      ]
-    },
-    {
-      "name": "FastAPI",
-      "group": "backend",
-      "category": "framework",
-      "language": "Python",
-      "usedIn": [
-        "experience:efrouting"
-      ]
-    },
-    {
       "name": "TypeScript",
-      "group": [
-        "backend",
-        "frontend"
-      ],
+      "group": "backend",
       "category": "language",
       "since": "01/2020",
+      "status": "production",
       "usedIn": [
         "experience:igd",
-        "project:igd-plus",
         "project:efrouting",
         "experience:efrouting"
       ]
@@ -61,9 +36,62 @@
       "category": "framework",
       "language": "TypeScript",
       "since": "01/2022",
+      "status": "production",
       "usedIn": [
         "experience:igd",
         "experience:freelance",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Java",
+      "group": "backend",
+      "category": "language",
+      "since": "01/2020",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Spring Boot",
+      "group": "backend",
+      "category": "framework",
+      "language": [
+        "Java",
+        "Kotlin"
+      ],
+      "since": "08/2021",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Kotlin",
+      "group": "backend",
+      "category": "language",
+      "since": "12/2023",
+      "status": "hands-on"
+    },
+    {
+      "name": "Python",
+      "group": "backend",
+      "category": "language",
+      "status": "production",
+      "usedIn": [
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "group": "backend",
+      "category": "framework",
+      "language": "Python",
+      "status": "production",
+      "usedIn": [
         "experience:efrouting"
       ]
     },
@@ -72,9 +100,11 @@
       "group": "backend",
       "category": "language",
       "since": "01/2024",
-      "status": "hands-on",
+      "status": "production",
       "usedIn": [
-        "project:efrouting"
+        "experience:efrouting",
+        "project:efrouting",
+        "project:auth-core"
       ]
     },
     {
@@ -90,7 +120,10 @@
       "group": "backend",
       "category": "framework",
       "language": "Go",
-      "status": "hands-on"
+      "status": "hands-on",
+      "usedIn": [
+        "project:auth-core"
+      ]
     },
     {
       "name": "Cobra",
@@ -100,85 +133,60 @@
       "status": "hands-on"
     },
     {
-      "name": "Java",
+      "name": "ASP.NET Core",
       "group": "backend",
-      "category": "language",
-      "since": "01/2020",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
-      "name": "Kotlin",
-      "group": "backend",
-      "category": "language",
-      "since": "12/2023",
-      "status": "hands-on"
-    },
-    {
-      "name": "Spring Boot",
-      "group": "backend",
-      "category": "framework",
-      "language": [
-        "Java",
-        "Kotlin"
-      ],
-      "since": "08/2021",
+      "status": "production",
       "usedIn": [
         "experience:igd",
         "experience:freelance"
       ]
     },
     {
-      "name": "Angular",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "since": "09/2021",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
-      "name": "Astro",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "since": "08/2023",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
       "name": "SQL",
       "group": "data",
       "since": "03/2020",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
     },
     {
       "name": "PostgreSQL",
-      "group": "data"
+      "group": "data",
+      "status": "hands-on",
+      "usedIn": [
+        "project:auth-core"
+      ]
     },
     {
       "name": "MySQL",
       "group": "data",
+      "status": "production",
       "usedIn": [
-        "experience:efrouting"
+        "experience:efrouting",
+        "experience:igd"
       ]
     },
     {
       "name": "MongoDB",
-      "group": "data"
+      "group": "data",
+      "status": "hands-on",
+      "usedIn": []
     },
     {
       "name": "Redis / Valkey",
-      "group": "data"
+      "group": "data",
+      "status": "production",
+      "usedIn": [
+        "experience:efrouting",
+        "experience:igd",
+        "project:auth-core"
+      ]
     },
     {
       "name": "DynamoDB",
       "group": "data",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -187,6 +195,7 @@
     {
       "name": "AWS",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -195,6 +204,7 @@
     {
       "name": "Lambda",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -202,6 +212,7 @@
     {
       "name": "S3",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -217,6 +228,7 @@
     {
       "name": "ECS Fargate",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "project:efrouting",
         "experience:efrouting"
@@ -225,14 +237,17 @@
     {
       "name": "Docker",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:igd",
-        "experience:efrouting"
+        "experience:efrouting",
+        "project:auth-core"
       ]
     },
     {
       "name": "Linux",
       "group": "cloud",
+      "status": "production",
       "usedIn": [
         "experience:efrouting"
       ]
@@ -241,6 +256,51 @@
       "name": "Kubernetes",
       "group": "cloud",
       "status": "learning"
+    },
+    {
+      "name": "React",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Next.js",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance",
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Angular",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "since": "09/2021",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Astro",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "since": "08/2023",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
     },
     {
       "name": "Lua",

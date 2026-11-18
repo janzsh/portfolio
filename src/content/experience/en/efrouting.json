@@ -3,18 +3,18 @@
   "role": "Full-stack Developer",
   "mode": "Remote",
   "location": "Barranquilla, Colombia",
-  "summary": "Backend and data work with data-science and backend teams: scrapers, ETL pipelines and the Linux and AWS infrastructure that runs them.",
+  "summary": "Backend and data work with data-science and backend teams: extraction and ingestion pipelines, ETL and the Linux and AWS infrastructure that runs them.",
   "start": "09/02/2026",
   "responsibilities": [
     "Backend development",
     "Data pipelines",
-    "Scraping",
+    "Data ingestion",
     "Deployment",
     "Maintenance"
   ],
   "achievements": [
-    "Rebuilt a scraper-based ETL: from about 5k records in nearly 2 hours to 200k in 6, on four Docker instances.",
-    "Optimized an ETL that took almost 4 hours and over 60 GB of RAM: it now runs in at most 1 hour and 40 GB.",
+    "Migrated an ingestion pipeline for external data sources from Python to Go and scaled it to four Docker containers: from about 8k clean records in 2 hours on one instance to nearly 200k in 6 hours.",
+    "Optimized an internal ETL that took 2 to 4 hours and peaked above 60 GB of RAM, crashing its ECS Fargate task: it now finishes in at most 1 hour, peaks at 36–40 GB according to the logs, and the out-of-memory failure has not happened again.",
     "Build and operate Python and TypeScript services backed by SQL, on Linux servers and AWS."
   ],
   "stack": [
@@ -22,6 +22,7 @@
     "FastAPI",
     "TypeScript",
     "NestJS",
+    "Go",
     "SQL",
     "DynamoDB",
     "Docker",
@@ -29,7 +30,9 @@
     "AWS",
     "Lambda",
     "S3",
-    "ECS Fargate"
+    "ECS Fargate",
+    "MySQL",
+    "Redis"
   ],
   "url": "https://www.efrouting.com/"
 }

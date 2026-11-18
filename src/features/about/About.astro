@@ -30,7 +30,7 @@ const role = profile.role.replace(/ (\S+)$/, '\u00a0$1');
       </div>
       <ul class="about__facts">
         {profile.languages.map((language) => (
-          <li class="about__fact"><span>{language.name}</span><b>{language.level}</b></li>
+          <li class="about__fact"><span>{language.name}</span><b>{language.level}</b>{language.detail && <span>· {language.detail}</span>}</li>
         ))}
         <li class="about__fact">{profile.workMode}</li>
         <li class="about__fact">{profile.timezone}</li>
@@ -142,10 +142,9 @@ const role = profile.role.replace(/ (\S+)$/, '\u00a0$1');
       gap: var(--space-3);
     }
 
+    // Inline flow, so a long language detail wraps like text on small screens.
     &__fact {
-      display: inline-flex;
-      align-items: baseline;
-      gap: var(--space-2);
+      display: inline-block;
       padding: 0.4rem 0.9rem;
       font-size: 0.9rem;
       color: rgb(var(--color-fg-muted));
@@ -155,6 +154,10 @@ const role = profile.role.replace(/ (\S+)$/, '\u00a0$1');
       b {
         font-weight: 500;
         color: rgb(var(--color-fg));
+      }
+
+      > * + * {
+        margin-inline-start: var(--space-2);
       }
     }
   }

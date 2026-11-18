@@ -17,7 +17,7 @@ export const technologySchema = z.object({
   /** The language(s) a framework is used with. */
   language: z.union([z.string(), z.array(z.string()).min(1)]).optional(),
   /** production = shipped at work; hands-on = built in projects; learning = in progress. */
-  status: z.enum(STATUSES).default('production'),
+  status: z.enum(STATUSES),
   usedIn: z.array(evidenceRef).default([]),
 });
 

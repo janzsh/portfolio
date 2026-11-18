@@ -19,7 +19,6 @@ const dialogId = `project-${project.id}`;
     {project.picture
       ? <img class="project__image" src={project.picture} alt="" width="640" height="360" loading="lazy" decoding="async" />
       : <span class="project__monogram" aria-hidden="true">{project.name.slice(0, 2).toUpperCase()}</span>}
-    {project.placeholder && <span class="project__sample">{t.projects.sample}</span>}
   </div>
   <div class="project__content">
     <p class="project__meta">{project.year} · {project.type}</p>
@@ -32,7 +31,6 @@ const dialogId = `project-${project.id}`;
 <Dialog id={dialogId} closeLabel={t.common.close}>
   <p class="project__meta">{project.year} · {project.type}{project.role ? ` · ${project.role}` : ''}</p>
   <h3 class="project-dialog__title" id={`${dialogId}-title`}>{project.name}</h3>
-  {project.placeholder && <p class="project-dialog__note">{t.projects.sample}</p>}
   <div class="project__tags">{project.skills.map((skill) => <Tag tone="accent">{skill}</Tag>)}</div>
   <div class="project-dialog__prose"><Content /></div>
   <div class="project-dialog__links">
@@ -117,19 +115,6 @@ const dialogId = `project-${project.id}`;
       color: rgb(var(--color-fg));
     }
 
-    &__sample {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 0.15rem 0.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: rgb(var(--color-fg));
-      background: rgba(var(--color-surface), 0.85);
-      border: 1px dashed rgb(var(--color-border-strong));
-      border-radius: var(--radius-pill);
-      backdrop-filter: blur(6px);
-    }
 
     &__content {
       display: grid;
@@ -173,11 +158,6 @@ const dialogId = `project-${project.id}`;
       font-size: 2.3rem;
     }
 
-    &__note {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: rgb(var(--color-accent-2-text));
-    }
 
     &__prose {
       display: grid;

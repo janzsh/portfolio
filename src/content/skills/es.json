@@ -2,23 +2,19 @@
   "groups": {
     "backend": {
       "title": "Backend",
-      "description": "Servicios y APIs que se mantienen fiables por años: Python y FastAPI, TypeScript y NestJS, Go, además de Java y Kotlin."
-    },
-    "frontend": {
-      "title": "Frontend",
-      "description": "El alcance de la T: interfaces tipadas con TypeScript, Angular y Astro."
+      "description": "APIs y servicios que se mantienen fiables por años. TypeScript con NestJS y Java con Spring Boot como núcleo; Python, FastAPI y Go en producción para datos e ingesta; además Kotlin y ASP.NET Core."
     },
     "data": {
       "title": "Datos",
-      "description": "Modelado relacional y de documentos, SQL sólido, cachés y almacenes clave-valor, pipelines ETL y scrapers."
+      "description": "Modelos de datos, consultas y pipelines que aguantan cuando el volumen crece: modelado relacional y de documentos, SQL sólido, ajuste de índices y consultas, cachés, ETL e ingesta."
     },
     "cloud": {
       "title": "Cloud",
-      "description": "Donde corren los servicios: servidores Linux, Docker y AWS, con infraestructura como código."
+      "description": "Desplegar y operar esos servicios: servidores Linux, Docker y AWS, con infraestructura como código."
     },
     "also": {
       "title": "También he trabajado con",
-      "description": "Usadas en proyectos personales, fuera de mi día a día."
+      "description": "Fuera del backend y los datos: frontend de roles anteriores y herramientas de proyectos personales."
     }
   },
   "heading": {

@@ -53,7 +53,7 @@ export async function getSkills(locale: Locale) {
 
   const names = new Map<string, Evidence>([
     ...projects.map((p): [string, Evidence] => [`project:${p.id}`, { label: p.name, href: localePath(locale, 'projects') }]),
-    ...experience.map((e): [string, Evidence] => [`experience:${e.id}`, { label: e.company, href: localePath(locale, 'experience') }]),
+    ...experience.map((e): [string, Evidence] => [`experience:${e.id}`, { label: e.company, href: `${localePath(locale)}#experience` }]),
   ]);
 
   return {

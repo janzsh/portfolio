@@ -5,9 +5,10 @@ interface Props {
   /** Dialog id; must be unique on the page. */
   id: string;
   title: string;
-  level?: 'h2' | 'h3';
   subtitle: string;
   summary: string;
+  /** One result shown on the card itself, so a quick scan finds it without opening the dialog. */
+  highlight?: string;
   /** Short month and year shown in the date badge. */
   month: string;
   year: string;
@@ -18,7 +19,7 @@ interface Props {
   detailsLabel: string;
   closeLabel: string;
 }
-const { id, title, level: Heading = 'h3', subtitle, summary, month, year, caption, kicker, live = false, detailsLabel, closeLabel } = Astro.props;
+const { id, title, subtitle, summary, highlight, month, year, caption, kicker, live = false, detailsLabel, closeLabel } = Astro.props;
 ---
 <li class="timeline-item">
   <span class:list={['timeline-item__node', { 'timeline-item__node--live': live }]} aria-hidden="true"></span>
@@ -31,9 +32,10 @@ const { id, title, level: Heading = 'h3', subtitle, summary, month, year, captio
     </p>
     <div class="timeline-item__content">
       {kicker && <p class="timeline-item__kicker">{kicker}</p>}
-      <Heading class="timeline-item__title">{title}</Heading>
+      <h3 class="timeline-item__title">{title}</h3>
       <p class="timeline-item__subtitle">{subtitle}</p>
       <p class="timeline-item__summary">{summary}</p>
+      {highlight && <p class="timeline-item__highlight">{highlight}</p>}
     </div>
   </article>
   <Dialog {id} {closeLabel}>
@@ -209,6 +211,13 @@ const { id, title, level: Heading = 'h3', subtitle, summary, month, year, captio
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
       line-clamp: 3;
+    }
+
+    &__highlight {
+      margin-top: var(--space-2);
+      padding-left: var(--space-3);
+      font-size: 0.92rem;
+      border-left: 2px solid rgb(var(--color-accent-text));
     }
 
     &__dialog-title {

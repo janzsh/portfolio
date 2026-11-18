@@ -8,7 +8,7 @@
   <rect width="1200" height="630" fill="url(#glow-a)"/>
   <rect width="1200" height="630" fill="url(#glow-b)"/>
   <g font-family="JetBrainsMono Nerd Font, JetBrains Mono, monospace">
-    <text x="80" y="110" fill="#45c0f0" font-size="26">// janz.dev</text>
+    <text x="80" y="110" fill="#45c0f0" font-size="26">// janzsh.com</text>
     <text x="80" y="300" fill="#e9eef8" font-size="80" font-weight="700">Juan Camilo Zúñiga</text>
     <text x="80" y="390" fill="url(#g)" font-size="52" font-weight="700">Software Engineer</text>
     <text x="80" y="460" fill="#96a0b6" font-size="30">Backend · Frontend · Cloud</text>

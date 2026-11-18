@@ -2,21 +2,20 @@
 //   pnpm build && pnpm audit:web
 // Serves .vercel/output/static, then runs axe-core over every page (both themes) and a few
 // Lighthouse runs. Exits 1 on any axe violation or Lighthouse score below its threshold.
-import { appendFile, readFile, stat } from 'node:fs/promises';
-import { createServer } from 'node:http';
-import { extname, resolve } from 'node:path';
-import { gzipSync } from 'node:zlib';
+import { appendFile, stat } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import axe from 'axe-core';
 import { launch } from 'chrome-launcher';
 import lighthouse from 'lighthouse';
 import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import puppeteer from 'puppeteer-core';
-import { checkScores, staticCandidates, summarize } from './audit/lib.mjs';
+import { checkScores, summarize } from './audit/lib.mjs';
+import { serveStatic } from './static-server.mjs';
 
 const ROOT = resolve('.vercel/output/static');
 const THEMES = ['light', 'dark'];
 const VIEWPORTS = { desktop: { width: 1280, height: 900 }, mobile: { width: 390, height: 844, isMobile: true, hasTouch: true } };
-const AXE_PAGES = ['/', '/es/', '/skills', '/es/skills', '/experience', '/projects', '/resume', '/es/resume', '/404.html'];
+const AXE_PAGES = ['/', '/es/', '/skills', '/es/skills', '/projects', '/resume', '/es/resume', '/404.html'];
 // Layout differs on small screens, but colors do not, so mobile only needs a sample of pages.
 const MOBILE_PAGES = ['/', '/skills', '/resume'];
 const LIGHTHOUSE_RUNS = [
@@ -25,38 +24,6 @@ const LIGHTHOUSE_RUNS = [
   { path: '/skills', label: '/skills (mobile)', desktop: false },
 ];
 const AXE_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practices'];
-
-const MIME = {
-  '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json',
-  '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.woff2': 'font/woff2',
-  '.xml': 'application/xml', '.txt': 'text/plain', '.ico': 'image/x-icon',
-};
-const COMPRESSIBLE = /^(text\/|application\/(json|xml)|image\/svg)/;
-
-async function findFile(urlPath) {
-  const candidates = staticCandidates(ROOT, urlPath);
-  for (const file of candidates ?? []) {
-    if ((await stat(file).catch(() => null))?.isFile()) return file;
-  }
-  return null;
-}
-
-/** Static server that gzips text, like the host will; without it Lighthouse would blame the server. */
-function serve() {
-  const server = createServer(async (req, res) => {
-    const file = await findFile(req.url ?? '/');
-    const found = file ?? `${ROOT}/404.html`;
-    let body = await readFile(found).catch(() => Buffer.from('Not found'));
-    const type = MIME[extname(found)] ?? 'application/octet-stream';
-    const headers = { 'Content-Type': type, 'Cache-Control': 'public, max-age=31536000, immutable' };
-    if (COMPRESSIBLE.test(type) && /\bgzip\b/.test(req.headers['accept-encoding'] ?? '')) {
-      body = gzipSync(body);
-      headers['Content-Encoding'] = 'gzip';
-    }
-    res.writeHead(file ? 200 : 404, headers).end(body);
-  });
-  return new Promise((done) => server.listen(0, '127.0.0.1', () => done({ server, base: `http://127.0.0.1:${server.address().port}` })));
-}
 
 async function axeRun(browser, base, path, theme, viewport, interact) {
   const page = await browser.newPage();
@@ -133,7 +100,7 @@ async function runLighthouse(chromePort, base) {
 async function main() {
   if (!(await stat(ROOT).catch(() => null))) throw new Error(`No build found at ${ROOT}. Run "pnpm build" first.`);
   const started = Date.now();
-  const { server, base } = await serve();
+  const { server, base } = await serveStatic(ROOT);
   const chrome = await launch({ chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage'] });
   try {
     const axeResult = await runAxe(chrome.port, base);

@@ -13,7 +13,8 @@ export const profileSchema = z.object({
   aboutTitle: z.string(),
   about: z.array(z.string()).min(1),
   location: z.string(),
-  languages: z.array(z.object({ name: z.string(), level: z.string() })),
+  /** `detail` says what the level covers in practice, e.g. reading, writing, conversation. */
+  languages: z.array(z.object({ name: z.string(), level: z.string(), detail: z.string().optional() })),
   workMode: z.string(),
   timezone: z.string(),
   stats: z.array(z.object({ value: z.string(), label: z.string() })),

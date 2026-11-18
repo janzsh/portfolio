@@ -6,15 +6,14 @@ export interface LlmsInput {
   description: string;
   location: string;
   workMode: string;
-  languages: { name: string; level: string }[];
+  languages: { name: string; level: string; detail?: string }[];
   stack: Record<TechStatus, string[]>;
-  experience: { role: string; company: string; period: string; summary: string }[];
-  /** Real work only: the caller leaves sample projects out. */
+  experience: { role: string; company: string; period: string; summary: string; achievements: string[] }[];
   projects: { name: string; year: string; summary: string; href: string }[];
   social: { github: string; linkedin: string };
 }
 
-const STATUS_LABEL: Record<TechStatus, string> = { production: 'In production', 'hands-on': 'Hands-on', learning: 'Learning' };
+const STATUS_LABEL: Record<TechStatus, string> = { production: 'In production', 'hands-on': 'In projects', learning: 'Learning' };
 
 /** Plain-text profile for language models, following the llmstxt.org layout. */
 export function llmsTxt(input: LlmsInput): string {
@@ -26,9 +25,9 @@ export function llmsTxt(input: LlmsInput): string {
   return [
     `# ${input.name}`,
     `> ${input.description}`,
-    `Based in ${input.location}. Work mode: ${input.workMode}. Languages: ${input.languages.map((language) => `${language.name} (${language.level})`).join(', ')}.`,
+    `Based in ${input.location}. Work mode: ${input.workMode}. Languages: ${input.languages.map((language) => `${language.name} (${language.detail ? `${language.level}: ${language.detail}` : language.level})`).join(', ')}.`,
     ['## Stack', ...stack].join('\n'),
-    ['## Experience', ...input.experience.map((job) => `- ${job.role}, ${job.company} (${job.period}): ${job.summary}`)].join('\n'),
+    ['## Experience', ...input.experience.map((job) => [`- ${job.role}, ${job.company} (${job.period}): ${job.summary}`, ...job.achievements.map((item) => `  - ${item}`)].join('\n'))].join('\n'),
     ['## Projects', ...input.projects.map((project) => `- [${project.name}](${project.href}) (${project.year}): ${project.summary}`)].join('\n'),
     [
       '## Links',

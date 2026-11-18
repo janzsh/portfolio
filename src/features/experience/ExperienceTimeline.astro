@@ -5,11 +5,11 @@ import { ui } from '../../i18n/ui';
 import ExperienceCard from './ExperienceCard.astro';
 import { toExperienceView, type ExperienceEntry } from './to-view';
 
-interface Props { locale: Locale; items: ExperienceEntry[]; level?: 'h2' | 'h3'; }
-const { locale, items, level } = Astro.props;
+interface Props { locale: Locale; items: ExperienceEntry[]; }
+const { locale, items } = Astro.props;
 const t = ui(locale);
 const views = items.map((item) => toExperienceView(item, locale, t.experience.present));
 ---
 <Timeline>
-  {views.map((entry) => <ExperienceCard {locale} {entry} {level} />)}
+  {views.map((entry) => <ExperienceCard {locale} {entry} />)}
 </Timeline>

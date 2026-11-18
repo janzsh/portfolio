@@ -28,4 +28,23 @@ describe('InMemoryRateLimiter', () => {
     expect(limiter.allow('a')).toBe(true);
     expect(limiter.allow('b')).toBe(true);
   });
+
+  it('expires staggered hits individually while keeping recent hits in the window', () => {
+    const c = clock();
+    const limiter = new InMemoryRateLimiter(2, 1000, c.now);
+
+    expect(limiter.allow('a')).toBe(true); // 0 ms
+    c.advance(400);
+    expect(limiter.allow('a')).toBe(true); // 400 ms
+    c.advance(599);
+    expect(limiter.allow('a')).toBe(false); // 999 ms: both hits still count
+    c.advance(1);
+    expect(limiter.allow('a')).toBe(true); // 1000 ms: only the first hit expired
+    expect(limiter.allow('a')).toBe(false);
+    c.advance(399);
+    expect(limiter.allow('a')).toBe(false); // 1399 ms: the second hit still counts
+    c.advance(1);
+    expect(limiter.allow('a')).toBe(true); // 1400 ms: the second hit expires
+    expect(limiter.allow('a')).toBe(false);
+  });
 });
