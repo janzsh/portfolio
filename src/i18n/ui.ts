@@ -54,7 +54,7 @@ const en: UiStrings = {
   },
   sections: {
     about: 'About',
-    skills: 'Skills',
+    skills: 'What I do',
     experience: 'Experience',
     education: 'Education',
     projects: 'Selected work',
@@ -62,7 +62,7 @@ const en: UiStrings = {
     contact: 'Contact',
   },
   titles: {
-    skills: 'Technologies I trust, and where I proved them',
+    skills: 'What I build, and what I build it with',
     experience: 'Where I’ve built, and what it delivered',
     education: 'The foundation behind the work',
     projects: 'Work that shows how I think',
@@ -125,7 +125,7 @@ const es: UiStrings = {
   },
   sections: {
     about: 'Sobre mí',
-    skills: 'Skills',
+    skills: 'Lo que hago',
     experience: 'Experiencia',
     education: 'Educación',
     projects: 'Trabajo destacado',
@@ -133,7 +133,7 @@ const es: UiStrings = {
     contact: 'Contacto',
   },
   titles: {
-    skills: 'Tecnologías en las que confío y dónde las demostré',
+    skills: 'Lo que construyo y con qué lo construyo',
     experience: 'Dónde he construido y qué logré',
     education: 'La base detrás del trabajo',
     projects: 'Trabajo que muestra cómo pienso',
