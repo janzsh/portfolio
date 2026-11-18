@@ -12,5 +12,5 @@
     "Optimización de rendimiento y rediseño de un sitio empresarial.",
     "MVP de reservas hoteleras y MVP de logística de distribución de inventario."
   ],
-  "stack": ["React Native", "Expo", "React", "Next.js", "Angular", "Redux", "NestJS", "Astro", "Spring Boot", "ASP.NET Core"]
+  "stack": ["NestJS", "Spring Boot", "ASP.NET Core", "React", "Next.js", "Angular", "Redux", "Astro", "React Native", "Expo"]
 }

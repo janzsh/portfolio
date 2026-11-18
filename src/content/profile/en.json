@@ -1,16 +1,16 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "Backend Developer",
+  "role": "Backend & Data Developer",
   "headline": "I build the backend your business runs on.",
   "tagline": "I design, optimize and run production services, APIs and data processes. I work with the team to find the bottleneck, measure it and fix it with the simplest solution that works.",
-  "stackLine": "Python · TypeScript · Go · SQL · Linux · AWS",
-  "description": "Backend developer: production services, APIs and data processes with Python, TypeScript, Go and SQL on Linux and AWS, with frontend experience.",
+  "stackLine": "TypeScript · Java · SQL · Linux · AWS",
+  "description": "Backend and data developer: production APIs, services and data pipelines with TypeScript (NestJS), Java (Spring Boot) and SQL on Linux and AWS.",
   "aboutTitle": "Ecce homo: behold the man",
   "about": [
-    "I got into technology at a young age, but it was at 18, when I started my degree, that I found out what I am good at: understanding why a system is slow or fragile and leaving it running well. It is the work I enjoy most, and it rarely starts from scratch: there is a system in use, a budget and decisions already made.",
-    "I start from what the business needs, measure before I change anything and pick the simplest solution that solves it. I own what I ship from design to production on Linux and AWS. Backend is where I go deepest; I also work on data and interfaces, so work does not stall at the boundary between teams.",
-    "I was born in Santa Marta and have lived there most of my life. I like music, basketball, Linux ricing and movies, and above all I love horror stories. In my free time I go to the cinema, head to the beach, build something or simply watch a film."
+    "I'm a backend and data developer. TypeScript and Java are my main languages: APIs with NestJS and Spring Boot, SQL that holds up as the data grows, and the pipelines that move and clean that data. I also run Python and Go in production, mostly for data and ingestion work. Four of my five-plus years went into building and migrating financial and accounting SaaS platforms, where a wrong number is never a small bug.",
+    "What I enjoy most is figuring out why a system is slow or fragile and leaving it running well. That work rarely starts from scratch: there is a system in use, a budget and decisions already made. So I measure first, change what the numbers point to and check the result, like an internal ETL that kept running out of memory and now finishes in an hour at most without failing. I also think about whoever maintains it next: at IGD I led team initiatives and wrote the conventions and templates the team followed.",
+    "I was born in Santa Marta, Colombia, and have lived there most of my life. Away from the keyboard I'm into music, basketball, the beach and the cinema, horror above all: it's my favourite genre. And I spend more hours than I'd admit ricing my Linux setup."
   ],
   "location": "Santa Marta, Colombia",
   "languages": [

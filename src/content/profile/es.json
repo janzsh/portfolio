@@ -1,16 +1,16 @@
 {
   "firstName": "Juan Camilo",
   "lastName": "Zúñiga",
-  "role": "Desarrollador backend",
+  "role": "Desarrollador backend y de datos",
   "headline": "Construyo el backend sobre el que corre tu negocio.",
   "tagline": "Diseño, optimizo y opero servicios, APIs y procesos de datos en producción. Trabajo con el equipo para encontrar el cuello de botella, medirlo y resolverlo con la solución más simple que funcione.",
-  "stackLine": "Python · TypeScript · Go · SQL · Linux · AWS",
-  "description": "Desarrollador backend: servicios, APIs y procesos de datos en producción con Python, TypeScript, Go y SQL sobre Linux y AWS, con experiencia en frontend.",
+  "stackLine": "TypeScript · Java · SQL · Linux · AWS",
+  "description": "Desarrollador backend y de datos: APIs, servicios y pipelines en producción con TypeScript (NestJS), Java (Spring Boot) y SQL, sobre Linux y AWS.",
   "aboutTitle": "Ecce homo: he aquí al hombre",
   "about": [
-    "Empecé con la tecnología desde muy joven, pero fue a los 18 años, al entrar a la carrera, cuando descubrí en qué soy bueno: entender por qué un sistema es lento o frágil y dejarlo funcionando bien. Es el trabajo que más disfruto, y casi nunca empieza de cero: hay un sistema en uso, un presupuesto y decisiones que ya se tomaron.",
-    "Parto de lo que el negocio necesita, mido antes de cambiar y elijo la solución más simple que lo resuelve. Respondo por lo que entrego desde el diseño hasta producción en Linux y AWS. El backend es donde más profundizo; también trabajo en datos e interfaces, para que el trabajo no se detenga en la frontera entre equipos.",
-    "Nací en Santa Marta y he vivido allí la mayor parte de mi vida. Me gustan la música, el baloncesto, el ricing de Linux y el cine, y sobre todo amo las historias de terror. En mi tiempo libre salgo al cine, voy a la playa, programo algo o simplemente veo una película."
+    "Soy desarrollador backend y de datos. TypeScript y Java son mis lenguajes principales: APIs con NestJS y Spring Boot, SQL que aguanta cuando los datos crecen y los pipelines que mueven y limpian esos datos. También tengo Python y Go en producción, sobre todo para trabajo de datos e ingesta. Cuatro de mis más de cinco años los dediqué a construir y migrar plataformas SaaS financieras y contables, donde un número mal calculado nunca es un bug menor.",
+    "Lo que más disfruto es descubrir por qué un sistema es lento o frágil y dejarlo funcionando bien. Ese trabajo casi nunca empieza de cero: hay un sistema en uso, un presupuesto y decisiones que ya se tomaron. Por eso mido primero, cambio lo que señalan los números y compruebo el resultado, como un ETL interno que se quedaba sin memoria y hoy termina en una hora como máximo sin fallar. También pienso en quien lo mantiene después: en IGD lideré iniciativas del equipo y escribí las convenciones y plantillas que el equipo seguía.",
+    "Nací en Santa Marta, Colombia, y he vivido allí la mayor parte de mi vida. Lejos del teclado me gustan la música, el baloncesto, la playa y el cine, sobre todo el de terror: es mi género favorito. Y le dedico más horas de las que admitiría al ricing de mi Linux."
   ],
   "location": "Santa Marta, Colombia",
   "languages": [

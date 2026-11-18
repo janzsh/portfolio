@@ -3,18 +3,18 @@
   "role": "Semi-Senior Full-stack Developer",
   "mode": "Remote",
   "location": "Barranquilla, Colombia",
-  "summary": "Led the development and migration of enterprise fintech and accounting SaaS platforms, from NestJS and ASP.NET Core backends to Next.js and Astro frontends.",
+  "summary": "Led the development and migration of financial and accounting SaaS platforms: NestJS, Spring Boot and ASP.NET Core backends, SQL and NoSQL data models, and the web apps built on them.",
   "start": "01/2021",
   "end": "02/2025",
   "responsibilities": ["Design", "Development", "Quality assurance", "Deployment", "Maintenance"],
   "achievements": [
-    "Migrated legacy Visual FoxPro systems to web applications built with React.",
     "Cut response times of paginated API endpoints with a combined strategy of indexes and query optimization.",
+    "Migrated legacy Visual FoxPro systems to web applications built with React.",
     "Reworked the architecture and the communication between components to reduce coupling: fewer bugs when adding features, so the team spent more time on new features than on fixes.",
     "Defined templates, conventions and architecture guidelines for consistency across platforms.",
     "Designed SQL and NoSQL data models and workflows.",
     "Acted as technical lead on team initiatives, with developers reporting to me."
   ],
-  "stack": ["React", "Next.js", "Angular", "Astro", "Tailwind", "NestJS", "ASP.NET Core", "Spring Boot", "Docker", "MySQL", "Redis"],
+  "stack": ["NestJS", "Spring Boot", "ASP.NET Core", "MySQL", "Redis", "Docker", "React", "Next.js", "Angular", "Astro", "Tailwind"],
   "url": "https://igdsas.com/"
 }
