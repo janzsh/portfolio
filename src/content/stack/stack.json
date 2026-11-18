@@ -10,11 +10,7 @@
     },
     {
       "id": "cloud",
-      "tier": "primary"
-    },
-    {
-      "id": "frontend",
-      "tier": "primary"
+      "tier": "secondary"
     },
     {
       "id": "also",
@@ -23,31 +19,8 @@
   ],
   "technologies": [
     {
-      "name": "Python",
-      "group": "backend",
-      "category": "language",
-      "status": "production",
-      "usedIn": [
-        "project:efrouting",
-        "experience:efrouting"
-      ]
-    },
-    {
-      "name": "FastAPI",
-      "group": "backend",
-      "category": "framework",
-      "language": "Python",
-      "status": "production",
-      "usedIn": [
-        "experience:efrouting"
-      ]
-    },
-    {
       "name": "TypeScript",
-      "group": [
-        "backend",
-        "frontend"
-      ],
+      "group": "backend",
       "category": "language",
       "since": "01/2020",
       "status": "production",
@@ -67,6 +40,58 @@
       "usedIn": [
         "experience:igd",
         "experience:freelance",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "Java",
+      "group": "backend",
+      "category": "language",
+      "since": "01/2020",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Spring Boot",
+      "group": "backend",
+      "category": "framework",
+      "language": [
+        "Java",
+        "Kotlin"
+      ],
+      "since": "08/2021",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Kotlin",
+      "group": "backend",
+      "category": "language",
+      "since": "12/2023",
+      "status": "hands-on"
+    },
+    {
+      "name": "Python",
+      "group": "backend",
+      "category": "language",
+      "status": "production",
+      "usedIn": [
+        "project:efrouting",
+        "experience:efrouting"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "group": "backend",
+      "category": "framework",
+      "language": "Python",
+      "status": "production",
+      "usedIn": [
         "experience:efrouting"
       ]
     },
@@ -108,89 +133,12 @@
       "status": "hands-on"
     },
     {
-      "name": "Java",
-      "group": "backend",
-      "category": "language",
-      "since": "01/2020",
-      "status": "production",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
-      "name": "Kotlin",
-      "group": "backend",
-      "category": "language",
-      "since": "12/2023",
-      "status": "hands-on"
-    },
-    {
-      "name": "Spring Boot",
-      "group": "backend",
-      "category": "framework",
-      "language": [
-        "Java",
-        "Kotlin"
-      ],
-      "since": "08/2021",
-      "status": "production",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
       "name": "ASP.NET Core",
       "group": "backend",
       "status": "production",
       "usedIn": [
         "experience:igd",
         "experience:freelance"
-      ]
-    },
-    {
-      "name": "React",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "status": "production",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance"
-      ]
-    },
-    {
-      "name": "Next.js",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "status": "production",
-      "usedIn": [
-        "experience:igd",
-        "experience:freelance",
-        "project:efrouting"
-      ]
-    },
-    {
-      "name": "Angular",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "since": "09/2021",
-      "status": "production",
-      "usedIn": [
-        "experience:igd"
-      ]
-    },
-    {
-      "name": "Astro",
-      "group": "frontend",
-      "category": "framework",
-      "language": "TypeScript",
-      "since": "08/2023",
-      "status": "production",
-      "usedIn": [
-        "experience:igd"
       ]
     },
     {
@@ -308,6 +256,51 @@
       "name": "Kubernetes",
       "group": "cloud",
       "status": "learning"
+    },
+    {
+      "name": "React",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance"
+      ]
+    },
+    {
+      "name": "Next.js",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "status": "production",
+      "usedIn": [
+        "experience:igd",
+        "experience:freelance",
+        "project:efrouting"
+      ]
+    },
+    {
+      "name": "Angular",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "since": "09/2021",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
+    },
+    {
+      "name": "Astro",
+      "group": "also",
+      "category": "framework",
+      "language": "TypeScript",
+      "since": "08/2023",
+      "status": "production",
+      "usedIn": [
+        "experience:igd"
+      ]
     },
     {
       "name": "Lua",
