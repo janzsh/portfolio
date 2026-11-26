@@ -1,5 +1,6 @@
 import { getCollection, getEntry } from 'astro:content';
 import { buildFilterOptions, withImpliedLanguages } from '../domain/project-filters';
+import { rankProjects } from '../domain/project-ranking';
 import { buildSkillGroups, stackByStatus, type Evidence } from '../domain/skills';
 import { sortNewestFirst } from '../domain/timeline';
 import { localePath } from '../i18n/paths';
@@ -32,9 +33,7 @@ export async function getStack() {
 
 export async function getProjects(locale: Locale) {
   const [entries, stack] = await Promise.all([getCollection('projects', inLocale(locale)), getStack()]);
-  return entries
-    .sort((a, b) => a.data.order - b.data.order)
-    .map((entry) => ({ id: entry.id.split('/')[1], ...entry.data, searchSkills: withImpliedLanguages(entry.data.skills, stack), entry }));
+  return rankProjects(entries.map((entry) => ({ id: entry.id.split('/')[1], ...entry.data, searchSkills: withImpliedLanguages(entry.data.skills, stack), entry })));
 }
 
 export async function getProjectFilterOptions(locale: Locale) {

@@ -6,8 +6,7 @@ kind: "backend"
 role: "Autor"
 summary: "Núcleo de autenticación compartido para una suite de productos SaaS propia: usuarios multitenant, organizaciones, permisos y suscripciones. En desarrollo."
 skills: ["Go", "PostgreSQL", "Redis / Valkey", "gRPC", "Chi", "Docker"]
-featured: true
-order: 1
+score: 90
 ---
 **Problema.** Todo producto SaaS necesita lo mismo: registro, inicio de sesión, organizaciones, roles y suscripciones. Construirlo en cada producto es lento y arriesgado; Auth Core lo construye una vez y lo comparten todos.
 

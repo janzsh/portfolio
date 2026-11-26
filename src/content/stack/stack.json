@@ -26,7 +26,6 @@
       "status": "production",
       "usedIn": [
         "experience:igd",
-        "project:efrouting",
         "experience:efrouting"
       ]
     },
@@ -81,7 +80,6 @@
       "category": "language",
       "status": "production",
       "usedIn": [
-        "project:efrouting",
         "experience:efrouting"
       ]
     },
@@ -103,7 +101,6 @@
       "status": "production",
       "usedIn": [
         "experience:efrouting",
-        "project:efrouting",
         "project:auth-core"
       ]
     },
@@ -188,7 +185,6 @@
       "group": "data",
       "status": "production",
       "usedIn": [
-        "project:efrouting",
         "experience:efrouting"
       ]
     },
@@ -197,7 +193,6 @@
       "group": "cloud",
       "status": "production",
       "usedIn": [
-        "project:efrouting",
         "experience:efrouting"
       ]
     },
@@ -221,16 +216,13 @@
       "name": "AWS CDK",
       "group": "cloud",
       "status": "hands-on",
-      "usedIn": [
-        "project:efrouting"
-      ]
+      "usedIn": []
     },
     {
       "name": "ECS Fargate",
       "group": "cloud",
       "status": "production",
       "usedIn": [
-        "project:efrouting",
         "experience:efrouting"
       ]
     },
@@ -276,8 +268,7 @@
       "status": "production",
       "usedIn": [
         "experience:igd",
-        "experience:freelance",
-        "project:efrouting"
+        "experience:freelance"
       ]
     },
     {
@@ -309,7 +300,7 @@
       "since": "08/2023",
       "status": "hands-on",
       "usedIn": [
-        "project:neovim"
+        "project:dotfiles"
       ]
     }
   ]

@@ -1,6 +1,7 @@
 ---
 import Section from '../../ui/Section.astro';
 import type { ProjectItem } from '../../data/queries';
+import { topProjects } from '../../domain/project-ranking';
 import { localePath } from '../../i18n/paths';
 import { ui } from '../../i18n/ui';
 import type { Locale } from '../../i18n/locales';
@@ -9,7 +10,8 @@ import ProjectsGrid from './ProjectsGrid.astro';
 interface Props { locale: Locale; projects: ProjectItem[]; }
 const { locale, projects } = Astro.props;
 const t = ui(locale);
-const featured = projects.filter((project) => project.featured);
+const HOME_PROJECT_COUNT = 4;
+const featured = topProjects(projects, HOME_PROJECT_COUNT);
 ---
 <Section id="projects" eyebrow={t.sections.projects} title={t.titles.projects} more={{ href: localePath(locale, 'projects'), label: t.more.projects }}>
   <ProjectsGrid {locale} projects={featured} />
