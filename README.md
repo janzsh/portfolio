@@ -156,6 +156,7 @@ Requirements: Node 24 and pnpm. With [Nix](https://nixos.org) you get both, plus
 
 ```bash
 nix develop          # optional: Node, pnpm, Chromium, agent-browser
+                     # or `direnv allow` to load it on cd (nix-direnv)
 pnpm install
 cp .env.example .env # RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
 pnpm dev
