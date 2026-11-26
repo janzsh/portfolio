@@ -67,7 +67,7 @@ describe('resumeData', () => {
   });
 
   it('publishes only the project fields a résumé needs, not internal ones', () => {
-    const project = { ...input.projects[0], featured: true, order: 1, searchSkills: ['Go'] };
+    const project = { ...input.projects[0], score: 80, searchSkills: ['Go'] };
     expect(resumeData({ ...input, projects: [project] }).projects[0]).toEqual({
       name: 'Engine',
       year: '2024',

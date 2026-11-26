@@ -32,7 +32,7 @@ export function limitEvidence(usedIn: Evidence[], max: number): { shown: Evidenc
   return { shown: usedIn.slice(0, max), hidden: usedIn.slice(max) };
 }
 
-/** Maps `project:efrouting` / `experience:igd` to something displayable, or undefined when unknown. */
+/** Maps `project:auth-core` / `experience:igd` to something displayable, or undefined when unknown. */
 export type EvidenceResolver = (ref: string) => Evidence | undefined;
 
 /**

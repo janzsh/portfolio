@@ -20,7 +20,8 @@ const experience = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-  schema: projectSchema,
+  // `image()` only exists here; it resolves the path and fails the build if the file is missing.
+  schema: ({ image }) => projectSchema.extend({ picture: image().optional() }),
 });
 
 const education = defineCollection({

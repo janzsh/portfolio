@@ -6,8 +6,7 @@ kind: "backend"
 role: "Author"
 summary: "Shared authentication core for my own suite of SaaS products: multi-tenant users, organizations, permissions and subscriptions. In development."
 skills: ["Go", "PostgreSQL", "Redis / Valkey", "gRPC", "Chi", "Docker"]
-featured: true
-order: 1
+score: 90
 ---
 **Problem.** Every SaaS product needs the same things: sign-up, login, organizations, roles and subscriptions. Building them again in each product is slow and risky; Auth Core builds them once and every product shares them.
 

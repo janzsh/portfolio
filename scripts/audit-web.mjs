@@ -59,7 +59,7 @@ async function useIde(page) {
     await page.evaluate((n) => [...document.querySelectorAll('.ide__row')].find((r) => r.textContent.trim().startsWith(n)).click(), name);
   };
   await click('projects');
-  await click('efrouting');
+  await click('auth-core');
   await page.waitForSelector('.ide__tab--active', { timeout: 5000 });
 }
 

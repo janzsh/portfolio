@@ -10,7 +10,7 @@ Personal portfolio. Fast, accessible, SEO-first, minimalist and technical in ton
 - **Zod** + **Astro content collections** (Markdown or JSON) for all content.
 - **Vitest** for tests. **TDD** (see `tdd` skill).
 - Deploy: **Vercel**. Add `@astrojs/vercel` only if something truly needs SSR; stay static otherwise.
-- `flake.nix` is a **local dev shell only** (pnpm, nodejs, agent-browser, chromium). Enter with `nix develop`. Never reference it in CI/deploy.
+- `flake.nix` is a **local dev shell only** (pnpm, nodejs, agent-browser, chromium). Enter with `nix develop`, or let direnv load it from `.envrc` (`use flake`). Never reference it in CI/deploy.
 
 Verify API details against the installed Astro/Preact versions before relying on memory; both move fast.
 

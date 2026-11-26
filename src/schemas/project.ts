@@ -10,11 +10,9 @@ export const projectSchema = z.object({
   role: z.string().optional(),
   summary: z.string(),
   skills: z.array(z.string()).min(1),
-  picture: z.url().optional(),
   repo: z.url().optional(),
   live: z.url().optional(),
-  /** Shown on the home page; everything else lives on /projects. */
-  featured: z.boolean().default(false),
-  order: z.number().default(100),
+  /** Hidden ranking, higher is better: sorts every list and picks what the home page shows. */
+  score: z.int().min(0).max(100),
 });
 export type Project = z.infer<typeof projectSchema>;

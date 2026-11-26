@@ -6,9 +6,9 @@ kind: "fullstack"
 role: "Author"
 summary: "This portfolio: a bilingual static site with Astro and Preact islands, Zod-validated content and automated test, accessibility and performance checks on every pull request."
 skills: ["Astro", "TypeScript", "Preact", "SCSS", "Zod", "Vitest"]
+picture: "../../../assets/pictures/projects/portfolio.png"
 repo: "https://github.com/janzsh/portfolio"
-featured: true
-order: 3
+score: 80
 ---
 **Problem.** A portfolio in two languages that loads fast, is accessible and can change without fear of breaking it.
 
